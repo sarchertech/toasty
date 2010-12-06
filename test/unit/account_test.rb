@@ -6,7 +6,7 @@ class AccountTest < ActiveSupport::TestCase
     
     assert_nothing_raised do
       attributes = %w{customer_location_access user_location_access
-                      time_zone account_number name sub_domain}
+                      account_number name sub_domain}
       attributes.each {|attr| account.send(attr)}
     end
   end
@@ -18,8 +18,32 @@ class AccountTest < ActiveSupport::TestCase
   end
 
   test "Account should create a sub_domain and it should be url safe" do
-    account = Factory.create(:account, :name => "Sun City!")  
+    account = Factory.create(:account, :name => "Sun City")  
         
     assert_equal("suncity", account.sub_domain) 
+  end
+
+  test "customer_location_access should not be blank" do
+    account = Factory.build(:account, :customer_location_access => nil)
+
+    assert !account.valid?
+  end 
+
+  test "user_location_access should not be blank" do
+    account = Factory.build(:account, :user_location_access => nil)
+
+    assert !account.valid?
+  end
+
+  test "account_number should not be blank" do
+    account = Factory.build(:account, :account_number => nil)
+
+    assert !account.valid?
+  end
+
+  test "name should be alphanumeric " do 
+    account = Factory.build(:account, :name => "Sun City's!")
+
+    assert !account.valid?
   end
 end

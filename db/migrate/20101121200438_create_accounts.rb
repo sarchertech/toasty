@@ -3,7 +3,6 @@ class CreateAccounts < ActiveRecord::Migration
     create_table :accounts do |t|
       t.boolean :customer_location_access
       t.boolean :user_location_access
-      t.string :time_zone
       t.integer :account_number
       t.string :name
       t.string :sub_domain

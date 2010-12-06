@@ -4,10 +4,13 @@ class CreateSalons < ActiveRecord::Migration
       t.references :account
       t.string :name
       t.string :zip_code
-      t.boolean :rfid_login
       t.string :permalink
       t.string :time_zone
-
+      t.string :address
+      t.string :address_2
+      t.string :city
+      t.string :state
+      
       t.timestamps
     end
   end

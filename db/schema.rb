@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
   create_table "accounts", :force => true do |t|
     t.boolean  "customer_location_access"
     t.boolean  "user_location_access"
-    t.string   "time_zone"
     t.integer  "account_number"
     t.string   "name"
     t.string   "sub_domain"
@@ -56,9 +55,12 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
     t.integer  "account_id"
     t.string   "name"
     t.string   "zip_code"
-    t.boolean  "rfid_login"
     t.string   "permalink"
     t.string   "time_zone"
+    t.string   "address"
+    t.string   "address_2"
+    t.string   "city"
+    t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

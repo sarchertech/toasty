@@ -21,7 +21,7 @@ class Salon < ActiveRecord::Base
   validates_uniqueness_of :identifier, :scope => :account_id
 
   validates_format_of :identifier, :without => /[^A-Za-z0-9_]/,
-                      :message => "can only contain letters, numbers,
+                      :message => "can only contain lowercase letters, numbers,
                                     and underscores"
 
   private

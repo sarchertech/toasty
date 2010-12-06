@@ -14,7 +14,13 @@ Factory.define :account do |f|
 end
 
 Factory.define :salon do |f|
-  
+  f.account_id 1
+  f.zip_code "30134"
+  f.time_zone "Eastern Time (US & Canada)"
+  f.address "4430 Hwy 5"
+  f.city "Douglasville"
+  f.state "GA"
+  f.identifier "douglasville"
 end
 
 Factory.define :bed do |f|

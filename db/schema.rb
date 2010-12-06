@@ -53,9 +53,8 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
 
   create_table "salons", :force => true do |t|
     t.integer  "account_id"
-    t.string   "name"
     t.string   "zip_code"
-    t.string   "permalink"
+    t.string   "identifier"
     t.string   "time_zone"
     t.string   "address"
     t.string   "address_2"

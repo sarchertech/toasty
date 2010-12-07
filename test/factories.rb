@@ -44,5 +44,8 @@ Factory.define :bed do |f|
 end
 
 Factory.define :tan_session do |f|
-  
+  f.bed_id 1
+  f.customer_id 1
+  f.salon_id 1
+  f.minutes 5
 end

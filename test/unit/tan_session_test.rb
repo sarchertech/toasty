@@ -11,5 +11,31 @@ class TanSessionTest < ActiveSupport::TestCase
       attributes.each {|attr| @tan_session.send(attr)}
     end
   end
-end
 
+  test "bed_id should not be blank" do
+    should_not_be_blank(@tan_session, :bed_id)
+  end
+
+  test "customer_id should not be blank" do
+    should_not_be_blank(@tan_session, :customer_id)
+  end
+
+  test "salon_id should not be blank" do
+    should_not_be_blank(@tan_session, :salon_id)
+  end
+
+  test "minutes should not be blank" do
+    should_not_be_blank(@tan_session, :minutes)
+  end
+
+  test "minutes should be between 2 and 20" do
+    @tan_session.minutes = "one"
+    assert !@tan_session.valid?
+
+    @tan_session.minutes = 1
+    assert !@tan_session.valid?
+
+    @tan_session.minutes = 21
+    assert !@tan_session.valid?
+  end
+end

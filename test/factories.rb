@@ -15,7 +15,11 @@ Factory.define :customer do |f|
 end
 
 Factory.define :user do |f|
-  
+  f.last_name "Krontz"
+  f.first_name "Michael"
+  f.security_level 1
+  f.account_id 1
+  f.salon_id 1
 end
 
 Factory.define :account do |f|

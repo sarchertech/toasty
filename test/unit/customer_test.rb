@@ -156,4 +156,68 @@ class CustomerTest < ActiveSupport::TestCase
 
     assert_equal("7709491622", @rhonda.phone_number)
   end
+
+  test "address should not be blank" do
+    @rhonda.address = nil
+
+    assert !@rhonda.valid?
+  end
+
+  test "birth_date should not be blank" do
+    @rhonda.birth_date = nil
+
+    assert !@rhonda.valid?
+  end
+
+  test "birth_date should be on or before today" do
+    @rhonda.birth_date = Time.now.to_date + 1.day
+    assert !@rhonda.valid?
+
+    @rhonda.birth_date = Time.now.to_date
+    assert @rhonda.valid?
+  end
+
+  test "city should not be blank" do
+    @rhonda.city = nil
+
+    assert !@rhonda.valid?
+  end
+
+  test "zip_code should not be blank" do
+    @rhonda.zip_code = nil
+
+    assert !@rhonda.valid?
+  end
+
+  test "zip_code should be a number" do
+    @rhonda.zip_code = "three"
+
+    assert !@rhonda.valid?
+  end
+
+  test "zip code should be 5 digits long" do
+    @rhonda.zip_code = "3013"
+    assert !@rhonda.valid?
+    
+    @rhonda.zip_code = "301345"
+    assert !@rhonda.valid?
+  end
+
+  test "state should not be blank" do
+    @rhonda.state = nil
+
+    assert !@rhonda.valid?
+  end
+
+  test "account_id should not be blank" do
+    @rhonda.account_id = nil
+
+    assert !@rhonda.valid?
+  end
+
+  test "salon_id should not be blank" do
+    @rhonda.salon_id = nil
+
+    assert !@rhonda.valid?
+  end
 end

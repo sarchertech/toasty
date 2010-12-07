@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
   create_table "customers", :force => true do |t|
     t.string   "last_name"
     t.string   "first_name"
-    t.integer  "customer_number"
+    t.string   "customer_number"
     t.integer  "level"
     t.string   "email"
     t.string   "phone_number"

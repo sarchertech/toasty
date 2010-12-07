@@ -12,7 +12,7 @@ class Account < ActiveRecord::Base
 
   validates_presence_of :account_number, :name
   
-  validates_format_of :name, :without => /[^a-zA-Z0-9\s]/, 
+  validates_format_of :name, :without => /[^a-zA-Z0-9 ]/, 
                       :message => "must contain only letters, numbers,
                                    and spaces"
 

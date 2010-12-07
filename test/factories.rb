@@ -1,5 +1,10 @@
 Factory.define :customer do |f|
-  
+  f.last_name "Krontz" 
+  f.first_name "Rhonda"
+  f.customer_number "1234"
+  f.level 1
+  f.email "rhonda@toasty.com"
+  f.phone_number "7709491622"
 end
 
 Factory.define :user do |f|

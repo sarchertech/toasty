@@ -21,11 +21,27 @@ class UserTest < ActiveSupport::TestCase
     should_not_be_blank(@michael, :last_name) 
   end
 
+  test "first_name should not be blank" do
+    should_not_be_blank(@michael, :first_name)
+  end
+
   test "last_name should be no more than 40 characters long" do
     @michael.last_name = "krontzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
     assert !@michael.valid?
   end 
+  
+  test "last_name should be at leaset 2 characters long" do
+    @michael.last_name = "k"
+
+    assert !@michael.valid?
+  end
+
+  test "first_name should be no more than 40 characters long" do
+    @michael.first_name = "michaelaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+
+    assert !@michael.valid?
+  end
 
   test "last_name should strip leading and trailing whitespace" do
     @michael.last_name = " Krontz "
@@ -33,6 +49,14 @@ class UserTest < ActiveSupport::TestCase
     @michael.valid?
 
     assert_equal("Krontz", @michael.last_name)
+  end
+
+  test "first_name should strip leading and trailing whitespace" do
+    @michael.first_name = " Michael "
+    
+    @michael.valid?
+
+    assert_equal("Michael", @michael.first_name)
   end
 
   test "last_name should only contain letters, spaces, and hyphens" do
@@ -47,5 +71,57 @@ class UserTest < ActiveSupport::TestCase
 
     @michael.last_name = "K ront-z"
     assert @michael.valid?
+  end
+
+  test "first_name should only contain letters, spaces, and hyphens" do
+    @michael.first_name = "Michael4"
+    assert !@michael.valid?
+    
+    @michael.first_name = "Michael!"
+    assert !@michael.valid?
+
+    @michael.first_name = "Michae\nl"
+    assert !@michael.valid?
+
+    @michael.first_name = "M ichae-l"
+    assert @michael.valid?
+  end
+
+  test "security_level should not be blank" do
+    should_not_be_blank(@michael, :security_level)
+  end
+
+  test "security level should be a number from 1 to 4" do
+    @michael.security_level = "one"
+    assert !@michael.valid?
+
+    @michael.security_level = 0
+    assert !@michael.valid?
+
+    @michael.security_level = 5
+    assert !@michael.valid?
+  end
+
+  test "account_id should not be blank" do
+    should_not_be_blank(@michael, :account_id)
+  end
+  
+  test "login should be autocreated and free of hypens or spaces" do
+    user = Factory.create(:user, :last_name => "K r-ontzey",
+                          :first_name => "-Michael") 
+    
+    assert_equal("mkrontz1", user.login)  
+  end
+
+  test "autocreated login should add a number if already taken" do
+    user = Factory.create(:user, :last_name => "Brown", :first_name => "Zed")
+    user2 = Factory.create(:user, :last_name => "Brown", :first_name => "Zane")
+    user3 = Factory.create(:user, :last_name => "Brown", :first_name => "Zeke")
+
+    #TODO also need to bypass validations with Factory girl so I can check to
+    #     see if zbrown233 increments to zbrown234
+
+    assert_equal("zbrown2", user2.login)
+    assert_equal("zbrown3", user3.login)
   end
 end

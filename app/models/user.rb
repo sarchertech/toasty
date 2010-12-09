@@ -36,19 +36,30 @@ class User < ActiveRecord::Base
     end
   end
 
+  def auto_create_login
+    if login_should_be_changed?
+      if user = User.highest_login_like_this(prefix)
+        self.login = user.login.gsub(/\d{1,}/) {|s| s.to_i + 1}
+      else
+        self.login = prefix + "1" 
+      end  
+    end
+  end
+
   def prefix
     pre = lambda {|n| n.downcase.gsub(/[ -]/,'') }
     
     (pre.call self.first_name)[0] + (pre.call self.last_name)[0..5]
   end
 
-  def login_should_not_be_changed?
-    if self.login == nil
-      false
-    elsif self.first_name_changed? || self.last_name_changed?
-      prefix == self.login.gsub(/\d{1,}/,'')
+  def login_should_be_changed?
+    if self.login
+      f = first_name_changed?
+      l = last_name_changed?
+
+      ( f || l) && prefix != login.gsub(/\d{1,}/,'')
     else
-      true
+      true 
     end
   end
 end

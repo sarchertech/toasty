@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
   
   validates_inclusion_of :security_level, :in => 1..4
 
+  def self.highest_login_like_this(pre)
+    where("login LIKE ?", pre + "%").order("login desc").first
+  end
+  
   private
 
   def san
@@ -24,15 +28,27 @@ class User < ActiveRecord::Base
   end
 
   def auto_create_login
-    last = self.last_name.downcase.gsub(/[ -]/,'')[0..5]
-    first = self.first_name.downcase.gsub(/[ -]/,'')[0]
-
-    prefix = first + last 
-
-    if user = User.where("login LIKE ?", "#{prefix}%").order("login desc").first
+    if login_should_not_be_changed?
+    elsif user = User.highest_login_like_this(prefix)
       self.login = user.login.gsub(/\d{1,}/) {|s| s.to_i + 1}
     else
-      self.login = "#{prefix}1" 
+      self.login = prefix + "1" 
+    end
+  end
+
+  def prefix
+    pre = lambda {|n| n.downcase.gsub(/[ -]/,'') }
+    
+    (pre.call self.first_name)[0] + (pre.call self.last_name)[0..5]
+  end
+
+  def login_should_not_be_changed?
+    if self.login == nil
+      false
+    elsif self.first_name_changed? || self.last_name_changed?
+      prefix == self.login.gsub(/\d{1,}/,'')
+    else
+      true
     end
   end
 end

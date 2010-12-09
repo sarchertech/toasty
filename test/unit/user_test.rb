@@ -113,7 +113,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal("mkrontz1", user.login)  
   end
 
-  test "autocreated login should add a number if already taken" do
+  test "login should + number if already taken & only change when neccessary" do
     user = Factory.create(:user, :last_name => "Brown", :first_name => "Zed")
     user2 = Factory.create(:user, :last_name => "Brown", :first_name => "Zane")
     user3 = Factory.create(:user, :last_name => "Brown", :first_name => "Zeke")
@@ -123,5 +123,19 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal("zbrown2", user2.login)
     assert_equal("zbrown3", user3.login)
+
+    user3.save
+
+    assert_equal("zbrown3", user3.login)
+
+    user3.first_name = "Xray"
+    user3.save
+
+    assert_equal("xbrown1", user3.login)
+
+    user3.last_name = "Browne"
+    user3.save
+
+    assert_equal("xbrowne1", user3.login)
   end
 end

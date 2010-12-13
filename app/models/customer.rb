@@ -25,7 +25,7 @@ class Customer < ActiveRecord::Base
   validates_format_of :email, :with => /^.+@.+\..+$/, :allow_nil => true,
                       :message => "not a valid email"
 
-  validates_inclusion_of :level, :in => 1..6
+  validates_inclusion_of :level, :in => 0..5
 
   private
 

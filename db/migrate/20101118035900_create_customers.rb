@@ -4,7 +4,7 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :last_name
       t.string :first_name
       t.string :customer_number
-      t.integer :level
+      t.integer :level, :default => 0
       t.string :email
       t.string :phone_number
       t.string :address
@@ -18,6 +18,9 @@ class CreateCustomers < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :customers, :account_id
+    add_index :customers, :salon_id
   end
 
   def self.down

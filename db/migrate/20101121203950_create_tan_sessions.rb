@@ -8,6 +8,9 @@ class CreateTanSessions < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :tan_sessions, :customer_id
+    add_index :tan_sessions, :salon_id
   end
 
   def self.down

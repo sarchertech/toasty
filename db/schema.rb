@@ -13,14 +13,15 @@
 ActiveRecord::Schema.define(:version => 20101121203950) do
 
   create_table "accounts", :force => true do |t|
-    t.boolean  "customer_location_access"
-    t.boolean  "user_location_access"
+    t.boolean  "customer_location_access", :default => false
     t.integer  "account_number"
     t.string   "name"
     t.string   "sub_domain"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "accounts", ["sub_domain"], :name => "index_accounts_on_sub_domain", :unique => true
 
   create_table "beds", :force => true do |t|
     t.integer  "salon_id"
@@ -32,11 +33,13 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
     t.datetime "updated_at"
   end
 
+  add_index "beds", ["salon_id"], :name => "index_beds_on_salon_id"
+
   create_table "customers", :force => true do |t|
     t.string   "last_name"
     t.string   "first_name"
     t.string   "customer_number"
-    t.integer  "level"
+    t.integer  "level",           :default => 0
     t.string   "email"
     t.string   "phone_number"
     t.string   "address"
@@ -51,6 +54,9 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
     t.datetime "updated_at"
   end
 
+  add_index "customers", ["account_id"], :name => "index_customers_on_account_id"
+  add_index "customers", ["salon_id"], :name => "index_customers_on_salon_id"
+
   create_table "salons", :force => true do |t|
     t.integer  "account_id"
     t.string   "zip_code"
@@ -60,9 +66,12 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
     t.string   "address_2"
     t.string   "city"
     t.string   "state"
+    t.string   "staffed_hours"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "salons", ["account_id", "identifier"], :name => "index_salons_on_account_id_and_identifier", :unique => true
 
   create_table "tan_sessions", :force => true do |t|
     t.integer  "bed_id"
@@ -73,15 +82,21 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
     t.datetime "updated_at"
   end
 
+  add_index "tan_sessions", ["customer_id"], :name => "index_tan_sessions_on_customer_id"
+  add_index "tan_sessions", ["salon_id"], :name => "index_tan_sessions_on_salon_id"
+
   create_table "users", :force => true do |t|
     t.string   "last_name"
     t.string   "first_name"
-    t.integer  "security_level"
+    t.integer  "security_level", :default => 0
     t.integer  "account_id"
     t.integer  "salon_id"
     t.string   "login"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["account_id"], :name => "index_users_on_account_id"
+  add_index "users", ["salon_id"], :name => "index_users_on_salon_id"
 
 end

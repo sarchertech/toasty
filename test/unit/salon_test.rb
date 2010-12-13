@@ -8,7 +8,7 @@ class SalonTest < ActiveSupport::TestCase
   test "Salon has valid attributes-no mistakes in migrations" do
     assert_nothing_raised do
       attributes = %w{account_id zip_code identifier time_zone 
-                      address address_2 city state}
+                      address address_2 city state staffed_hours}
       attributes.each {|attr| @sun_city.send(attr)}
     end
   end

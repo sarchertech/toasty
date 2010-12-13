@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates_format_of :last_name, :first_name, :without => /[^A-Za-z -]/,
                       :message => "can only contain letters, spaces, and hypens"
   
-  validates_inclusion_of :security_level, :in => 1..4
+  validates_inclusion_of :security_level, :in => 0..4
 
   def self.highest_login_like_this(pre)
     where("login LIKE ?", pre + "%").order("login desc").first
@@ -26,16 +26,7 @@ class User < ActiveRecord::Base
     self.last_name = last_name.strip if self.last_name
     self.first_name = first_name.strip if self.first_name
   end
-
-  def auto_create_login
-    if login_should_not_be_changed?
-    elsif user = User.highest_login_like_this(prefix)
-      self.login = user.login.gsub(/\d{1,}/) {|s| s.to_i + 1}
-    else
-      self.login = prefix + "1" 
-    end
-  end
-
+  
   def auto_create_login
     if login_should_be_changed?
       if user = User.highest_login_like_this(prefix)

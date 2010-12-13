@@ -92,10 +92,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "security level should be a number from 1 to 4" do
-    @michael.security_level = "one"
-    assert !@michael.valid?
-
-    @michael.security_level = 0
+    @michael.security_level = -1
     assert !@michael.valid?
 
     @michael.security_level = 5

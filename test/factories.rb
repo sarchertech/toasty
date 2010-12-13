@@ -19,12 +19,10 @@ Factory.define :user do |f|
   f.first_name "Michael"
   f.security_level 1
   f.account_id 1
-  f.salon_id 1
 end
 
 Factory.define :account do |f|
   f.customer_location_access false
-  f.user_location_access false
   f.account_number 123
   f.name 'Sun City'  
 end

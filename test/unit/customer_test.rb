@@ -101,11 +101,11 @@ class CustomerTest < ActiveSupport::TestCase
     assert !@rhonda.valid?
   end
 
-  test "level should be between 1 and 6" do
-    @rhonda.level = 7
+  test "level should be between 1 and 5" do
+    @rhonda.level = 6
     assert !@rhonda.valid?
 
-    @rhonda.level = "seven"
+    @rhonda.level = -1
     assert !@rhonda.valid?
   end
 

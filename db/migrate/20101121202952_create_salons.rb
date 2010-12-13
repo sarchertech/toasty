@@ -9,9 +9,12 @@ class CreateSalons < ActiveRecord::Migration
       t.string :address_2
       t.string :city
       t.string :state
+      t.string :staffed_hours
       
       t.timestamps
     end
+
+    add_index :salons, [:account_id, :identifier], :unique => true
   end
 
   def self.down

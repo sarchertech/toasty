@@ -9,6 +9,8 @@ class CreateBeds < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :beds, :salon_id
   end
 
   def self.down

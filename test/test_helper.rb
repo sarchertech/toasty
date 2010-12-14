@@ -18,4 +18,9 @@ class ActiveSupport::TestCase
 
     assert !model_instance.valid?
   end 
+
+  def initialize_account_and_subdomain
+    @account = Factory.create(:account)
+    @request.host = "#{@account.sub_domain}.local.host"
+  end
 end

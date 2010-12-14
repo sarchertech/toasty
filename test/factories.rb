@@ -34,7 +34,7 @@ Factory.define :salon do |f|
   f.address "4430 Hwy 5"
   f.city "Douglasville"
   f.state "GA"
-  f.identifier "douglasville"
+  f.sequence(:identifier) { |n| "douglas#{n}" }
 end
 
 Factory.define :bed do |f|

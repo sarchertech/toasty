@@ -1,10 +1,8 @@
 require 'test_helper'
 
 class AccountsControllerTest < ActionController::TestCase
-  setup do
-    @account = Factory.create(:account)
-  end
-  
+  setup :initialize_account_and_subdomain
+
   test "should get index" do
     get :index
     assert_response :success

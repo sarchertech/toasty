@@ -34,4 +34,28 @@ class SalonsController < ApplicationController
       end
     end
   end
+
+  # PUT /salons/1
+  def update
+    @salon = @current_account.salons.find(params[:id])
+
+    respond_to do |format|
+      if @salon.update_attributes(params[:salon])
+        format.html {redirect_to(@salon,
+                       :notice => "Salon was successfully updated")}
+      else
+        format.html {render :action => "edit"}
+      end
+    end
+  end
+
+  # DELETE /salons/1
+  def destroy
+    @salon = @current_account.salons.find(params[:id])
+    @salon.destroy
+
+    respond_to do |format|
+      format.html {redirect_to(salons_url)}
+    end
+  end
 end

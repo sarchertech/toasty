@@ -56,4 +56,36 @@ class SalonsControllerTest < ActionController::TestCase
 
     assert_template("new")
   end
+
+  test "should update salon scoped to account and redirect to salon_path" do
+    put :update, :id => @salon.to_param,
+        :salon => Factory.attributes_for(:salon, :state => "TX")
+    
+    assert_equal("TX", @salon.reload.state)
+
+    assert_redirected_to salon_path(@salon)
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      put :update, :id => @salon2.to_param
+    end
+  end
+
+  test "should render edit if salon not successfully updated" do
+    put :update, :id => @salon.to_param,
+                 :salon => Factory.attributes_for(:salon, :state => nil)
+
+    assert_template("edit")
+  end
+
+  test "should destroy salon scoped to account" do
+    assert_difference('Salon.count', -1) do
+      delete :destroy, :id => @salon.to_param
+    end
+
+    assert_redirected_to salons_path
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      delete :destroy, :id => @salon2.to_param
+    end
+  end
 end

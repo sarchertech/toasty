@@ -8,6 +8,13 @@ class SalonsControllerTest < ActionController::TestCase
     @salon2 = Factory.create(:salon, :account_id => @account.id + 1)
   end
 
+  test "should generate and recognize /salons" do
+    route = {:path => "#{@request.url}/salons", :method => :get}
+    action = {:controller => "salons", :action => "index"}
+
+    assert_routing(route, action)
+  end
+
   test "should get index and assign only salons scoped to current_account" do
     get :index
     assert_response :success

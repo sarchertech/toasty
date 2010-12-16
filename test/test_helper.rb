@@ -23,4 +23,8 @@ class ActiveSupport::TestCase
     @account = Factory.create(:account)
     @request.host = "#{@account.sub_domain}.local.host"
   end
+
+  def initialize_salon
+    @salon = Factory.create(:salon, :account_id => @account.id)
+  end
 end

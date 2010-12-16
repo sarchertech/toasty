@@ -6,7 +6,7 @@ class SalonsController < ApplicationController
 
   # GET /salons/1
   def show
-    @salon = @current_account.salons.find(params[:id])
+    @salon = @current_account.salons.find_by_identifier!(params[:id])
   end
 
   # GET /salons/new
@@ -16,7 +16,7 @@ class SalonsController < ApplicationController
 
   # GET /salons/1/edit
   def edit
-    @salon = @current_account.salons.find(params[:id])
+    @salon = @current_account.salons.find_by_identifier!(params[:id])
   end
 
   # POST /salons
@@ -37,7 +37,7 @@ class SalonsController < ApplicationController
 
   # PUT /salons/1
   def update
-    @salon = @current_account.salons.find(params[:id])
+    @salon = @current_account.salons.find_by_identifier!(params[:id])
 
     respond_to do |format|
       if @salon.update_attributes(params[:salon])
@@ -51,7 +51,7 @@ class SalonsController < ApplicationController
 
   # DELETE /salons/1
   def destroy
-    @salon = @current_account.salons.find(params[:id])
+    @salon = @current_account.salons.find_by_identifier!(params[:id])
     @salon.destroy
 
     respond_to do |format|

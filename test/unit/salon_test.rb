@@ -127,4 +127,8 @@ class SalonTest < ActiveSupport::TestCase
 
     assert_equal("ballground", salon.identifier)
   end
+
+  test "to_param should return salon.identifier" do
+    assert_equal(@sun_city.identifier, @sun_city.to_param)
+  end
 end

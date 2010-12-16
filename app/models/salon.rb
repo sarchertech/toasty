@@ -24,6 +24,10 @@ class Salon < ActiveRecord::Base
                       :message => "can only contain lowercase letters, numbers,
                                     and underscores"
 
+  def to_param
+    identifier
+  end
+
   private
 
   def san

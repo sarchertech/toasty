@@ -66,7 +66,7 @@ class SalonsControllerTest < ActionController::TestCase
 
   test "should update salon scoped to account and redirect to salon_path" do
     put :update, :id => @salon.to_param,
-        :salon => Factory.attributes_for(:salon, :state => "TX")
+        :salon => {:state => "TX"}
     
     assert_equal("TX", @salon.reload.state)
 
@@ -79,7 +79,7 @@ class SalonsControllerTest < ActionController::TestCase
 
   test "should render edit if salon not successfully updated" do
     put :update, :id => @salon.to_param,
-                 :salon => Factory.attributes_for(:salon, :state => nil)
+                 :salon => {:state => nil}
 
     assert_template("edit")
   end

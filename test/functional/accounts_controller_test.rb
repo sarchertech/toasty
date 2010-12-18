@@ -44,8 +44,7 @@ class AccountsControllerTest < ActionController::TestCase
 
   test "should update account and redirect to account_path" do
     put :update, :id => @account.to_param, 
-        :account => Factory.attributes_for(:account, 
-                                           :customer_location_access => true)
+        :account => {:customer_location_access => true}
     
     assert_equal(true, @account.reload.customer_location_access)
 
@@ -54,7 +53,7 @@ class AccountsControllerTest < ActionController::TestCase
 
   test "should render edit if account not successfully updated" do
     put :update, :id => @account.to_param,
-                 :account => Factory.attributes_for(:account, :name => nil)
+                 :account => {:name => nil}
 
     assert_template("edit")
   end

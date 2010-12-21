@@ -18,10 +18,9 @@ class ApplicationController < ActionController::Base
     @current_salon || @current_account
   end
 
-  def current_salon
+  def current_salon(params)
     # if at @current_salon not set -- returns salon supplied customer form
-    @current_salon || @current_account.salons.find_by_identifier!(
-      params[:customer][:salon_id])
+    @current_salon || @current_account.salons.find_by_identifier!(params)
   end
 
   def path(instance)

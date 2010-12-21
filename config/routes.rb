@@ -4,9 +4,11 @@ Toasty::Application.routes.draw do
   resources :salons, :constraints => {:subdomain => /.+/} do
     resources :beds
     resources :customers
+    resources :users
   end
 
   resources :customers, :constraints => {:subdomain => /.+/}
+  resources :users, :constraints => {:subdomain => /.+/}
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

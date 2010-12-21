@@ -51,7 +51,7 @@ class BedsControllerTest < ActionController::TestCase
     end    
   end
 
-  test "should create bed scoped to current_account & redirect" do
+  test "should create bed scoped to current_salon & redirect" do
     assert_difference('Bed.count') do
       post :create, :salon_id => @salon.to_param, 
            :bed => Factory.attributes_for(:bed, :salon_id => nil)
@@ -94,7 +94,7 @@ class BedsControllerTest < ActionController::TestCase
       delete :destroy, :salon_id => @salon.to_param, :id => @bed.to_param
     end
 
-    assert_redirected_to salon_beds_path
+    assert_redirected_to salon_beds_path(@salon)
 
     assert_raises(ActiveRecord::RecordNotFound) do
       delete :destroy, :salon_id => @salon.to_param, :id => @bed2.to_param

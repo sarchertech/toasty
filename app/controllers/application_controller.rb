@@ -13,4 +13,26 @@ class ApplicationController < ActionController::Base
         params[:salon_id])
     end
   end
+
+  def scope
+    @current_salon || @current_account
+  end
+
+  def current_salon
+    # if at @current_salon not set -- returns salon supplied customer form
+    @current_salon || @current_account.salons.find_by_identifier!(
+      params[:customer][:salon_id])
+  end
+
+  def path(instance)
+    [@current_salon, instance] || instance
+  end
+ 
+  def plural_url(plural_string)
+    if @current_salon
+      eval("salon_#{plural_string}_url(@current_salon)")
+    else
+      eval("#{plural_string}_url")
+    end
+  end
 end

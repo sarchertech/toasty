@@ -62,4 +62,117 @@ class CustomersControllerTest < ActionController::TestCase
       get :show, :salon_id => @salon.to_param, :id => @customer3.to_param 
     end
   end
+
+  test "should get new" do
+    get :new
+    assert_response :success 
+    assert assigns(:customer).new_record?
+  end
+  
+  test "should get edit and assign a customer scoped to current account" do
+    get :edit, :id => @customer.to_param
+    assert_response :success
+    assert_equal(@customer, assigns(:customer))
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      get :edit, :id => @customer2.to_param
+    end
+  end
+
+  test "should get edit and assign a customer scoped to current salon" do
+    get :edit, :salon_id => @salon.to_param, :id => @customer.to_param
+    assert_response :success
+    assert_equal(@customer, assigns(:customer))
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      get :edit, :salon_id => @salon.to_param, :id => @customer3.to_param
+    end
+  end
+
+  test "should create customer scoped to current_account & redirect" do
+    assert_difference('Customer.count') do
+      post :create, :customer => Factory.attributes_for(:customer, 
+        :salon_id => @salon.to_param, :account_id => nil)
+    end 
+
+    assert_equal(@account.id, assigns(:customer).account_id)
+    assert_equal(@salon.id, assigns(:customer).salon_id)
+
+    assert_redirected_to customer_path(assigns(:customer))
+  end
+
+  test "should create customer scoped to current salon & redirect" do
+    assert_difference('Customer.count') do
+      post :create, :salon_id => @salon.to_param, 
+           :customer => Factory.attributes_for(:customer, 
+             :salon_id => nil, :account_id => nil)
+    end 
+    
+    assert_equal(@account.id, assigns(:customer).account_id)
+    assert_equal(@salon.id, assigns(:customer).salon_id)
+
+    assert_redirected_to salon_customer_path(@salon, assigns(:customer))
+  end
+
+  test "should render new if customer not successfully created" do
+     post :create, :customer => Factory.attributes_for(:customer, 
+       :salon_id => @salon.to_param, :account_id => nil, :state => nil)
+
+     assert_template("new")
+  end
+
+  test "should update customer scoped to account and redirect" do
+    put :update, :id => @customer.to_param, :customer => {:level => "2"}
+
+    assert_equal(2, @customer.reload.level) 
+
+    assert_redirected_to customer_path(@customer)
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      put :update, :id => @customer2.to_param
+    end
+  end
+
+  test "should update customer scoped to salon and redirect" do
+    put :update, :salon_id => @salon.to_param, :id => @customer.to_param,
+        :customer => {:level => "2"}
+    
+    assert_equal(2, @customer.reload.level)
+
+    assert_redirected_to salon_customer_path(@salon, @customer)
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      put :update, :salon_id => @salon.to_param, :id => @customer3
+    end
+  end
+
+  test "should render edit if customer not successfully updated" do
+    put :update, :id => @customer.to_param, :customer => {:state => nil}
+
+    assert_template("edit")
+  end
+
+  test "should destroy customer scoped to account" do
+    assert_difference("Customer.count", -1) do
+      delete :destroy, :id => @customer.to_param
+    end
+
+    assert_redirected_to customers_path
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      delete :destroy, :id => @customer2.to_param 
+    end
+  end
+
+  test "should destroy customer scoped to salon" do
+    assert_difference("Customer.count", -1) do
+      delete :destroy, :salon_id => @salon.to_param, :id => @customer.to_param
+    end
+
+    assert_redirected_to salon_customers_path(@salon)
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      delete :destroy, :salon_id => @salon.to_param, :id => @customer3.to_param
+    end
+  end
 end

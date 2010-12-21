@@ -4,14 +4,65 @@ class CustomersController < ApplicationController
   def index
     @customers = scope.customers
   end
-
+  
+  #GET /customers/1
+  #GET /salons/1/customers/1
   def show
     @customer = scope.customers.find(params[:id])
   end
+  
+  #GET /customers/new
+  #GET /salons/1/customers/new
+  def new
+    @customer = Customer.new    
+  end
+  
+  #GET /customers/1/edut
+  #GET /salons/1/customers/1/edit
+  def edit
+    @customer = scope.customers.find(params[:id])
+  end
+  
+  #POST /customers
+  #POST /salons/1/customers
+  def create
+    @customer = Customer.new(params[:customer])
+    @customer.account_id = @current_account.id
+    @customer.salon_id = current_salon.id
 
-  private
+    respond_to do |format|
+      if @customer.save
+        format.html {redirect_to(path(@customer), 
+                      :notice => "Customer was successfully created")}
+      else
+        format.html {render :action => "new"}
+      end
+    end
+  end
 
-  def scope
-    @current_salon ? @current_salon : @current_account
+  # PUT /customers/1
+  # PUT /salons/1/customers/1
+  def update
+    @customer = scope.customers.find(params[:id])
+    
+    respond_to do |format|
+      if @customer.update_attributes(params[:customer])
+        format.html {redirect_to(path(@customer), 
+                      :notice => "Customer was successfully updated")}
+      else
+        format.html {render :action => "edit"}
+      end
+    end
+  end
+
+  # DELETE /customers/1
+  # DELETE /salons/1/customers/1
+  def destroy
+    @customer = scope.customers.find(params[:id])
+    @customer.destroy
+
+    respond_to do |format|
+      format.html {redirect_to(plural_url("customers") )}
+    end
   end
 end

@@ -48,13 +48,13 @@ class BedsController < ApplicationController
     end
   end
 
-  #DELETE /salons/1/beds/1
+  # DELETE /salons/1/beds/1
   def destroy
     @bed = @current_salon.beds.find(params[:id])
     @bed.destroy
 
     respond_to do |format|
-      format.html {redirect_to(salon_beds_url)}
+      format.html {redirect_to(salon_beds_url(@current_salon) )}
     end
   end
 end

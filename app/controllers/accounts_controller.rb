@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  skip_before_filter :set_current_account_and_current_salon
+
   # GET /accounts
   def index
     @accounts = Account.all

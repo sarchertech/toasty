@@ -4,15 +4,19 @@ class Customer < ActiveRecord::Base
   has_many :tan_sessions  
   has_many :beds, :through => :tan_sessions
 
-  before_validation :san
+  before_validation :san, :nilify
 
-  validate :validate_birth_date
+  validate :validate_paid_through, :if => :month_to_month?
 
   validates_presence_of :last_name, :first_name, :customer_number, :level,
-                        :phone_number, :address, :birth_date, :city, :zip_code,
+                        :phone_number, :address, :city, :zip_code,
                         :state, :account_id, :salon_id
 
+  validates_presence_of :paid_through, :if => :month_to_month?
+  
   validates_numericality_of :phone_number, :zip_code
+
+  validates_numericality_of :sessions_left, :greater_than => 0, :if => :package?
 
   validates_length_of :last_name, :first_name, :maximum => 40
   validates_length_of :phone_number, :is => 10, 
@@ -27,6 +31,9 @@ class Customer < ActiveRecord::Base
 
   validates_inclusion_of :level, :in => 0..5
 
+  #1 == recurring 2 == month to month 3 == by the package 4 == per session
+  validates_inclusion_of :customer_type, :in => 1..4
+
   private
 
   def san
@@ -37,13 +44,31 @@ class Customer < ActiveRecord::Base
     self.phone_number = phone_number.gsub(/[.-]/, "") if self.phone_number
   end
 
-  def validate_birth_date
-    if self.birth_date 
-      errors.add(:birth_date, "can't be later than today") if born_in_future?
+  def nilify
+    case self.customer_type
+    when 2
+      self.sessions_left = nil
+    when 3
+      self.paid_through = nil
+    else
+      self.paid_through = nil
+      self.sessions_left = nil
     end
   end
 
-  def born_in_future?
-    self.birth_date > Time.now.to_date
+  def validate_paid_through
+    errors.add(:paid_through, "must be at least 1 day in the future") if in_past?
+  end
+
+  def in_past?
+    self.paid_through <= Time.now.to_date if self.paid_through
+  end
+
+  def month_to_month?
+    self.customer_type == 2
+  end
+
+  def package?
+    self.customer_type == 3
   end
 end

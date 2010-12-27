@@ -44,12 +44,15 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
     t.string   "phone_number"
     t.string   "address"
     t.string   "address_2"
-    t.date     "birth_date"
     t.string   "city"
     t.string   "zip_code"
     t.string   "state"
     t.integer  "account_id"
     t.integer  "salon_id"
+    t.boolean  "under_18",        :default => false
+    t.integer  "customer_type",   :default => 0
+    t.date     "paid_through"
+    t.integer  "sessions_left"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

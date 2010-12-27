@@ -9,8 +9,9 @@ class CustomerTest < ActiveSupport::TestCase
     assert_nothing_raised do
       attributes = %w{last_name first_name customer_number level 
                       email phone_number address address_2 
-                      birth_date city zip_code state account_id 
-                      salon_id}
+                      city zip_code state account_id 
+                      salon_id under_18 customer_type paid_through
+                      sessions_left}
       attributes.each {|attr| @rhonda.send(attr)}
     end
   end
@@ -163,20 +164,6 @@ class CustomerTest < ActiveSupport::TestCase
     assert !@rhonda.valid?
   end
 
-  test "birth_date should not be blank" do
-    @rhonda.birth_date = nil
-
-    assert !@rhonda.valid?
-  end
-
-  test "birth_date should be on or before today" do
-    @rhonda.birth_date = Time.now.to_date + 1.day
-    assert !@rhonda.valid?
-
-    @rhonda.birth_date = Time.now.to_date
-    assert @rhonda.valid?
-  end
-
   test "city should not be blank" do
     @rhonda.city = nil
 
@@ -218,6 +205,81 @@ class CustomerTest < ActiveSupport::TestCase
   test "salon_id should not be blank" do
     @rhonda.salon_id = nil
 
+    assert !@rhonda.valid?
+  end
+
+  test "customer_type should be in 1..4" do
+    @rhonda.customer_type = 5
+
+    assert !@rhonda.valid? 
+  end
+
+  test "paid_through and sessions_left should be blank if customer_type == 1" do
+    @rhonda.customer_type = 1
+    @rhonda.paid_through = Time.now.to_date + 1.day
+    @rhonda.sessions_left = 5
+
+    @rhonda.valid?
+
+    assert_equal(nil, @rhonda.paid_through)
+    assert_equal(nil, @rhonda.sessions_left) 
+  end
+
+  test "sessions_left should be blank if customer_type == 2" do
+    @rhonda.customer_type = 2
+    @rhonda.paid_through = Time.now.to_date + 1.day
+    @rhonda.sessions_left = 5
+
+    @rhonda.valid?
+
+    assert_equal(nil, @rhonda.sessions_left)
+  end 
+
+  test "paid_through should be blank if customer_type == 3" do
+    @rhonda.customer_type = 3
+    @rhonda.paid_through = Time.now.to_date + 1.day
+    @rhonda.sessions_left = 5
+
+    @rhonda.valid?
+
+    assert_equal(nil, @rhonda.paid_through)  
+  end
+
+  test "paid_through and sessions_left should be blank if customer_type == 4" do
+    @rhonda.customer_type = 4
+    @rhonda.paid_through = Time.now.to_date + 1.day
+    @rhonda.sessions_left = 5
+
+    @rhonda.valid?
+
+    assert_equal(nil, @rhonda.paid_through)
+    assert_equal(nil, @rhonda.sessions_left) 
+  end 
+
+  test "paid_through shouldn't be on or before today if customer_type == 2" do
+    @rhonda.customer_type = 2
+    @rhonda.paid_through = Time.now.to_date
+    assert !@rhonda.valid?
+
+    @rhonda.paid_through = Time.now.to_date - 1.day
+    assert !@rhonda.valid?
+
+    @rhonda.paid_through = Time.now.to_date + 1.day
+    assert @rhonda.valid?
+
+    @rhonda.paid_through = nil
+    assert !@rhonda.valid?
+  end
+
+  test "sessions_left should be greater than 0 if customer_type == 3" do
+    @rhonda.customer_type = 3
+    @rhonda.sessions_left = 0
+    assert !@rhonda.valid?  
+
+    @rhonda.sessions_left = 3
+    assert @rhonda.valid?
+
+    @rhonda.sessions_left = nil
     assert !@rhonda.valid?
   end
 end

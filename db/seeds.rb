@@ -26,7 +26,6 @@ p = %w{949 489 706 555 687 428 219 907 603 857}
 n = %w{1622 8233 6587 4525 6214 8468 5632 4652 4628 3526}
 
 (1..1000).each do
-  puts f[rand(50)] + " "  + l[rand(50)]
   Factory.create(:customer, :first_name => f[rand(50)],
                             :last_name => l[rand(50)],
                             :city => c[rand(12)],

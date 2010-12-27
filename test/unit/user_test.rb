@@ -43,23 +43,23 @@ class UserTest < ActiveSupport::TestCase
     assert !@michael.valid?
   end
 
-  test "last_name should strip leading and trailing whitespace" do
+  test "last_name should strip leading and trailing whitespace and downcase." do
     @michael.last_name = " Krontz "
     
     @michael.valid?
 
-    assert_equal("Krontz", @michael.last_name)
+    assert_equal("krontz", @michael.last_name)
   end
 
-  test "first_name should strip leading and trailing whitespace" do
+  test "first_name should strip leading and trailing whitespace and downcase." do
     @michael.first_name = " Michael "
     
     @michael.valid?
 
-    assert_equal("Michael", @michael.first_name)
+    assert_equal("michael", @michael.first_name)
   end
 
-  test "last_name should only contain letters, spaces, and hyphens" do
+  test "last_name should only contain letters, and hyphens" do
     @michael.last_name = "Krontz4"
     assert !@michael.valid?
     
@@ -69,11 +69,14 @@ class UserTest < ActiveSupport::TestCase
     @michael.last_name = "Kront\nz"
     assert !@michael.valid?
 
-    @michael.last_name = "K ront-z"
+    @michael.last_name = "K rontz"
+    assert !@michael.valid?
+
+    @michael.last_name = "Kront-z"
     assert @michael.valid?
   end
 
-  test "first_name should only contain letters, spaces, and hyphens" do
+  test "first_name should only contain letters, and hyphens" do
     @michael.first_name = "Michael4"
     assert !@michael.valid?
     
@@ -83,7 +86,10 @@ class UserTest < ActiveSupport::TestCase
     @michael.first_name = "Michae\nl"
     assert !@michael.valid?
 
-    @michael.first_name = "M ichae-l"
+    @michael.first_name = "M ichael"
+    assert !@michael.valid?
+
+    @michael.first_name = "Michae-l"
     assert @michael.valid?
   end
 
@@ -103,8 +109,8 @@ class UserTest < ActiveSupport::TestCase
     should_not_be_blank(@michael, :account_id)
   end
   
-  test "login should be autocreated and free of hypens or spaces" do
-    user = Factory.create(:user, :last_name => "K r-ontzey",
+  test "login should be autocreated and free of hypens" do
+    user = Factory.create(:user, :last_name => "Kr-ontzey",
                           :first_name => "-Michael") 
     
     assert_equal("mkrontz1", user.login)  

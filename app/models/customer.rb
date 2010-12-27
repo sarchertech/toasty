@@ -24,8 +24,8 @@ class Customer < ActiveRecord::Base
   validates_length_of :zip_code, :is => 5,
                       :message => "must be 5 digits long"
 
-  validates_format_of :last_name, :first_name, :without => /[^A-Za-z -]/,
-                      :message => "can only contain letters, spaces, and hypens"
+  validates_format_of :last_name, :first_name, :without => /[^A-Za-z-]/,
+                      :message => "can only contain letters, & hypens, no spaces"
   validates_format_of :email, :with => /^.+@.+\..+$/, :allow_nil => true,
                       :message => "not a valid email"
 
@@ -37,8 +37,8 @@ class Customer < ActiveRecord::Base
   private
 
   def san
-    self.first_name = first_name.strip if self.first_name
-    self.last_name = last_name.strip if self.last_name
+    self.first_name = first_name.strip.downcase if self.first_name
+    self.last_name = last_name.strip.downcase if self.last_name
     self.customer_number = customer_number.strip if self.customer_number
     self.email = email.strip if self.email
     self.phone_number = phone_number.gsub(/[.-]/, "") if self.phone_number

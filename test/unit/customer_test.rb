@@ -44,7 +44,7 @@ class CustomerTest < ActiveSupport::TestCase
     assert !@rhonda.valid?
   end
 
-  test "last_name should only contain letters, spaces, and hyphens" do
+  test "last_name should only contain letters, and hyphens" do
     @rhonda.last_name = "Krontz4"
     assert !@rhonda.valid?
     
@@ -54,7 +54,10 @@ class CustomerTest < ActiveSupport::TestCase
     @rhonda.last_name = "Kront\nz"
     assert !@rhonda.valid?
 
-    @rhonda.last_name = "K ront-z"
+    @rhonda.last_name = "K rontz"
+    assert !@rhonda.valid?
+
+    @rhonda.last_name = "Kront-z"
     assert @rhonda.valid?
   end
 
@@ -68,18 +71,21 @@ class CustomerTest < ActiveSupport::TestCase
     @rhonda.first_name = "Rhond\na"
     assert !@rhonda.valid?
 
-    @rhonda.first_name = "R hond-a"
+    @rhonda.first_name = "R honda"
+    assert !@rhonda.valid?
+
+    @rhonda.first_name = "Rhond-a"
     assert @rhonda.valid?
   end
 
-  test "first and last name should strip leading and trailing spaces" do
+  test "first and last name should strip leading & trailing spaces & downcase" do
     @rhonda.first_name = " Rhonda "
     @rhonda.last_name = " Krontz "
 
     @rhonda.valid?
 
-    assert_equal("Rhonda", @rhonda.first_name)
-    assert_equal("Krontz", @rhonda.last_name)
+    assert_equal("rhonda", @rhonda.first_name)
+    assert_equal("krontz", @rhonda.last_name)
   end
 
   test "customer_number should not be blank" do

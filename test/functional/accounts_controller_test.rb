@@ -44,9 +44,9 @@ class AccountsControllerTest < ActionController::TestCase
 
   test "should update account and redirect to account_path" do
     put :update, :id => @account.to_param, 
-        :account => {:customer_location_access => true}
+        :account => {:account_number => "123"}
     
-    assert_equal(true, @account.reload.customer_location_access)
+    assert_equal("123", @account.reload.account_number)
 
     assert_redirected_to account_path(assigns(:account))
   end

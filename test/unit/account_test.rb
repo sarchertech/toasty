@@ -5,7 +5,7 @@ class AccountTest < ActiveSupport::TestCase
     account = Factory.build(:account)
     
     assert_nothing_raised do
-      attributes = %w{customer_location_access account_number name sub_domain}
+      attributes = %w{account_number name sub_domain}
       attributes.each {|attr| account.send(attr)}
     end
   end
@@ -22,12 +22,6 @@ class AccountTest < ActiveSupport::TestCase
     assert_equal("suncity", account.sub_domain) 
   end
 
-  test "customer_location_access should not be blank" do
-    account = Factory.build(:account, :customer_location_access => nil)
-
-    assert !account.valid?
-  end 
- 
   test "account_number should not be blank" do
     account = Factory.build(:account, :account_number => nil)
 

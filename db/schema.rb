@@ -13,8 +13,7 @@
 ActiveRecord::Schema.define(:version => 20101121203950) do
 
   create_table "accounts", :force => true do |t|
-    t.boolean  "customer_location_access", :default => false
-    t.integer  "account_number"
+    t.string   "account_number"
     t.string   "name"
     t.string   "sub_domain"
     t.datetime "created_at"

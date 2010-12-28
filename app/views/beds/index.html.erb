@@ -1,0 +1,29 @@
+<h1>Listing beds</h1>
+
+<table>
+  <tr>
+    <th>Bed number</th>
+    <th>Level</th>
+    <th>Name</th>
+    <th>Max time</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @beds.each do |bed| %>
+  <tr>
+    <td><%= bed.bed_number %></td>
+    <td><%= bed.level %></td>
+    <td><%= bed.name %></td>
+    <td><%= bed.max_time %></td>
+    <td><%= link_to 'Show', [@current_salon, bed] %></td>
+    <td><%= link_to 'Edit', edit_salon_bed_path(@current_salon, bed) %></td>
+    <td><%= link_to 'Destroy', [@current_salon, bed], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bed', new_salon_bed_path(@current_salon) %>

@@ -1,0 +1,33 @@
+<%= form_for([@current_salon, @bed]) do |f| %>
+  <% if @bed.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bed.errors.count, "error") %> prohibited this bed from being saved:</h2>
+
+      <ul>
+      <% @bed.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bed_number %><br />
+    <%= f.text_field :bed_number %>
+  </div>
+  <div class="field">
+    <%= f.label :level %><br />
+    <%= f.text_field :level %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :max_time %><br />
+    <%= f.text_field :max_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

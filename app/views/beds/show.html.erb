@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Bed number:</b>
+  <%= @bed.bed_number %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%= @bed.level %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @bed.name %>
+</p>
+
+<p>
+  <b>Max time:</b>
+  <%= @bed.max_time %>
+</p>
+
+
+<%= link_to 'Edit', edit_salon_bed_path(@current_salon, @bed) %> |
+<%= link_to 'Back', salon_beds_path(@current_salon) %>

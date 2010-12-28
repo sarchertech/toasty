@@ -1,0 +1,15 @@
+<%= @customers.count %> customers
+<table>
+  <th>Name:</th>
+  <th>Level:</th>
+  <th>Email:</th>
+  <th>Phone Number:</th>
+  <% for customer in @customers %>
+    <tr>
+      <td><%= customer.first_name + " " + customer.last_name  %></td>
+      <td><%= customer.level %></td>
+      <td><%= customer.email %></td>
+      <td><%= customer.phone_number %></td>
+    </tr>
+  <% end %>
+</table>

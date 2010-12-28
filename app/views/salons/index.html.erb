@@ -1,0 +1,37 @@
+<h1>Listing salons</h1>
+
+<table>
+  <tr>
+    <th>Zip code</th>
+    <th>Identifier</th>
+    <th>Time zone</th>
+    <th>Address</th>
+    <th>Address 2</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Staffed hours</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @salons.each do |salon| %>
+  <tr>
+    <td><%= salon.zip_code %></td>
+    <td><%= salon.identifier %></td>
+    <td><%= salon.time_zone %></td>
+    <td><%= salon.address %></td>
+    <td><%= salon.address_2 %></td>
+    <td><%= salon.city %></td>
+    <td><%= salon.state %></td>
+    <td><%= salon.staffed_hours %></td>
+    <td><%= link_to 'Show', salon %></td>
+    <td><%= link_to 'Edit', edit_salon_path(salon) %></td>
+    <td><%= link_to 'Destroy', salon, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Salon', new_salon_path %>

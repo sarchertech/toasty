@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Zip code:</b>
+  <%= @salon.zip_code %>
+</p>
+
+<p>
+  <b>Identifier:</b>
+  <%= @salon.identifier %>
+</p>
+
+<p>
+  <b>Time zone:</b>
+  <%= @salon.time_zone  %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @salon.address %>
+</p>
+
+<p>
+  <b>Address 2:</b>
+  <%= @salon.address_2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @salon.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @salon.state %>
+</p>
+
+<p>
+  <b>Staffed hours:</b>
+  <%= @salon.staffed_hours %>
+</p>
+
+
+<%= link_to 'Edit', edit_salon_path(@salon) %> |
+<%= link_to 'Back', salons_path %>

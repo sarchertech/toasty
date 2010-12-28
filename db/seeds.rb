@@ -25,10 +25,12 @@ a = %w{770 404 680 606 812 807 912 808 402 406}
 p = %w{949 489 706 555 687 428 219 907 603 857}
 n = %w{1622 8233 6587 4525 6214 8468 5632 4652 4628 3526}
 
-(1..1000).each do
+(1..10000).each do
   Factory.create(:customer, :first_name => f[rand(50)],
                             :last_name => l[rand(50)],
                             :city => c[rand(12)],
+                            :account_id => rand(5),
+                            :salon_id => rand(10),
                             :phone_number => a[rand(10)]+p[rand(10)]+n[rand(10)] ) 
 end
 

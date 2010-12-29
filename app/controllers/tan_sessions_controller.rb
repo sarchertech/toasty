@@ -1,0 +1,2 @@
+class TanSessionsController < ApplicationController
+end

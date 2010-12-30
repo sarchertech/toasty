@@ -19,6 +19,8 @@ Factory.define :user do |f|
   f.first_name "Michael"
   f.security_level 1
   f.account_id 1
+  f.password "secret"
+  f.password_confirmation "secret"
 end
 
 Factory.define :account do |f|

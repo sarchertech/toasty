@@ -7,12 +7,16 @@ class CreateUsers < ActiveRecord::Migration
       t.references :account
       t.references :salon
       t.string :login
+      t.boolean :access_all_locations, :default => 0
+      t.string :encrypted_password
+      t.string :salt
 
       t.timestamps
     end
 
     add_index :users, :account_id
     add_index :users, :salon_id
+    add_index :users, :login, :unique => true
   end
 
   def self.down

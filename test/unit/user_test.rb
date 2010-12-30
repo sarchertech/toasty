@@ -8,7 +8,8 @@ class UserTest < ActiveSupport::TestCase
   test "User has valid attributes-no mistakes in migrations" do
     assert_nothing_raised do
       attributes = %w{last_name first_name security_level
-                      account_id salon_id login}
+                      account_id salon_id login access_all_locations
+                      encrypted_password salt password password_confirmation}
       attributes.each {|attr| @michael.send(attr)}
     end
   end
@@ -140,5 +141,78 @@ class UserTest < ActiveSupport::TestCase
     user3.save
 
     assert_equal("xbrowne1", user3.login)
+  end
+
+  test "password should not be blank" do
+    should_not_be_blank(@michael, :password)
+  end
+
+  test "should make encryped_password before save" do
+    @michael = Factory.create(:user)
+    assert @michael.encrypted_password
+  end
+
+  test "should make salt before save and not change it on update" do
+    @michael = Factory.create(:user)
+    assert @michael.salt
+    
+    salt = @michael.salt
+
+    @michael.password = "supersecret"
+    @michael.save
+    assert_equal(salt, @michael.salt)
+  end
+
+  test "encrypted_password should be secure hash of salt + password" do
+    require 'digest'
+    @michael = Factory.create(:user, :password => "secret")
+
+    expected =  Digest::SHA2.hexdigest("#{@michael.salt}--#{@michael.password}") 
+
+    assert_equal(expected, @michael.encrypted_password)
+  end
+
+  test "password_should not be required on update" do
+    @michael = Factory.create(:user, :password => "secret")
+
+    expected = @michael.encrypted_password
+
+    @michael.password = nil
+    @michael.first_name = "mike"
+    @michael.save
+
+    assert_equal(expected, @michael.encrypted_password)
+  end
+
+  test "password_confirmation should be required if password on update" do
+    @michael = Factory.create(:user)
+    @michael = User.find(@michael.id)
+
+    assert @michael.valid? 
+
+    @michael.password = "supsersecret"
+
+    assert !@michael.valid?
+  end
+
+  test "password should be between 6 and 20 characters long" do
+    @michael.password = "a"
+    @michael.password_confirmation = "a"
+
+    assert !@michael.valid?
+
+    @michael.password = "a" * 21
+    @michael.password_confirmation = "a" * 21
+
+    assert !@michael.valid? 
+  end
+
+  test "has_password? should return true if encrypted and submitted match" do
+    @michael = Factory.create(:user, :password => "secret",
+                                     :password_confirmation => "secret")
+
+    assert @michael.has_password?("secret")
+    
+    assert !@michael.has_password?("supersecret")
   end
 end

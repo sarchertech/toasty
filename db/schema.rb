@@ -90,15 +90,19 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
   create_table "users", :force => true do |t|
     t.string   "last_name"
     t.string   "first_name"
-    t.integer  "security_level", :default => 0
+    t.integer  "security_level",       :default => 0
     t.integer  "account_id"
     t.integer  "salon_id"
     t.string   "login"
+    t.boolean  "access_all_locations", :default => false
+    t.string   "encrypted_password"
+    t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "users", ["account_id"], :name => "index_users_on_account_id"
+  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
   add_index "users", ["salon_id"], :name => "index_users_on_salon_id"
 
 end

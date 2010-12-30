@@ -215,4 +215,47 @@ class UserTest < ActiveSupport::TestCase
     
     assert !@michael.has_password?("supersecret")
   end
+
+  test "password cannot match one of these top passwords" do
+    @michael = Factory.build(:user)
+
+    banned_passwords = %w{123456 1234567 12345678 1234567890 password qwerty 
+                          abc123 111111 monkey letmein dragon baseball
+                          iloveyou sunshine princess tanning 666666 tigger
+                          Password PASSWORD iloveu babygirl lovely 654321 
+                          password1}
+
+    banned_passwords.each do |pass|
+      @michael.password = pass
+      @michael.password_confirmation = pass
+      assert !@michael.valid?
+    end
+  end
+
+  test "password cannot contain first or last name" do
+    @michael.first_name = "michael"
+    @michael.last_name = "krontz"
+      
+    @michael.password = "123michael123"
+    @michael.password_confirmation = "123michael123"
+    assert !@michael.valid?
+    
+    @michael.password = "123krontz123"
+    @michael.password_confirmation = "123krontz123"
+    assert !@michael.valid?
+
+    @michael.password = "kron10"
+    @michael.password_confirmation = "kron10"
+    assert @michael.valid?
+  end
+  
+  test "password should not be just spaces" do
+    @michael.save
+    @michael = User.find(@michael.id)
+
+    @michael.password = " "  
+    @michael.password_confirmation = " "
+
+    assert !@michael.valid?
+  end   
 end

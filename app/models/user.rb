@@ -12,14 +12,14 @@ class User < ActiveRecord::Base
 
   validates_presence_of :last_name, :first_name, :security_level, :account_id
                         
-  validates_presence_of :password, :on => :create
+  validates_presence_of :password, :if => :should_have_password?
 
   validates_presence_of :password_confirmation, :if => :password
 
   validates_length_of :last_name, :maximum => 40, :minimum => 2
   validates_length_of :first_name, :maximum => 40
   validates_length_of :password, :minimum => 6, :maximum => 20, 
-                      :allow_nil => true
+                      :allow_blank => true
 
   validates_format_of :last_name, :first_name, :without => /[^A-Za-z-]/,
                       :message => "can only contain letters, & hypens, no spaces"
@@ -27,6 +27,18 @@ class User < ActiveRecord::Base
   validates_inclusion_of :security_level, :in => 0..4
 
   validates_confirmation_of :password
+
+  validates_exclusion_of :password, 
+                         :in => %w{123456 1234567 12345678 1234567890 password 
+                                   qwerty abc123 111111 monkey letmein dragon 
+                                   baseball iloveyou sunshine princess tanning 
+                                   666666 tigger Password PASSWORD iloveu 
+                                   babygirl lovely 654321 password1},
+                         :message => "%{value} is not allowed. Please choose a 
+                                        more secure password" 
+
+  validate :password_must_not_contain_name, 
+           :if => :should_check_if_name_in_password?
 
   def self.highest_login_like_this(pre)
     where("login LIKE ?", pre + "%").order("login desc").first
@@ -37,6 +49,24 @@ class User < ActiveRecord::Base
   end
   
   private
+
+  def should_have_password?
+    new_record? || password
+  end
+
+  def password_must_not_contain_name
+    if password_includes_name?
+      errors.add(:password, "is too similar to name")
+    end  
+  end
+
+  def should_check_if_name_in_password?
+    password && first_name && last_name
+  end
+
+  def password_includes_name?
+    password.include?(first_name[0...4]) || password.include?(last_name[0..4])
+  end
 
   def san
     self.last_name = last_name.strip.downcase if self.last_name

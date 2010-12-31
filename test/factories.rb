@@ -24,7 +24,7 @@ Factory.define :user do |f|
 end
 
 Factory.define :account do |f|
-  f.account_number 123
+  f.sequence(:account_number) {|n| n + 100}
   f.name 'Sun City'  
 end
 

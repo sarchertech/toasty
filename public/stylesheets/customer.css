@@ -231,7 +231,117 @@ hr {
 	border-bottom: 1px solid #FFF;
 }
 
+/* new customer */
+#new_customer_form_wrapper {
+	width: 615px;
+	height: 476px;
+	float: left;
+	margin: auto;
+	margin-top: 20px;
+	margin-left: 258px;
+	border: 2px solid white;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: whitesmoke;		 
+}
 
+#new_customer_radio_wrapper {
+	width: 275px;
+	height: 389px;
+	float: left;
+	margin: auto;
+	margin-left: 22px;
+	margin-top: 20px;
+	border: 2px solid white;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: whitesmoke;		 
+}
+
+#add_customer_button_wrapper {
+	width: 100%;
+	height: 100%;
+	float: left;
+	margin: auto;	
+	margin-left: -240px;
+	margin-top: -82px;
+}
+
+#form_fields {
+	width: 615px;
+	height: 476px;
+	margin: auto;
+}
+
+#admin_form_field {
+	width: 345px;
+	height: 40px;
+	margin: auto;
+	margin-left: 140px;
+	margin-top: 19px;
+	margin-right: 25px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	font-family: myriad pro, arial;
+	font-size: 30px;
+	font-weight: bold;
+	text-indent: 5px;
+	text-shadow: 1px 1px #999;
+	letter-spacing: -2px;
+	float: left;
+}
+
+#admin_wide_form_field {
+	width: 445px;
+	height: 40px;
+	margin: auto;
+	margin-left: 20px;
+	margin-right: 25px;
+	margin-top: 17px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	font-family: myriad pro, arial;
+	font-size: 30px;
+	font-weight: bold;
+	text-indent: 5px;
+	text-shadow: 1px 1px #999;
+	letter-spacing: -2px;
+	float: right;
+}
+
+#admin_short_form_field {
+	width: 128px;
+	height: 40px;
+	margin: auto;
+	margin-top: 17px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	font-family: myriad pro, arial;
+	font-size: 30px;
+	font-weight: bold;
+	text-indent: 5px;
+	text-shadow: 1px 1px #999;
+	letter-spacing: -2px;
+	float: right;
+	margin-right: 25px;
+}
+
+#radio_button_wrapper {
+	width: 250px;
+	height: 30px;	
+}
+
+#group1 {
+	width: 300px;
+	height: 50px;
+	font-size: 25px;
+	float: left;
+}
 
 
 

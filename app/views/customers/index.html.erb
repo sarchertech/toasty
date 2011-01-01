@@ -1,15 +1,71 @@
-<%= @customers.count %> customers
-<table>
-  <th>Name:</th>
-  <th>Level:</th>
-  <th>Email:</th>
-  <th>Phone Number:</th>
-  <% for customer in @customers %>
-    <tr>
-      <td><%= customer.first_name + " " + customer.last_name  %></td>
-      <td><%= customer.level %></td>
-      <td><%= customer.email %></td>
-      <td><%= customer.phone_number %></td>
-    </tr>
-  <% end %>
-</table>
+<div id="tab_wrapper">
+   <div id="search_tab">
+      <h2>Search</h2>
+      </div>
+      <div id="new_customer_tab">
+         <h2>New Customer</h2>
+         </div>
+   </div>
+   
+   <div id="content_wrapper">  
+      <input id="customer_search_box" type="text" size="40" value="Search" maxlength="50"/>
+
+      <div id="search_filters">
+         <input type="checkbox" class="styled" id="recurring">
+         <label for="recurring">Recurring</label>
+         <input type="checkbox" class="styled" id="per_month">
+         <label for="per_month">Per Month</label>
+         <input type="checkbox" class="styled" id="package">
+         <label for="package">Package</label>
+         <input type="checkbox" class="styled" id="per_session">
+         <label for="per_session">Per Session</label>
+
+         <br />
+
+         <input type="checkbox" class="styled" id="level1">
+         <label for="level1">Level 1</label>
+         <input type="checkbox" class="styled" id="level2">
+         <label for="level2">Level 2</label>
+         <input type="checkbox" class="styled" id="level3">
+         <label for="level3">Level 3</label>
+
+         <br />
+         <div id="dropdowns">
+          <p>
+           <select>
+              <option>Have</option>
+              <option>Have Not</option>
+            </select>
+            <span>tanned in the last</span>  
+
+            <select>
+               <option>---</option>
+               <option>Year</option>
+               <option>90 Days</option>
+               <option>60 Days</option>
+               <option>30 Days</option>
+             </select>
+           </p>
+         </div>
+      </div> 
+ <hr>
+ 
+    <div id="customer_list">
+       <table border="0" bordercolor="#FFCC00" width="900" cellpadding="0" cellspacing="4">
+       	<%= @customers.count %>
+       	<% for customer in @customers %>
+       	   <tr id ="customer_info">
+       	      <td width="906" id="name"><%= customer.last_name + ", " +customer.first_name %></td>
+          		<td width="227" id="level">Level <%= customer.level %></td>
+          		<td width="327" id="notes"></td>
+       	   </tr>
+       	<% end %>
+       	
+       
+       
+       </table>
+    
+    
+    
+   </div>
+  </section>

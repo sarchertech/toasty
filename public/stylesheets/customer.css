@@ -1,0 +1,347 @@
+/*customer*/
+
+h2 {
+	font-size: 20px;
+	letter-spacing: -1px;
+	margin-top: 7px;
+	text-align: center;	
+}
+
+#login_logo {
+	background: url(../images/login_logo.png) no-repeat;
+	width: 395px;
+	height: 162px;
+	margin: auto;
+}
+
+#content_wrapper {
+	width: 960px;
+	height: 510px;
+	margin: auto;
+	margin-bottom: 10px;
+	margin-top: -25px;
+	border: 2px solid white;
+	border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+	background: #c2e7ff;
+	-webkit-box-shadow: 2px 4px 4px #999;
+  -moz-box-shadow: 2px 4px 4px #999;
+  box-shadow: 2px 4px 4px #999;
+	padding-top: 10px;
+	z-index: 40;
+}
+
+#customer_search_box {
+	width: 450px;
+	height: 62px;
+	margin: auto;
+	margin-left: 15px;
+	margin-top: -10px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	font-family: myriad pro, arial;
+	font-size: 60px;
+	font-weight: bold;
+	text-indent: 55px;
+	text-shadow: 1px 1px #999;
+	letter-spacing: -2px;
+	background: whitesmoke url(../images/search_icon.png) no-repeat 2px;
+}
+
+#customer_last_name {
+	font-family: myriad pro, arial, black;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: -2px;
+	padding-left: 20px;
+	float: left;	
+}
+
+#customer_first_name {
+	font-family: myriad pro, arial, black;
+	font-size: 30px;
+	font-weight: bold;
+	letter-spacing: -2px;
+	padding-left: 20px;
+	float: left;
+}
+#customer_level {
+	font-family: myriad pro, arial, black;
+	font-size: 25px;
+	font-weight: bold;
+	letter-spacing: -2px;
+	padding-left: 100px;
+	margin-top: 6px;
+	float: left;
+}
+
+#customer_notes {
+	font-family: myriad pro, arial, black;
+	font-size: 15px;
+	font-weight: bold;
+	padding-left: 100px;
+	margin-top: 16px;
+	float: left;
+}
+
+#content_wrapper_search {
+	width: 960px;
+	height: 100px;
+	margin: auto;
+	margin-top: 15px;
+	border: 2px solid white;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: whitesmoke url(../images/blue_gradient_bg.png)	repeat-x;		 
+	-webkit-box-shadow: 2px 4px 4px #999;
+  -moz-box-shadow: 2px 4px 4px #999;
+  box-shadow: 2px 4px 4px #999;
+}
+
+#add_customer_button{
+	height: 67px;
+	width: 280px;
+	padding: 5px 10px 6px;
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+	letter-spacing: -2px;
+	text-align: right;
+	padding-right: 20px;
+	padding-top: 12px;
+	font-size: 34px;
+	font-family: myriad pro, arial;
+	text-shadow: 1px 1px #999;
+	line-height: 1;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 2px 4px 4px #999;
+	-webkit-box-shadow: 0 4px 4px #999;
+	border: 3px solid whitesmoke;
+	cursor: pointer;
+	float: right;
+	margin-top: 15px;
+	margin-right: 20px;
+	background: url('../images/button_bg.png') no-repeat;
+}
+
+#search_filters {
+	float: left;
+	width: 500px;
+	margin: auto;
+	margin-left: 500px;
+	font-size: 14px;
+	margin-top: -70px;
+	line-height: 25px;
+}
+
+#customer_list {
+	width: 930px;
+	height: 370px;
+	margin: auto;
+	overflow: scroll;
+	overflow-x: hidden;	
+	padding-left: 5px;
+	margin-bottom: 37px;
+}
+
+#customer_info {
+	font-family: myriad pro;
+	font-weight: bold;
+	font-size: 45px;
+	width: 900px;
+
+}
+
+td {
+	font-size: 16px;
+	width: ;
+}
+
+#name {
+	font-size: 45px;
+}
+
+#level {
+	font-size: 30px;
+}
+
+#notes {
+	padding-top: 4px;
+	line-height: 1;
+}
+
+#tab {
+	width: 150px;
+	height: 70px;
+	background-color: #c2e7ff;
+	float: left;
+	margin: auto;
+	margin-top: 15px;
+	margin-left: 10px;
+
+}
+
+#search_tab {
+	width: 150px;
+	height: 50px;
+	background-color: #c2e7ff;
+	float: left;
+	margin: auto;
+	margin-top: 15px;
+	margin-left: 10px;
+}
+
+#new_customer_tab {
+	width: 150px;
+	height: 40px;
+	background-color: #c2e7ff;
+	float: left;
+	margin: auto;
+	margin-top: 15px;
+	margin-left: 10px;
+	margin-bottom: 30px;
+}
+
+#tab_wrapper {
+	width: 350px;
+	height: 80px;
+	margin: auto;
+	margin-left: 860px;
+}
+
+#dropdowns {
+	width: 400px;
+	height: 50px;
+	float: left;
+}
+
+hr {
+	width: 930px;
+	float: left;
+	margin-left: 16px;
+	margin-top: -5px;
+	margin-bottom: 20px;
+	display: block;
+	position: relative;
+	border-top: 1px solid #AAA;
+	border-bottom: 1px solid #FFF;
+}
+
+/* new customer */
+#new_customer_form_wrapper {
+	width: 615px;
+	height: 476px;
+	float: left;
+	margin: auto;
+	margin-top: 20px;
+	margin-left: 258px;
+	border: 2px solid white;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: whitesmoke;		 
+}
+
+#new_customer_radio_wrapper {
+	width: 275px;
+	height: 389px;
+	float: left;
+	margin: auto;
+	margin-left: 22px;
+	margin-top: 20px;
+	border: 2px solid white;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	background: whitesmoke;		 
+}
+
+#add_customer_button_wrapper {
+	width: 100%;
+	height: 100%;
+	float: left;
+	margin: auto;	
+	margin-left: -240px;
+	margin-top: -82px;
+}
+
+#form_fields {
+	width: 615px;
+	height: 476px;
+	margin: auto;
+}
+
+#admin_form_field {
+	width: 345px;
+	height: 40px;
+	margin: auto;
+	margin-left: 140px;
+	margin-top: 19px;
+	margin-right: 25px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	font-family: myriad pro, arial;
+	font-size: 30px;
+	font-weight: bold;
+	text-indent: 5px;
+	text-shadow: 1px 1px #999;
+	letter-spacing: -2px;
+	float: left;
+}
+
+#admin_wide_form_field {
+	width: 445px;
+	height: 40px;
+	margin: auto;
+	margin-left: 20px;
+	margin-right: 25px;
+	margin-top: 17px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	font-family: myriad pro, arial;
+	font-size: 30px;
+	font-weight: bold;
+	text-indent: 5px;
+	text-shadow: 1px 1px #999;
+	letter-spacing: -2px;
+	float: right;
+}
+
+#admin_short_form_field {
+	width: 128px;
+	height: 40px;
+	margin: auto;
+	margin-top: 17px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	font-family: myriad pro, arial;
+	font-size: 30px;
+	font-weight: bold;
+	text-indent: 5px;
+	text-shadow: 1px 1px #999;
+	letter-spacing: -2px;
+	float: right;
+	margin-right: 25px;
+}
+
+#radio_button_wrapper {
+	width: 250px;
+	height: 30px;	
+}
+
+#group1 {
+	width: 300px;
+	height: 50px;
+	font-size: 25px;
+	float: left;
+}
+
+
+

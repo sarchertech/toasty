@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toasty</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+   <header>
+      <a id="logo" href="#">toasty</a>
+
+      <nav>
+        <ul>
+      	  <li id="nav_link_1">
+      		  <a href="#">Douglasville</a>
+      	  </li>
+      	  <li id="nav_link_2">
+      		  <a href="#">Sessions</a>
+      	  </li>
+      	  <li id="nav_link_3">
+      		  <a href="#">Customers</a>
+      	  </li>
+      	  <li id="nav_link_4">
+      		  <a href="#">Employees</a>
+      	  </li>
+      	  <li id="nav_link_5">
+      		  <a href="#">Preferences</a>
+      	  </li>
+      	  <li id="nav_link_6">
+      		  <a href="#">Logout</a>
+      	  </li>
+        </ul>
+      </nav>
+    </header>
+
+<%= yield %>
+
+  <footer>
+    <p>Copyright &copy;, 2010 Toasty, LLC</p>
+  </footer>
+</body>
+</html>

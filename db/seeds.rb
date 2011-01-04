@@ -17,16 +17,24 @@ def salon_seed
   end
 end
 
+def bed_seed
+  (1..30).each do |i|
+    (1..(rand(11) + 5) ).each do |n|
+      Factory.create(:bed, :salon_id => i, :bed_number => n)
+    end 
+  end   
+end
+
 def customer_seed
   f = %w{Seth George Frank Jim Jill Jack Terry Aspen Bill Kimberly Ivan Xorg 
        Terrell Jackson Ava Arden Michael Rhonda Juli Josh Jerome Sally
        Jessica Kim Jen jennifer Octavius Axe Sam Club Seven Cola Ignacius
        Olivander Voldemort Edmond Anita Daniel Janette Merriwether Tosh
-       Dontravius Latrine Nati Suki Amy Emily Audrey Lucy George}
+       Dontravius Latrine Nati Suki Amy Emily Audrey Lucy Fred}
        
   l = %w{Smith Johnson Williams Jones Brown Davis Miller Wilson Moore taylor 
        anderson thomas jackson white Harris Martin Thompson Garcia Martinez
-       Robinson Clark Rodruguez Lewis Lee Walker Hall Allen Young Hernandez
+       Robinson Clark Rodriguez Lewis Lee Walker Hall Allen Young Hernandez
        King wright Lopez Hill Scott Green Adams Baker Gonzalez Nelson Carter
        mitchell Perez Roberts Turner Phillips Campbell parker eVans Edwards
        Collins}
@@ -50,4 +58,5 @@ end
 
 account_seed
 salon_seed
+bed_seed
 customer_seed

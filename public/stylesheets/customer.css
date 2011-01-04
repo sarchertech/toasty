@@ -246,102 +246,173 @@ hr {
 	background: whitesmoke;		 
 }
 
-#new_customer_radio_wrapper {
-	width: 275px;
-	height: 389px;
-	float: left;
+#add_customer_button_wrapper {
+	width: 345px;
+	height: 345px;
+	float: right;
 	margin: auto;
-	margin-left: 22px;
-	margin-top: 20px;
-	border: 2px solid white;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	background: whitesmoke;		 
+	margin-top: -110px;
+	margin-right: 25px;
 }
 
-#add_customer_button_wrapper {
-	width: 100%;
-	height: 100%;
-	float: left;
-	margin: auto;	
-	margin-left: -240px;
-	margin-top: -82px;
+#add_customer_button{
+	height: 90px;
+	width: 350px;
+	color: black;
+	text-decoration: none;
+	font-weight: bold;
+	letter-spacing: -2px;
+	text-align: left;
+	padding-left: 85px;
+	padding-right: 20px;
+	padding-top: 15px;
+	font-size: 40px;
+	font-family: myriad pro, arial;
+	text-shadow: 1px 1px #999;
+	line-height: 1;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 2px 4px 4px #999;
+	-webkit-box-shadow: 0 4px 4px #999;
+	border: 3px solid whitesmoke;
+	cursor: pointer;
+	float: right;
+	background: url('../images/button_bg.png') repeat;
 }
 
 #form_fields {
-	width: 615px;
-	height: 476px;
+	width: 920px;
+	height: 450px;
 	margin: auto;
+	border: 2px solid white;
+	border-radius: 10px;
+  	-moz-border-radius: 10px;
+  	-webkit-border-radius: 10px;
+	background: #c2e7ff;
+	-webkit-box-shadow: 2px 4px 4px #999;
+  	-moz-box-shadow: 2px 4px 4px #999;
+ 	box-shadow: 2px 4px 4px #999;
+	padding-top: 20px;
+	z-index: 40;
+	float: left;
+	padding-left: 15px;
 }
 
 #admin_form_field {
-	width: 345px;
+	width: 420px;
 	height: 40px;
 	margin: auto;
-	margin-left: 140px;
-	margin-top: 19px;
+	margin-left: 10px;
+	margin-top: 10px;
 	margin-right: 25px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	font-family: myriad pro, arial;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bold;
 	text-indent: 5px;
 	text-shadow: 1px 1px #999;
-	letter-spacing: -2px;
 	float: left;
 }
 
 #admin_wide_form_field {
-	width: 445px;
-	height: 40px;
+	width: 420px;
+	height: 80px;
 	margin: auto;
-	margin-left: 20px;
-	margin-right: 25px;
-	margin-top: 17px;
+	margin-left: 10px;
+	margin-top: -215px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	font-family: myriad pro, arial;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bold;
 	text-indent: 5px;
 	text-shadow: 1px 1px #999;
-	letter-spacing: -2px;
-	float: right;
+	float: left;
 }
 
 #admin_short_form_field {
-	width: 128px;
+	width: 100px;
 	height: 40px;
 	margin: auto;
-	margin-top: 17px;
+	margin-top: -118px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	font-family: myriad pro, arial;
-	font-size: 30px;
+	font-size: 20px;
 	font-weight: bold;
 	text-indent: 5px;
-	text-shadow: 1px 1px #999;
-	letter-spacing: -2px;
-	float: right;
-	margin-right: 25px;
+	text-shadow: 1px 1px #999;	
+	margin-right: 10px;
 }
 
 #radio_button_wrapper {
 	width: 250px;
-	height: 30px;	
+	height: 30px;
+	float: right;
+	margin-top: 20px;
+	margin-right: 72px;
 }
 
-#group1 {
+radio {
 	width: 300px;
 	height: 50px;
-	font-size: 25px;
-	float: left;
+	font-size: 35px;
+	float: right;
 }
+
+#tab_wrapper {
+	width: 940px;
+	height: 100px;
+	margin-bottom: -45px;
+}
+
+#search_tab {
+	width: 150px;
+	height: 40px;
+	background-color: #c2e7ff;
+	float: right;
+	margin: auto;
+	margin-top: 15px;
+	margin-left: 10px;
+	padding-top: 6px;
+	text-align: center;
+	font-size: 13px;
+	letter-spacing: -1px;
+	
+}
+
+#new_customer_tab {
+	width: 150px;
+	height: 40px;
+	background-color: #c2e7ff;
+	float: right;
+	margin: auto;
+	margin-top: 15px;
+	margin-left: 10px;
+	margin-bottom: 30px;
+	padding-top: 6px;
+	text-align: center;
+	font-size: 13px;
+	letter-spacing: -1px;
+	margin-right: 20px;
+}
+
+#content {
+	width: 940px;
+	margin: auto;
+}
+
+#city_state_zip {
+	width: 320px;
+	float: left;
+	margin-left: 10px;
+	margin-top: -102px;
+}
+
 
 
 

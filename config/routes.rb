@@ -11,6 +11,15 @@ Toasty::Application.routes.draw do
   resources :customers, :constraints => {:subdomain => /.+/}
   resources :users, :constraints => {:subdomain => /.+/}
 
+  match 'login' => 'session#new', :as => 'new_login', :via => :get, 
+                                  :constraints => {:subdomain => /.+/}
+
+  match 'login' => 'session#create', :as => 'login', :via => :post, 
+                                     :constraints => {:subdomain => /.+/}
+
+  match 'logout' => 'session#destroy', :as => 'logout', :via => :delete, 
+                                     :constraints => {:subdomain => /.+/}
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

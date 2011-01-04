@@ -5,6 +5,7 @@ Toasty::Application.routes.draw do
     resources :beds
     resources :customers
     resources :users
+    resources :tan_sessions
   end
 
   resources :customers, :constraints => {:subdomain => /.+/}

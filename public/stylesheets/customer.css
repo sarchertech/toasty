@@ -15,8 +15,9 @@ h2 {
 }
 
 #content_wrapper {
-	width: 960px;
+	width: 940px;
 	height: 510px;
+	margin: auto;
 	margin-bottom: 10px;
 	margin-top: -25px;
 	border: 2px solid #FFFFFF;
@@ -26,16 +27,16 @@ h2 {
 	background: #c2e7ff;
 	-webkit-box-shadow: 2px 4px 4px #999;
   	-moz-box-shadow: 2px 4px 4px #999;
-  	box-shadow: 2px 4px 4px #999;#F5F5F5
-	padding-top: 10px;
+  	box-shadow: 2px 4px 4px #999;
+	padding: 15px;
 	z-index: 40;
 }
 
 #customer_search_box {
 	width: 450px;
 	height: 62px;
-	margin-left: 15px;
-	margin-top: -10px;
+	margin-top: 10px;
+	margin-left: 20px;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
@@ -127,7 +128,7 @@ h2 {
 
 #search_filters {
 	float: left;
-	width: 500px;
+	width: 600px;
 	margin-left: 500px;
 	font-size: 14px;
 	margin-top: -70px;
@@ -180,11 +181,15 @@ td {
 
 #search_tab {
 	width: 150px;
-	height: 50px;
+	height: 40px;
 	background-color: #c2e7ff;
 	float: left;
-	margin-top: 15px;
-	margin-left: 10px;
+	margin-top: 25px;
+	margin-right: 10px;
+	margin-left: 20px;
+	border-radius: 5px;
+  	-moz-border-radius: 5px;
+  	-webkit-border-radius: 5px;
 }
 
 #new_customer_tab {
@@ -192,15 +197,16 @@ td {
 	height: 40px;
 	background-color: #c2e7ff;
 	float: left;
-	margin-top: 15px;
-	margin-left: 10px;
-	margin-bottom: 30px;
+	margin-top: 25px;
+	border-radius: 5px;
+  	-moz-border-radius: 5px;
+  	-webkit-border-radius: 5px;
 }
 
 #tab_wrapper {
 	width: 350px;
 	height: 80px;
-	margin: auto;
+	margin-left: 250px;
 }
 
 #dropdowns {
@@ -347,41 +353,6 @@ radio {
 	height: 50px;
 	font-size: 35px;
 	float: right;
-}
-
-#tab_wrapper {
-	width: 940px;
-	height: 100px;
-	margin-bottom: -45px;
-}
-
-#search_tab {
-	width: 150px;
-	height: 40px;
-	background-color: #c2e7ff;
-	float: right;
-	margin-top: 15px;
-	margin-left: 10px;
-	padding-top: 6px;
-	text-align: center;
-	font-size: 13px;
-	letter-spacing: -1px;
-	
-}
-
-#new_customer_tab {
-	width: 150px;
-	height: 40px;
-	background-color: #c2e7ff;
-	float: right;
-	margin-top: 15px;
-	margin-left: 10px;
-	margin-bottom: 30px;
-	padding-top: 6px;
-	text-align: center;
-	font-size: 13px;
-	letter-spacing: -1px;
-	margin-right: 20px;
 }
 
 #content {

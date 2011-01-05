@@ -65,7 +65,7 @@ nav li a {
   font-size: 1.5em;
   color: #bababa;
   font-weight: bold;
-  letter-spacing: -0.1em;
+  letter-spacing: -1px;
   display: block;
 }
 

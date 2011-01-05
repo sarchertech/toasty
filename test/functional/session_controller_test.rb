@@ -24,4 +24,12 @@ class SessionControllerTest < ActionController::TestCase
     assert_routing(route, action)
   end
 
+  test "should get new" do
+    get :new
+    assert_response :success
+  end
+
+  test "should create new session if authenticated" do
+    
+  end
 end

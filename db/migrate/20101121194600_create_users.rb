@@ -10,6 +10,8 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :access_all_locations, :default => 0
       t.string :encrypted_password
       t.string :salt
+      t.integer :password_attempts, :default => 0
+      t.datetime :wrong_attempt_at
 
       t.timestamps
     end

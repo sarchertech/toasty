@@ -45,10 +45,47 @@ class User < ActiveRecord::Base
   end
 
   def has_password?(submitted_password)
-    encrypted_password == encrypt(submitted_password)
+    if encrypted_password == encrypt(submitted_password)
+      self.password_attempts = 0
+      self.save
+      true
+    else
+      wrong_password
+      false
+    end
+  end
+
+  def too_many_tries?
+    if password_attempts > 24
+      true
+    elsif password_attempts > 19 && wrong_attempt_at > 15.minutes.ago
+      true
+    elsif password_attempts > 14 && wrong_attempt_at > 10.minutes.ago
+      true
+    elsif password_attempts > 9 && wrong_attempt_at > 5.minutes.ago
+      true 
+    end
+  end
+
+  def how_long
+    if password_attempts > 24    
+      "contact an owner or manger to reset your password (if you are an owner please call our tech support number and we will reset your password for you)"
+    elsif password_attempts > 19
+      "wait 15 minutes"
+    elsif password_attempts > 14
+      "wait 10 minutes"
+    elsif password_attempts > 9
+      "wait 5 minutes"
+    end
   end
   
   private
+  
+  def wrong_password
+    self.password_attempts += 1
+    self.wrong_attempt_at = Time.zone.now
+    save
+  end
 
   def should_have_password?
     new_record? || password

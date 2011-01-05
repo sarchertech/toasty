@@ -9,7 +9,8 @@ class UserTest < ActiveSupport::TestCase
     assert_nothing_raised do
       attributes = %w{last_name first_name security_level
                       account_id salon_id login access_all_locations
-                      encrypted_password salt password password_confirmation}
+                      encrypted_password salt password password_confirmation
+                      password_attempts wrong_attempt_at}
       attributes.each {|attr| @michael.send(attr)}
     end
   end
@@ -257,5 +258,78 @@ class UserTest < ActiveSupport::TestCase
     @michael.password_confirmation = " "
 
     assert !@michael.valid?
-  end   
+  end
+
+  test "too_many_tries should return true if attempts too high" do
+    @michael.password_attempts = 0
+    assert !@michael.too_many_tries?
+
+    @michael.password_attempts = 9
+    @michael.wrong_attempt_at = Time.now
+    assert !@michael.too_many_tries?
+
+    @michael.password_attempts = 10
+    @michael.wrong_attempt_at = Time.now
+    assert @michael.too_many_tries? 
+  end
+
+  test "too_many_tries dependant on time" do
+    @michael.password_attempts = 25
+    @michael.wrong_attempt_at = 5.days.ago
+    assert @michael.too_many_tries?
+
+    @michael.password_attempts = 20
+    @michael.wrong_attempt_at = 14.minutes.ago
+    assert @michael.too_many_tries?
+
+    @michael.wrong_attempt_at = 15.minutes.ago
+    assert !@michael.too_many_tries?
+
+    @michael.password_attempts = 15
+    @michael.wrong_attempt_at = 9.minutes.ago
+    assert @michael.too_many_tries?
+
+    @michael.wrong_attempt_at = 10.minutes.ago
+    assert !@michael.too_many_tries?
+
+    @michael.password_attempts = 10
+    @michael.wrong_attempt_at = 4.minutes.ago
+    assert @michael.too_many_tries?
+
+    @michael.wrong_attempt_at = 5.minutes.ago
+    assert !@michael.too_many_tries?
+  end
+
+  test "wrong_password should be called if has_pasword? fails & should work" do
+    assert_difference('@michael.password_attempts') do
+      @michael.has_password?("monkeysneeze")
+    end
+    
+    assert_equal(Time.now.utc.to_s(:db), @michael.wrong_attempt_at.to_s(:db))
+  end
+
+  test "has_passwrod? == true should reset password_attempts to 0" do
+    @michael = Factory.create(:user, :password => "secret",
+                                     :password_confirmation => "secret")
+
+    @michael.password_attempts = 5
+    @michael.has_password?("secret")
+
+    assert_equal(0, @michael.password_attempts)
+  end
+
+  test "how_long should tell you how long you have to wait to sign in" do
+    @michael.password_attempts = 25
+    str = "contact an owner or manger to reset your password (if you are an owner please call our tech support number and we will reset your password for you)" 
+    assert_equal(str, @michael.how_long)
+
+    @michael.password_attempts = 20 
+    assert_equal("wait 15 minutes", @michael.how_long)
+
+    @michael.password_attempts = 15 
+    assert_equal("wait 10 minutes", @michael.how_long)
+
+    @michael.password_attempts = 10 
+    assert_equal("wait 5 minutes", @michael.how_long)
+  end
 end

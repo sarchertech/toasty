@@ -17,17 +17,16 @@ h2 {
 #content_wrapper {
 	width: 960px;
 	height: 510px;
-	margin: auto;
 	margin-bottom: 10px;
 	margin-top: -25px;
-	border: 2px solid white;
+	border: 2px solid #FFFFFF;
 	border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+  	-moz-border-radius: 10px;
+  	-webkit-border-radius: 10px;
 	background: #c2e7ff;
 	-webkit-box-shadow: 2px 4px 4px #999;
-  -moz-box-shadow: 2px 4px 4px #999;
-  box-shadow: 2px 4px 4px #999;
+  	-moz-box-shadow: 2px 4px 4px #999;
+  	box-shadow: 2px 4px 4px #999;#F5F5F5
 	padding-top: 10px;
 	z-index: 40;
 }
@@ -35,7 +34,6 @@ h2 {
 #customer_search_box {
 	width: 450px;
 	height: 62px;
-	margin: auto;
 	margin-left: 15px;
 	margin-top: -10px;
 	border-radius: 10px;
@@ -47,7 +45,7 @@ h2 {
 	text-indent: 55px;
 	text-shadow: 1px 1px #999;
 	letter-spacing: -2px;
-	background: whitesmoke url(../images/search_icon.png) no-repeat 2px;
+	background: #F5F5F5 url(../images/search_icon.png) no-repeat 2px;
 }
 
 #customer_last_name {
@@ -89,16 +87,15 @@ h2 {
 #content_wrapper_search {
 	width: 960px;
 	height: 100px;
-	margin: auto;
 	margin-top: 15px;
-	border: 2px solid white;
+	border: 2px solid #FFFFFF;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	background: whitesmoke url(../images/blue_gradient_bg.png)	repeat-x;		 
+	background: #F5F5F5 url(../images/blue_gradient_bg.png)	repeat-x;		 
 	-webkit-box-shadow: 2px 4px 4px #999;
-  -moz-box-shadow: 2px 4px 4px #999;
-  box-shadow: 2px 4px 4px #999;
+ 	-moz-box-shadow: 2px 4px 4px #999;
+ 	box-shadow: 2px 4px 4px #999;
 }
 
 #add_customer_button{
@@ -120,7 +117,7 @@ h2 {
 	-webkit-border-radius: 5px;
 	-moz-box-shadow: 2px 4px 4px #999;
 	-webkit-box-shadow: 0 4px 4px #999;
-	border: 3px solid whitesmoke;
+	border: 3px solid #F5F5F5;
 	cursor: pointer;
 	float: right;
 	margin-top: 15px;
@@ -131,7 +128,6 @@ h2 {
 #search_filters {
 	float: left;
 	width: 500px;
-	margin: auto;
 	margin-left: 500px;
 	font-size: 14px;
 	margin-top: -70px;
@@ -141,7 +137,6 @@ h2 {
 #customer_list {
 	width: 930px;
 	height: 370px;
-	margin: auto;
 	overflow: scroll;
 	overflow-x: hidden;	
 	padding-left: 5px;
@@ -153,7 +148,6 @@ h2 {
 	font-weight: bold;
 	font-size: 45px;
 	width: 900px;
-
 }
 
 td {
@@ -179,7 +173,6 @@ td {
 	height: 70px;
 	background-color: #c2e7ff;
 	float: left;
-	margin: auto;
 	margin-top: 15px;
 	margin-left: 10px;
 
@@ -190,7 +183,6 @@ td {
 	height: 50px;
 	background-color: #c2e7ff;
 	float: left;
-	margin: auto;
 	margin-top: 15px;
 	margin-left: 10px;
 }
@@ -200,7 +192,6 @@ td {
 	height: 40px;
 	background-color: #c2e7ff;
 	float: left;
-	margin: auto;
 	margin-top: 15px;
 	margin-left: 10px;
 	margin-bottom: 30px;
@@ -235,21 +226,19 @@ hr {
 	width: 615px;
 	height: 476px;
 	float: left;
-	margin: auto;
 	margin-top: 20px;
 	margin-left: 258px;
-	border: 2px solid white;
+	border: 2px solid #FFFFFF;
 	border-radius: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	background: whitesmoke;		 
+	background: #F5F5F5;		 
 }
 
 #add_customer_button_wrapper {
 	width: 345px;
 	height: 345px;
 	float: right;
-	margin: auto;
 	margin-top: -110px;
 	margin-right: 25px;
 }
@@ -273,7 +262,7 @@ hr {
 	-webkit-border-radius: 5px;
 	-moz-box-shadow: 2px 4px 4px #999;
 	-webkit-box-shadow: 0 4px 4px #999;
-	border: 3px solid whitesmoke;
+	border: 3px solid #F5F5F5;
 	cursor: pointer;
 	float: right;
 	background: url('../images/button_bg.png') repeat;
@@ -283,7 +272,7 @@ hr {
 	width: 920px;
 	height: 450px;
 	margin: auto;
-	border: 2px solid white;
+	border: 2px solid #FFFFFF;
 	border-radius: 10px;
   	-moz-border-radius: 10px;
   	-webkit-border-radius: 10px;
@@ -300,7 +289,6 @@ hr {
 #admin_form_field {
 	width: 420px;
 	height: 40px;
-	margin: auto;
 	margin-left: 10px;
 	margin-top: 10px;
 	margin-right: 25px;
@@ -318,7 +306,6 @@ hr {
 #admin_wide_form_field {
 	width: 420px;
 	height: 80px;
-	margin: auto;
 	margin-left: 10px;
 	margin-top: -215px;
 	border-radius: 5px;
@@ -335,7 +322,6 @@ hr {
 #admin_short_form_field {
 	width: 100px;
 	height: 40px;
-	margin: auto;
 	margin-top: -118px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -374,7 +360,6 @@ radio {
 	height: 40px;
 	background-color: #c2e7ff;
 	float: right;
-	margin: auto;
 	margin-top: 15px;
 	margin-left: 10px;
 	padding-top: 6px;
@@ -389,7 +374,6 @@ radio {
 	height: 40px;
 	background-color: #c2e7ff;
 	float: right;
-	margin: auto;
 	margin-top: 15px;
 	margin-left: 10px;
 	margin-bottom: 30px;

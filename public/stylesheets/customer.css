@@ -148,7 +148,7 @@ h2 {
 	margin-bottom: 37px;
 }
 
-#customer_info {
+.customer_info {
 	font-family: myriad pro;
 	font-weight: bold;
 	font-size: 45px;
@@ -161,15 +161,15 @@ td {
 	width: ;
 }
 
-#name {
+.name {
 	font-size: 45px;
 }
 
-#level {
+.level {
 	font-size: 30px;
 }
 
-#notes {
+.notes {
 	padding-top: 4px;
 	line-height: 1;
 }

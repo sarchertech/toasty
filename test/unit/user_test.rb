@@ -258,4 +258,10 @@ class UserTest < ActiveSupport::TestCase
 
     assert !@michael.valid?
   end   
+
+  test "authenticate should be a class method and take 2 args" do
+    assert_nothing_raised do
+      User.authenticate("jsmith1", "secret")
+    end
+  end
 end

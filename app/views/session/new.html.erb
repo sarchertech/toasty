@@ -1,14 +1,17 @@
 <section id="content">
- <div id="login_logo">
- </div>
+  <div id="login_logo">
+  </div>
     
- <div id="main_content_case_study">
-   <div id="login_wrapper">
-     <div id="form_fields">
-       <input id="admin_login_field" type="text" size="19" value="Username" maxlength="50"/>
-       <input id="admin_login_field" type="text" size="19" value="Password" maxlength="50"/>
-       <input id="login_button" type="button" size="19" value="Login" maxlength="50"/>
-     </div>
-   </div>
- 	</div>
+  <div id="main_content_case_study">
+    <div id="login_wrapper">
+      <%= flash_handler %>
+      <div id="form_fields">
+        <%= form_tag(:action => "new") do %>
+          <input id="admin_login_field" type="text" size="19" placeholder="Username" name="login" maxlength="50" autocomplete="off"/>
+          <input id="admin_login_field" type="password" size="19" placeholder="Password" name="password" maxlength="50" autocomplete="off"/>
+          <input id="login_button" type="submit" size="19" value="login" maxlength="50"/>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </section>

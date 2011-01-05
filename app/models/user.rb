@@ -44,10 +44,6 @@ class User < ActiveRecord::Base
     where("login LIKE ?", pre + "%").order("login desc").first
   end
 
-  def self.authenticate(login, pass)
-
-  end
-
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
   end

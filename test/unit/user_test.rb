@@ -224,7 +224,8 @@ class UserTest < ActiveSupport::TestCase
                           abc123 111111 monkey letmein dragon baseball
                           iloveyou sunshine princess tanning 666666 tigger
                           Password PASSWORD iloveu babygirl lovely 654321 
-                          password1}
+                          password1 toasty toasty24 Toasty Toasty24 TOASTY
+                          TOASTY24}
 
     banned_passwords.each do |pass|
       @michael.password = pass

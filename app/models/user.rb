@@ -33,7 +33,8 @@ class User < ActiveRecord::Base
                                    qwerty abc123 111111 monkey letmein dragon 
                                    baseball iloveyou sunshine princess tanning 
                                    666666 tigger Password PASSWORD iloveu 
-                                   babygirl lovely 654321 password1},
+                                   babygirl lovely 654321 password1 toasty
+                                   toasty24 Toasty Toasty24 TOASTY TOASTY24},
                          :message => "%{value} is not allowed. Please choose a 
                                         more secure password" 
 

@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   def wrong_password
     self.password_attempts += 1
     self.wrong_attempt_at = Time.zone.now
-    save
+    save!
   end
 
   def should_have_password?

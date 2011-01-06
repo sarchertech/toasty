@@ -5,6 +5,7 @@ class SessionController < ApplicationController
 
   # POST /login
   def create
+    session[:user_id] = nil
     @user = @current_account.users.find_by_login(params[:login])
 
     if @user && @user.too_many_tries?

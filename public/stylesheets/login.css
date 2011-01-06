@@ -1,10 +1,15 @@
 /*login pages*/
+html {
+  height: 100%;
+}
 
 body {
-  	font-size: 75%; 
+  font-size: 75%; 
 	line-height: 1.5;
-  	font-family: Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
 	background: url('../images/login_bg.png') repeat;
+  margin: 0px;
+  height: 100%;
 }
 #login_logo {
 	background: url(../images/login_logo.png) no-repeat;
@@ -16,24 +21,22 @@ body {
 }
 
 #main_content_case_study {
-	display: block;
-	position: fixed;
-	left: 0;
-  	-webkit-box-shadow: 2px 2px 10px black;
-  	-moz-box-shadow: 2px 2px 2px black;
-  	box-shadow: 2px 2px 2px black;
+  -webkit-box-shadow: 2px 2px 10px black;
+  -moz-box-shadow: 2px 2px 2px black;
+  box-shadow: 2px 2px 2px black;
 	width: 100%;
-	height: 500px;
+	height: 350px;
 	margin: auto; 
 	z-index: 5;
 	padding-top: 15px;
 	margin-top: 150px;
+  margin-bottom: -700px;
 	background: url('../images/login_bg2.png') repeat-x,
               url('../images/bg_stripe.gif') repeat;
 }
 
 #login_wrapper {
-	width: 800px;
+	width: 400px;
 	height: 100px;
 	text-align: center;
 	font-family: myriad pro, arial;
@@ -153,10 +156,14 @@ body {
   margin-top: 90px;
 }
 
-#login.alert {
+#login .alert {
 	font-size: 20px;
 	font-family: myriad pro, arial;
 	font-weight: bold;
+  color: #ff0000;
+  padding-bottom: 10px;
+  word-spacing: 2px;
+  margin-top: -40px;
 }
 
 

@@ -16,7 +16,7 @@ h2 {
 
 #content_wrapper {
 	width: 940px;
-	height: 510px;
+	height: 100%;
 	margin: auto;
 	margin-bottom: 10px;
 	margin-top: -25px;
@@ -34,19 +34,20 @@ h2 {
 
 #customer_search_box {
 	width: 450px;
-	height: 62px;
+	height: 75px;
 	margin-top: 10px;
 	margin-left: 20px;
 	border-radius: 10px;
+	padding-top: 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	font-family: myriad pro, arial;
 	font-size: 60px;
 	font-weight: bold;
-	text-indent: 55px;
+	text-indent: 65px;
 	text-shadow: 1px 1px #999;
 	letter-spacing: -2px;
-	background: #F5F5F5 url(../images/search_icon.png) no-repeat 2px;
+	background: #F5F5F5 url(../images/search_icon.png) no-repeat 10px;
 }
 
 #customer_last_name {
@@ -130,18 +131,19 @@ h2 {
 	float: left;
 	width: 600px;
 	margin-left: 500px;
-	font-size: 14px;
-	margin-top: -70px;
-	line-height: 25px;
+	font-size: 16px;
+	margin-top: -90px;
+	line-height: 30px;
+	padding-left: 20px;
 }
 
 #customer_list {
 	width: 930px;
-	height: 370px;
-	overflow: scroll;
+	height: 100%;
+	overflow: hidden;
 	overflow-x: hidden;	
-	padding-left: 5px;
-	margin-bottom: 37px;
+	padding-left: 20px;
+	margin-bottom: 10px;
 }
 
 .customer_info {
@@ -153,15 +155,15 @@ h2 {
 
 td {
 	font-size: 16px;
-	width: ;
+	padding-bottom: 25px;
 }
 
 .name {
-	font-size: 45px;
+	font-size: 35px;
 }
 
 .level {
-	font-size: 30px;
+	font-size: 25px;
 }
 
 .notes {
@@ -187,6 +189,7 @@ td {
 	margin-top: 25px;
 	margin-right: 10px;
 	margin-left: 20px;
+	padding-top: 3px;
 	border-radius: 5px;
   	-moz-border-radius: 5px;
   	-webkit-border-radius: 5px;
@@ -198,15 +201,16 @@ td {
 	background-color: #c2e7ff;
 	float: left;
 	margin-top: 25px;
+	padding-top: 3px;
 	border-radius: 5px;
   	-moz-border-radius: 5px;
   	-webkit-border-radius: 5px;
 }
 
 #tab_wrapper {
-	width: 350px;
+	width: 940px;
 	height: 80px;
-	margin-left: 250px;
+	margin: auto;
 }
 
 #dropdowns {
@@ -215,17 +219,16 @@ td {
 	float: left;
 }
 
-hr {
-	width: 930px;
-	float: left;
-	margin-left: 16px;
-	margin-top: -5px;
-	margin-bottom: 20px;
-	display: block;
-	position: relative;
-	border-top: 1px solid #AAA;
-	border-bottom: 1px solid #FFF;
+#rule {
+	width: 910px;
+	height: 1px;
+	margin: auto;
+	margin-bottom: 10px;
+	padding-top: 20px;
+	border-bottom: 1px solid #A8A8A8;
 }
+
+
 
 /* new customer */
 #new_customer_form_wrapper {
@@ -366,7 +369,5 @@ radio {
 	margin-left: 10px;
 	margin-top: -102px;
 }
-
-
 
 

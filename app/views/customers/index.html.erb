@@ -49,15 +49,17 @@
       </p>
     </div>
 </div> 
- <hr>
+<div id="rule"></div>
  
 <div id="customer_list">
   <table>
     <% for customer in @customers %>
       <tr class ="customer_info">
         <td width="906" class="name"><%= customer.last_name + ", " +customer.first_name %></td>
-        <td width="227" class="level">Level <%= customer.level %></td>
-        <td width="327" class="notes"></td>
+        <td width="227" class="type">Recurring</td>
+        <td width="327" class="level">Level 1<td>
+        <td width="327" class="details">(customer details)
+        </td>
       </tr> 
     <% end %>
   </table>

@@ -5,12 +5,12 @@ class SessionController < ApplicationController
 
   # POST /login
   def create
+    session[:user_id] = nil
     @user = @current_account.users.find_by_login(params[:login])
 
     if @user && @user.too_many_tries?
-      flash.now[:alert] = "You have attempted to log in with an incorrect 
-                           password too many times. You must #{@user.how_long} 
-                           before you can login."
+      flash.now[:alert] = "Too many invalid login attempts. You 
+                           must #{@user.how_long} before you can login."
       
       render :action => "new"
     elsif @user && @user.has_password?(params[:password])

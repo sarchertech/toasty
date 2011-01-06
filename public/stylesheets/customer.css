@@ -231,6 +231,10 @@ h2 {
 	float: left;
 }
 
+#dropdowns span {
+	padding: 0px 10px;
+}
+
 #rule {
 	width: 910px;
 	height: 1px;

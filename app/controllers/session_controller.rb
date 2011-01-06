@@ -9,24 +9,24 @@ class SessionController < ApplicationController
     @user = @current_account.users.find_by_login(params[:login])
 
     if @user && @user.too_many_tries?
-      flash.now[:alert] = "Too many invalid login attempts. You 
+      flash[:alert] = "Too many invalid login attempts. You 
                            must #{@user.how_long} before you can login."
       
-      render :action => "new"
+      redirect_to(login_url)
     elsif @user && @user.has_password?(params[:password])
       session[:user_id] = @user.id
       
       redirect_to("/")
     else
-      flash.now[:alert] = "login/password combination does not match"
+      flash[:alert] = "login/password combination does not match"
       
-      render :action => "new"  
+      redirect_to(login_url)  
     end
   end
 
   # DELETE /logout
   def destroy
     session[:user_id] = nil
-    redirect_to("login_url")
+    redirect_to(login_url)
   end
 end

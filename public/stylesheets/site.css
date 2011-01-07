@@ -15,6 +15,10 @@ nav, header, footer, section, aside {
   display: block;
 }
 
+.clear {
+  clear: both;
+}
+
 body {
   font-size: 75%; 
 	line-height: 1.5;

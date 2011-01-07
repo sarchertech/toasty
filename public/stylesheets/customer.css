@@ -247,25 +247,14 @@ h2 {
 
 
 /* new customer */
-#new_customer_form_wrapper {
-	width: 615px;
-	height: 476px;
-	float: left;
-	margin-top: 20px;
-	margin-left: 258px;
-	border: 2px solid #FFFFFF;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	background: #F5F5F5;		 
+#content_left {
+  width: 460px;
+  float: left;
 }
 
-#add_customer_button_wrapper {
-	width: 345px;
-	height: 345px;
-	float: left;
-	margin-top: -300px;
-	margin-left: 460px;
+#content_right {
+  width: 470px;
+  float: right;
 }
 
 #add_customer_button{
@@ -289,28 +278,10 @@ h2 {
 	-webkit-box-shadow: 0 4px 4px #999;
 	border: 3px solid #F5F5F5;
 	cursor: pointer;
-	float: left;
 	background: url('../images/button_bg.png') no-repeat;
 }
 
-#form_fields {
-	width: 920px;
-	margin: auto;
-	border: 2px solid #FFFFFF;
-	border-radius: 10px;
-  	-moz-border-radius: 10px;
-  	-webkit-border-radius: 10px;
-	background: #c2e7ff;
-	-webkit-box-shadow: 2px 4px 4px #999;
-  	-moz-box-shadow: 2px 4px 4px #999;
- 	box-shadow: 2px 4px 4px #999;
-	padding-top: 20px;
-	z-index: 40;
-	float: left;
-	padding-left: 15px;
-}
-
-#admin_form_field {
+.admin_form_field {
 	display: block;
 	width: 420px;
 	height: 40px;
@@ -323,10 +294,10 @@ h2 {
 	font-family: myriad pro, arial;
 	font-size: 20px;
 	font-weight: bold;
-	text-indent: 5px;
+	padding-left: 5px;
 }
 
-#admin_wide_form_field {
+#address_box {
 	display: block;
 	width: 420px;
 	height: 80px;
@@ -338,13 +309,18 @@ h2 {
 	font-family: myriad pro, arial;
 	font-size: 20px;
 	font-weight: bold;
-	text-indent: 5px;;
+	padding-left: 5px;;
+	outline: none;
+	border: 2px solid #a8a8a8;
 }
 
-#admin_short_form_field {
+#state_field {
+  width: 55px;
+}
+
+.admin_short_form_field {
 	margin-left: 10px;
 	margin-top: 10px;
-	width: 100px;
 	height: 40px;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -352,43 +328,15 @@ h2 {
 	font-family: myriad pro, arial;
 	font-size: 20px;
 	font-weight: bold;
-	text-indent: 5px;
-}
-
-#admin_medium_form_field {
-	margin-left: 10px;
-	margin-top: 10px;
-	width: 182px;
-	height: 40px;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	font-family: myriad pro, arial;
-	font-size: 20px;
-	font-weight: bold;
-	text-indent: 5px;
+	padding-left: 5px;
 }
 
 #radio_button_wrapper {
-	width: 450px;
 	height: 30px;
-	float: right;
 	margin-top: 10px;
-	margin-left: 20px;
 	margin-right: 30px;
+	margin-bottom: 20px;
 	border-bottom: 1px solid #333;
-}
-
-#content {
-	width: 940px;
-	margin: auto;
-}
-
-#city_state_zip {
-	width: 320px;
-	float: left;
-	margin-left: 10px;
-	margin-top: -102px;
 }
 
 #radio_button_wrapper label {
@@ -398,12 +346,8 @@ h2 {
 }
 
 #by_the_month {
-	float: right;  
 	font-size: 15px;
 	line-height: 20px;
-	margin-right: 260px;
-	margin-top: -320px;
-
 }
 
 

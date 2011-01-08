@@ -6,4 +6,12 @@ module ApplicationHelper
       %Q{<p class="alert">#{flash[:alert]}</p>}.html_safe
     end
   end
+
+  def main_nav
+    if @current_salon
+      render :partial => 'shared/main_nav_with_salon'
+    else
+
+    end
+  end
 end

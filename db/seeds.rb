@@ -42,17 +42,34 @@ def customer_seed
   c = %w{Douglasville Lithia Marietta Ballground Austell Mableton Adairsville
        Macon Valdosta WarnerRobins Duluth Augusta}
 
-  a = %w{770 404 680 606 812 807 912 808 402 406}
+  r = %w{770 404 680 606 812 807 912 808 402 406}
   p = %w{949 489 706 555 687 428 219 907 603 857}
   n = %w{1622 8233 6587 4525 6214 8468 5632 4652 4628 3526}
+  
+  # function(a[n]) = b[n] = a + ((2*a)-2)
+  # a = 1, 2, 3 - b = 1, 4, 7
+  # if a is account_number and there are 3 salons per account
+  # take a then add b to rand(3)_you will get a saslon_id 
+  # that matches account where account.id = a 
+  def by_three(a)
+    if a > 1
+      a + ((2 * a) - 2)
+    else
+      1
+    end
+  end
+  
 
-  (1..20000).each do
+  (1..10000).each do
+    a = rand(10) + 1
+    s = rand(3) + by_three(a)
+    
     Factory.create(:customer, :first_name => f[rand(50)],
       :last_name => l[rand(50)],
       :city => c[rand(12)],
-      :account_id => (rand(10) + 1),
-      :salon_id => (rand(30) + 1),
-      :phone_number => a[rand(10)]+p[rand(10)]+n[rand(10)] ) 
+      :account_id => a,
+      :salon_id => s,
+      :phone_number => r[rand(10)]+p[rand(10)]+n[rand(10)] ) 
   end
 end
 

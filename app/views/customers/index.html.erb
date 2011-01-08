@@ -55,7 +55,9 @@
   <table>
     <% for customer in @customers %>
       <tr class ="customer_info">
-        <td class="name"><%= customer.first_name + " " +customer.last_name %></td>
+        <td class="name">
+          <%= link_to customer.first_name + " " + customer.last_name, customer %>
+        </td>
         <td class="phone_number">770-949-1622</td>
         <td class="type">recurring level 1</td>
         <td class="details">(customer details)

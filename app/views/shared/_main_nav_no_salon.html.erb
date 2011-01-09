@@ -1,12 +1,7 @@
 <nav>
   <ul>
 	  <li id="salons_dropdown">
-		  <select>
-		    <option selected="true">All Salons</option>
-		    <% for salon in @current_account.salons %>
-		      <option><%= salon.identifier.humanize %></option>
-		    <% end %>
-		  </select>
+	    <%= salons_dropdown %>
 	  </li>
 	  <li id="sessions_link">
 		  <p>Sessions</p>

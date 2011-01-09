@@ -46,17 +46,13 @@ def customer_seed
   p = %w{949 489 706 555 687 428 219 907 603 857}
   n = %w{1622 8233 6587 4525 6214 8468 5632 4652 4628 3526}
   
-  # function(a[n]) = b[n] = a + ((2*a)-2)
+  # function(a[n]) = b[n] = 3 * a -2
   # a = 1, 2, 3 - b = 1, 4, 7
   # if a is account_number and there are 3 salons per account
   # take a then add b to rand(3)_you will get a saslon_id 
   # that matches account where account.id = a 
   def by_three(a)
-    if a > 1
-      a + ((2 * a) - 2)
-    else
-      1
-    end
+    3 * a - 2
   end
   
 

@@ -1,0 +1,22 @@
+<nav>
+  <ul>
+	  <li id="salons_dropdown">
+		  <a href="#">All Salons</a>
+	  </li>
+	  <li id="sessions_link">
+		  <p>Sessions</p>
+	  </li>
+	  <li id="customers_link">
+		  <%= link_to "Customers", customers_path %>
+	  </li>
+	  <li id="employees_link">
+		  <%= link_to "Employees", users_path %>
+	  </li>
+	  <li id="nav_link_5">
+		  <a href="#">Preferences</a>
+	  </li>
+	  <li id="logout_link">
+		  <%= link_to "Logout", logout_url, :method => :delete %>
+	  </li>
+  </ul>
+</nav>

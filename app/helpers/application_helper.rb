@@ -11,7 +11,7 @@ module ApplicationHelper
     if @current_salon
       render :partial => 'shared/main_nav_with_salon'
     else
-
+      render :partial => 'shared/main_nav_no_salon' 
     end
   end
 end

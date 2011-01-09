@@ -1,0 +1,13 @@
+<select>
+  <%= dropdown_all %>
+  <option value="<%= dropdown_url(@current_salon.identifier)%>" selected="selected">
+    <%= @current_salon.identifier.humanize %>
+  </option>
+  <% for salon in @current_account.salons %>
+    <% unless salon.id == @current_salon.id %>
+      <option value="<%= dropdown_url(salon.identifier)%>">
+        <%= salon.identifier.humanize %>
+      </option>
+    <% end %>
+  <% end %>
+</select>

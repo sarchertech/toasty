@@ -14,4 +14,8 @@ module ApplicationHelper
       render :partial => 'shared/main_nav_no_salon' 
     end
   end
+
+  def phone_number(string)
+    string[0..2] + "-" + string[3..5] + "-" + string[6..9]
+  end
 end

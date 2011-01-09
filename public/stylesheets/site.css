@@ -73,6 +73,13 @@ nav li a {
   display: block;
 }
 
+#salons_dropdown select {
+  color: #333;
+  font-size: 1.5em;
+  position: relative;
+  top: 1px;
+}
+
 footer {
   width: 940px;
   margin: auto;

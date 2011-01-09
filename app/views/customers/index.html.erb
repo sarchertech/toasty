@@ -56,9 +56,13 @@
     <% for customer in @customers %>
       <tr class ="customer_info">
         <td class="name">
-          <%= link_to customer.first_name + " " + customer.last_name, customer %>
+          <% if @current_salon %>
+            <%= link_to customer.first_name + " " + customer.last_name, [@current_salon, customer] %>
+          <% else %>
+            <%= link_to customer.first_name + " " + customer.last_name, customer %>
+          <% end %>
         </td>
-        <td class="phone_number">770-949-1622</td>
+        <td class="phone_number"><%= phone_number(customer.phone_number) %></td>
         <td class="type">recurring level 1</td>
         <td class="details">(customer details)
         </td>

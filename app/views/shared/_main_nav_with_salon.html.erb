@@ -1,7 +1,15 @@
 <nav>
   <ul>
 	  <li id="salons_dropdown">
-		  <a href="#"><%= @current_salon.identifier %></a>
+		  <select>
+		    <option>All Salons</option>
+		    <option selected="true"><%= @current_salon.identifier.humanize %></option>
+		    <% for salon in @current_account.salons %>
+		      <% unless salon.id == @current_salon.id %>
+		        <option><%= salon.identifier.humanize %></option>
+		      <% end %>
+		    <% end %>
+		  </select>
 	  </li>
 	  <li id="sessions_link">
 		  <%= link_to "Sessions", new_salon_tan_session_path(@current_salon) %>

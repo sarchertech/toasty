@@ -3,10 +3,17 @@ class CustomersController < ApplicationController
   #GET /salons/1/customers
   def index
     if params[:search]
-      string = "first_name LIKE :f OR last_name LIKE :f"
-      @customers = scope.customers.where(string, :f => "#{params[:search]}%")
+      name = params[:search].split(' ')
+      first = name[0]
+      second = name[1]
+
+      str1 = "(first_name LIKE :f AND last_name LIKE :s) OR "
+      str2 = "(first_name LIKE :s AND last_name LIKE :f)"
+      @customers = scope.customers.where(str1 + str2, 
+                                         :f => "#{first}%",
+                                         :s => "#{second}%").limit(30)
     else
-      @customers = scope.customers
+      @customers = scope.customers.limit(30)
     end
     
     if request.xhr?

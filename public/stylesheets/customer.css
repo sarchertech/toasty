@@ -1,4 +1,7 @@
 /*customer*/
+body#customers {
+  overflow-y: scroll;
+}
 
 h2 {
 	font-size: 20px;
@@ -99,12 +102,13 @@ h4 {
 
 #customer_list {
 	width: 930px;
-	height: 100%;
-	overflow: hidden;
-	overflow-x: hidden;	
 	padding-left: 20px;
 	margin-bottom: 10px;
 	color: #333;
+}
+
+#customer_list table {
+  width: 910px;
 }
 
 .customer_info {
@@ -122,6 +126,8 @@ h4 {
 
 #customers .name {
 	font-size: 35px;
+	width: 400px;
+	overflow: hidden;
 }
 
 #customers .name a {

@@ -2,7 +2,16 @@ class CustomersController < ApplicationController
   #GET /customers
   #GET /salons/1/customers
   def index
-    @customers = scope.customers
+    if params[:search]
+      string = "first_name LIKE :f OR last_name LIKE :f"
+      @customers = scope.customers.where(string, :f => "#{params[:search]}%")
+    else
+      @customers = scope.customers
+    end
+    
+    if request.xhr?
+      render :partial => "customer_table"
+    end
   end
   
   #GET /customers/1

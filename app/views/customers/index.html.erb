@@ -9,7 +9,8 @@
 </div>
    
 <div id="content_wrapper">  
-  <input id="customer_search_box" type="text" size="40" placeholder="search" maxlength="50"/>
+  <%= form_tag(:action => "index") do %>
+  <input id="customer_search_box" type="text" size="40" placeholder="search" maxlength="50" name="search" autocomplete="off"/>
   <div id="search_filters">
     <input type="checkbox" class="styled" id="recurring">
     <label for="recurring">Recurring</label>
@@ -49,6 +50,7 @@
       </p>
     </div>
   </div>
+  <% end %>
 
   <div id="rule"></div>
  

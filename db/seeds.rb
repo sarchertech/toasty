@@ -69,7 +69,28 @@ def customer_seed
   end
 end
 
+def user_seed
+  def by_three(a)
+    3 * a -2
+  end
+
+  (1..10).each do |a|
+    (0..2).each do |s|
+      s = by_three(a) + s
+      Factory.create(:user, :first_name => "michael", :last_name => "krontz",
+                     :account_id => a, :salon_id => s)
+      Factory.create(:user, :first_name => "seth", :last_name => "brown",
+                     :account_id => a, :salon_id => s)
+      Factory.create(:user, :first_name => "sandra", :last_name => "floyd",
+                     :account_id => a, :salon_id => s)
+      Factory.create(:user, :first_name => "zane", :last_name => "brown",
+                     :account_id => a, :salon_id => s)
+    end
+  end  
+end
+
 account_seed
 salon_seed
 bed_seed
 customer_seed
+user_seed

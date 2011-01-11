@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
     t.string   "salt"
     t.integer  "password_attempts",    :default => 0
     t.datetime "wrong_attempt_at"
+    t.integer  "login_suffix",         :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

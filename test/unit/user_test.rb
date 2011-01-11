@@ -10,7 +10,7 @@ class UserTest < ActiveSupport::TestCase
       attributes = %w{last_name first_name security_level
                       account_id salon_id login access_all_locations
                       encrypted_password salt password password_confirmation
-                      password_attempts wrong_attempt_at}
+                      password_attempts wrong_attempt_at login_suffix}
       attributes.each {|attr| @michael.send(attr)}
     end
   end
@@ -142,6 +142,25 @@ class UserTest < ActiveSupport::TestCase
     user3.save
 
     assert_equal("xbrowne1", user3.login)
+  end
+
+  test "login generator should work after 10 ex..zbrown11" do
+    10.times do 
+      Factory.create(:user, :last_name => "Brown", :first_name => "Zed")
+    end
+    
+    user = Factory.create(:user, :last_name => "Brown", :first_name => "Zed")
+
+    assert_equal("zbrown11", user.login)
+
+    11.times do 
+      Factory.create(:user, :last_name => "Brown", :first_name => "Seth")
+    end
+
+    user.first_name = "Sam"
+    user.save
+
+    assert_equal("sbrown12", user.login)
   end
 
   test "password should not be blank" do

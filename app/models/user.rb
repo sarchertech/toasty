@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
            :if => :should_check_if_name_in_password?
 
   def self.highest_login_like_this(pre)
-    where("login LIKE ?", pre + "%").order("login desc").first
+    where("login LIKE ?", pre + "%").order("login_suffix desc").first
   end
 
   def has_password?(submitted_password)
@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
       "wait 5 minutes"
     end
   end
-  
+
   private
   
   def wrong_password
@@ -114,7 +114,8 @@ class User < ActiveRecord::Base
   def auto_create_login
     if login_should_be_changed?
       if user = User.highest_login_like_this(prefix)
-        self.login = user.login.gsub(/\d{1,}/) {|s| s.to_i + 1}
+        self.login = user.login.gsub(/\d{1,}/) {|s| @s = s.to_i + 1}
+        self.login_suffix = @s
       else
         self.login = prefix + "1" 
       end  

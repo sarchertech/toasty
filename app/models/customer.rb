@@ -43,6 +43,19 @@ class Customer < ActiveRecord::Base
     where(str1 + str2, :f => "#{name[0]}%", :s => "#{name[1]}%")
   }
 
+  scope :by_level, lambda { |level|
+    if level
+      val = level.values
+      bind = []
+      val.count.times { bind << "?" }
+      str = "level IN (#{bind.join(",")})"
+      #convert to array so where will see it as 3 args
+      query = ([] << str) + val      
+
+      where(query)
+    end
+  }
+
   private
 
   def san

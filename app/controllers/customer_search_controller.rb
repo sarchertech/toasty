@@ -3,11 +3,11 @@ class CustomerSearchController < ApplicationController
   def create
     if search_empty?
       @customers = scope.customers.limit(30)
-    else       
-      @customers = scope.customers.by_name(name_array).limit(30)
+    else
+      @customers = scope.customers.by_name(name_array).by_level(level).limit(30)
     end
 
-    render :partial => "customers/customer_table" 
+    render :partial => "customers/customer_table"
   end
 
   private
@@ -21,6 +21,12 @@ class CustomerSearchController < ApplicationController
   end
 
   def name_array
+    return "" if params[:search][:name].blank?
     params[:search][:name][0..29].split(' ')
+  end
+
+  def level
+    #return [] if params[:search][:level].blank?
+    params[:search][:level]
   end
 end

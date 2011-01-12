@@ -6,6 +6,8 @@ Toasty::Application.routes.draw do
     resources :customers
     resources :users
     resources :tan_sessions
+    match 'customer_search' => 'customer_search#create', 
+     :as => 'customer_search', :via => :post, 
   end
 
   resources :customers, :constraints => {:subdomain => /.+/}

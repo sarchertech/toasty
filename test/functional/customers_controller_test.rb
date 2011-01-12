@@ -28,13 +28,13 @@ class CustomersControllerTest < ActionController::TestCase
     assert_routing(route, action) 
   end
 
-  test "should get index and assign customers scoped to current account" do
-    get :index
-    assert_response :success
+  #test "should get index and assign customers scoped to current account" do
+    #get :index
+    #assert_response :success
 
-    assert(assigns(:customers))
-    assert_equal(@account.customers, assigns(:customers))
-  end
+    #assert(assigns(:customers))
+    #assert_equal(@account.customers, assigns(:customers))
+  #end
 
   test "should get index and assign customers scoped to current salon" do
     get :index, :salon_id => @salon.to_param

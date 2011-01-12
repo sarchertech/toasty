@@ -2,23 +2,7 @@ class CustomersController < ApplicationController
   #GET /customers
   #GET /salons/1/customers
   def index
-    if params[:search]
-      name = params[:search].split(' ')
-      first = name[0]
-      second = name[1]
-
-      str1 = "(first_name LIKE :f AND last_name LIKE :s) OR "
-      str2 = "(first_name LIKE :s AND last_name LIKE :f)"
-      @customers = scope.customers.where(str1 + str2, 
-                                         :f => "#{first}%",
-                                         :s => "#{second}%").limit(30)
-    else
-      @customers = scope.customers.limit(30)
-    end
-    
-    if request.xhr?
-      render :partial => "customer_table"
-    end
+    @customers = scope.customers.limit(30).order('created_at DESC')
   end
   
   #GET /customers/1

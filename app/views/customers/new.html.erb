@@ -1,10 +1,14 @@
 <div id="tab_wrapper">
   <div id="search_tab">
-    <h2>Search</h2>
+    <h2>
+      <%= link_to "Search", salon_customers_path(@current_salon) %>
+    </h2>
   </div>
   
   <div id="new_customer_tab">
-    <h2>New Customer</h2>
+    <h2>
+      <%= link_to "New Customer", new_salon_customer_path(@current_salon) %>
+    </h2>
   </div>
 </div>
    

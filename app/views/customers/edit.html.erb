@@ -1,7 +1,16 @@
 <section id="content">
   <div id="tab_wrapper">
-    <div id="new_customer_tab"><h2>New Customer</div>
-    <div id="search_tab"><h2>Search</div>
+    <div id="search_tab">
+      <h2>
+        <%= link_to "Search", salon_customers_path(@current_salon) %>
+      </h2>
+    </div>
+
+    <div id="new_customer_tab">
+      <h2>
+        <%= link_to "New Customer", new_salon_customer_path(@current_salon) %>
+      </h2>
+    </div>
   </div>
   
   <div id="form_fields">

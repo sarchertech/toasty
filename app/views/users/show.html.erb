@@ -1,9 +1,13 @@
 <div id="user_tab_wrapper">
-  <div id="new_employee_tab">
-    <h2>New Employee</h2>
-  </div>
   <div id="employee_list_tab">
-    <h2>Employee List</h2>
+    <h2>
+      <%= link_to "Employee List", salon_users_path(@current_salon) %>
+    </h2>
+  </div>
+  <div id="new_employee_tab">
+    <h2>
+      <%= link_to "New Employee", new_salon_user_path(@current_salon) %>
+    </h2>
   </div>
 </div>
 

@@ -30,14 +30,14 @@ class CustomerSearchControllerTest < ActionController::TestCase
     assert_equal(@salon.customers, assigns(:customers))
   end
 
-  test "should search by first and last name" do
-    customer = Factory.create(:customer, :first_name => "seth",
+  test "should search by first and last name and filters should work" do
+    customer = Factory.create(:customer, :first_name => "seth", :level => 3,
                                :last_name => "brown", :salon_id => @salon.id)
-    customer2 = Factory.create(:customer, :first_name => "zane",
+    customer2 = Factory.create(:customer, :first_name => "zane", :level => 2,
                                :last_name => "brown", :salon_id => @salon.id)
-    customer3 = Factory.create(:customer, :first_name => "adam",
+    customer3 = Factory.create(:customer, :first_name => "adam", :level => 1,
                                :last_name => "adams", :salon_id => @salon.id)
-    customer4 = Factory.create(:customer, :first_name => "richard",
+    customer4 = Factory.create(:customer, :first_name => "richard", :level => 1,
                                :last_name => "adams", :salon_id => @salon.id)
 
     post :create, :salon_id => @salon.to_param, :search => {:name => "brown"}
@@ -51,5 +51,13 @@ class CustomerSearchControllerTest < ActionController::TestCase
 
     post :create, :salon_id => @salon.to_param, :search=>{:name=>"adams richard"}
     assert_equal(1, assigns(:customers).count)
+
+    post :create, :salon_id => @salon.to_param, 
+         :search => {:level => {:three => "3" }}
+    assert_equal(1, assigns(:customers).count)
+
+    post :create, :salon_id => @salon.to_param, :search => {:name => "brown",
+      :level => {:two => "2"}}
+    assert_equal(1, assigns(:customers).count) 
   end
 end

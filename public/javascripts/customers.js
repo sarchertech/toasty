@@ -1,12 +1,6 @@
 var search_timeout = undefined
 
-$(document).ready(function() {
-$("#content_wrapper form").submit(function() {
-  return false;
-});
-
-
-$("#customer_search_box").bind("keyup", function() {
+function customerSearch() {
   if(search_timeout != undefined) {
     clearTimeout(search_timeout);
   }
@@ -21,5 +15,12 @@ $("#customer_search_box").bind("keyup", function() {
       $("#customer_list").html(html);
     });
   }, 250);
-}); 
+}
+
+$(document).ready(function() {
+  $("#content_wrapper form").submit(function() {
+    return false;
+  });
+
+  $("#customer_search_box").bind("keyup", customerSearch); 
 });

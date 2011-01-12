@@ -34,6 +34,15 @@ class Customer < ActiveRecord::Base
   #1 == recurring 2 == month to month 3 == by the package 4 == per session
   validates_inclusion_of :customer_type, :in => 1..4
 
+  default_scope :order => 'created_at DESC'
+
+  scope :by_name, lambda { |name|
+    str1 = "(first_name LIKE :f AND last_name LIKE :s) OR "
+    str2 = "(first_name LIKE :s AND last_name LIKE :f)"
+    
+    where(str1 + str2, :f => "#{name[0]}%", :s => "#{name[1]}%")
+  }
+
   private
 
   def san

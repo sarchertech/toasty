@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   #GET /customers
   #GET /salons/1/customers
   def index
-    @customers = scope.customers.limit(30).order('created_at DESC')
+    @customers = scope.customers.limit(30)
   end
   
   #GET /customers/1

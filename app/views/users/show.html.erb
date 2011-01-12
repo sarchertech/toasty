@@ -1,21 +1,26 @@
+<div id="user_tab_wrapper">
+  <div id="new_employee_tab">
+    <h2>New Employee</h2>
+  </div>
+</div>
+
 <div id="new_employee_content_wrapper">  
   <div id="employee_left"> 
     <h3><%= @user.first_name + " " + @user.last_name %></h3> 
 
-    <h4>678-428-1541</h4> 
-    <h4>mkrontz@mac.com</h4> 
-    <h4>1190</h4> 
+    <h4>mkrontz</h4> 
+    <h4>Owner</h4> 
+    <br>
+    <h5>This Employee can Work at all Salons</h5> 
     <br> 
-
-    <br> 
-    <h4>56 Ruth Way</h4> 
-    <h4>Douglasville, GA</h4> 
-    <h4>30134</h4> 
+  
   </div>
 
   <div id="employee_right">
-    <%= button_to "Edit Employee", edit_salon_user_path(@current_salon, @user),
-                                   :method => :get, :id => "edit_customer_button" %>
+    <div id="edit_link_wrapper">
+    <h6>Edit this Employee</h6>
+    </div>
+  
     <%= button_to "Delete Employee", salon_user_path(@current_salon, @user),
                                      :method => :delete, :id => "delete_customer_button",
                                      :confirm => "are you sure you want to delete this user?" %>

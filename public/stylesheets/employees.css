@@ -68,6 +68,18 @@
   	-webkit-border-radius: 5px;
 }
 
+#employee_list_tab {
+	width: 150px;
+	height: 40px;
+	background-color: #c2e7ff;
+	float: left;
+	margin-top: 25px;
+	padding-top: 3px;
+	border-radius: 5px;
+  	-moz-border-radius: 5px;
+  	-webkit-border-radius: 5px;
+}
+
 /*new employee*/
 
 #new_employee_content_wrapper {

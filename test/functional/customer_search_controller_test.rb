@@ -32,7 +32,9 @@ class CustomerSearchControllerTest < ActionController::TestCase
 
   test "should search by first and last name and filters should work" do
     customer = Factory.create(:customer, :first_name => "seth", :level => 3,
-                               :last_name => "brown", :salon_id => @salon.id)
+                              :last_name => "brown", :salon_id => @salon.id,
+                              :customer_type => 4)
+                              
     customer2 = Factory.create(:customer, :first_name => "zane", :level => 2,
                                :last_name => "brown", :salon_id => @salon.id)
     customer3 = Factory.create(:customer, :first_name => "adam", :level => 1,
@@ -59,5 +61,13 @@ class CustomerSearchControllerTest < ActionController::TestCase
     post :create, :salon_id => @salon.to_param, :search => {:name => "brown",
       :level => {:two => "2"}}
     assert_equal(1, assigns(:customers).count) 
+
+    post :create, :salon_id => @salon.to_param,
+         :search => {:type => {:per_session => "4"}}
+    assert_equal(1, assigns(:customers).count)
+
+    post :create, :salon_id => @salon.to_param, :search => {:name => "brown",
+      :type => {:per_session => "4"}}
+    assert_equal(1, assigns(:customers).count)
   end
 end

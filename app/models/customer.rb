@@ -36,21 +36,41 @@ class Customer < ActiveRecord::Base
 
   default_scope :order => 'created_at DESC'
 
-  scope :by_name, lambda { |name|
-    str1 = "(first_name LIKE :f AND last_name LIKE :s) OR "
-    str2 = "(first_name LIKE :s AND last_name LIKE :f)"
+  scope :filter, lambda { |name, level, type|
+    by_name(name).by_level(level).by_type(type)
+  }
+
+  #add functionality for this later
+  scope :by_tanned, lambda { |tanned|
+    return if tanned[:days].blank? || tanned[:hhn].blank?
     
-    where(str1 + str2, :f => "#{name[0]}%", :s => "#{name[1]}%")
+    if tanned[:hhn] == "have"
+      #where last session created_at user a join
+    elsif tanned[:hhn] == "have_not"
+
+    end
+  }
+
+  scope :by_name, lambda { |name|
+    return if name.blank?
+    name = name.split(' ')
+    str1 = "(first_name LIKE :first AND last_name LIKE :second) OR "
+    str2 = "(first_name LIKE :second AND last_name LIKE :first)"
+    
+    where(str1 + str2, :first => "#{name[0]}%", :second => "#{name[1]}%")
   }
 
   scope :by_level, lambda { |level|
-    if level
-      str = "level IN (#{('?,' * level.values.count).chop})"
-      #convert to array so where will see it as 3 args
-      query = ([] << str) + level.values      
+    return if level.blank?
+    str = "level IN (#{('?,' * level.values.count).chop})"
+    #convert to array so where will see it as more than 2 args
+    where([str] + level.values)
+  }
 
-      where(query)
-    end
+  scope :by_type, lambda { |type|
+    return if type.blank?
+    str = "customer_type IN (#{('?,' * type.values.count).chop})"
+    where([str] + type.values)
   }
 
   private

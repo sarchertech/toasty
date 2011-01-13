@@ -72,6 +72,7 @@
 
 #user_tab_wrapper div a {
   color: #333;
+  display: block;
 }
 
 .employee_list_tab div#employee_list_tab {

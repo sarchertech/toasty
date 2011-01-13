@@ -166,6 +166,7 @@ h4 {
 
 #tab_wrapper div a {
   color: #333;
+  display: block;
 }
 
 .customer_list_tab div#search_tab {

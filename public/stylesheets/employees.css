@@ -186,14 +186,9 @@
 h5 {
   font-size: 25px;
   text-align: left;
-  }
+}
   
-h6 {
-  font-size: 25px;
-  text-align: left;
-  }  
-  
-#edit_link_wrapper {
+#employees #edit_link_wrapper {
   float: right;	
   width: 290px;
   height: 35px;
@@ -201,3 +196,7 @@ h6 {
   background: url(../images/edit_icon.png) no-repeat;
 }
 
+#employees #edit_link_wrapper a {
+  font-size: 25px;
+  text-align: left;
+}

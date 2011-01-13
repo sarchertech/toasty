@@ -32,7 +32,7 @@
   <div id="content_right">
     
     <div id="edit_link_wrapper">
-    <h6>Edit this Customer</h6>
+      <%= link_to "Edit this Customer", edit_salon_customer_path(@current_salon, @customer)%>
     </div>
   <input id="delete_customer_button" type="button" value="Delete Customer"/>
   </div>

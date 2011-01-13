@@ -1,40 +1,70 @@
-<section id="content">
-  <div id="tab_wrapper">
-    <div id="search_tab">
-      <h2>
-        <%= link_to "Search", salon_customers_path(@current_salon) %>
-      </h2>
-    </div>
-
-    <div id="new_customer_tab">
-      <h2>
-        <%= link_to "New Customer", new_salon_customer_path(@current_salon) %>
-      </h2>
-    </div>
+<div id="tab_wrapper">
+  <div id="search_tab">
+    <h2>
+      <%= link_to "Search", salon_customers_path(@current_salon) %>
+    </h2>
   </div>
   
-  <div id="form_fields">
-    <input id="admin_form_field" type="text" size="19" value="First Name" maxlength="50"/>
-    <input id="admin_form_field" type="text" size="19" value="Last Name" maxlength="50"/>
-    <input id="admin_form_field" type="text" size="19" value="Phone #" maxlength="50"/>
-    <input id="admin_form_field" type="text" size="19" value="Customer Number" maxlength="50"/> 
-    <input id="admin_form_field" type="text" size="19" value="Email" maxlength="50"/>   
-    <input id="admin_wide_form_field" type="text" size="19" value="Address" maxlength="50"/>
+  <div id="new_customer_tab">
+    <h2>
+      <%= link_to "New Customer", new_salon_customer_path(@current_salon) %>
+    </h2>
+  </div>
+</div>
+   
+<div id="content_wrapper">
+  <div id="content_left">
+    <input class="admin_form_field" type="text" size="19" placeholder="First Name" maxlength="40"/>
+    <input class="admin_form_field" type="text" size="19" placeholder="Last Name" maxlength="40"/>
+    <input class="admin_form_field" type="text" size="19" placeholder="Phone Number" maxlength="12"/>
+    <input class="admin_form_field" type="text" size="19" placeholder="Keyfob Number (optional)" maxlength="10"/> 
+    <input class="admin_form_field" type="text" size="19" placeholder="Email" maxlength="50"/>   
+    <textarea id="address_box" type="text_box" cols="19" rows="3" placeholder="Address" /></textarea>
+    <input class="admin_short_form_field" type="text" size="15" placeholder="City" maxlength="20"/>
+    <input class="admin_short_form_field" type="text" size="5" placeholder="Zip" maxlength="5"/>
+    <input id="state_field" class="admin_short_form_field" type="text" size="2" placeholder="State" maxlength="2"/>
+  </div>
 
-    <div id="city_state_zip">
-      <input id="admin_short_form_field" type="text" size="19" value="City" maxlength="20"/>
-      <input id="admin_short_form_field" type="text" size="19" value="Zip" maxlength="5"/>
-      
-      <div id="radio_button_wrapper">
-        <input type="radio" name="group1" value="recurring"> Recurring
-        <input type="radio" name="group1" value="by_the_month" checked> By the Month<br>
-        <input type="radio" name="group1" value="package"> Package
-        <input type="radio" name="group1" value="per_session"> Per Session
-      </div>
-    </div>        
-  </div>
+  <div id="content_right">
+    <div id="radio_button_wrapper">
+      <input type="radio" name="radiogroup" id="recurring">
+      <label for="recurring">Recurring</label>
+      <input type="radio" name="radiogroup" id="bythemonth">
+      <label for="bythemonth">By the Month</label>
+      <input type="radio" name="radiogroup" id="package">
+      <label for="package">Package</label>
+      <input type="radio" name="radiogroup" id="persession">
+      <label for="persession">Per Session</label>
+    </div>
   
-  <div id="add_customer_button_wrapper">
-    <input id="add_customer_button" type="button" size="19" value="Add Customer" maxlength="50"/>
+    <div id="by_the_month">
+      <span>Paid Through</span>
+      <select>
+        <option>January</option>
+        <option>February</option>
+      </select>
+      <select>
+        <option>01</option>
+        <option>02</option>
+        <option>03</option>
+        <option>04</option>
+      </select>
+      <select>
+        <option>2011</option>
+        <option>2012</option>
+        <option>2013</option>
+        <option>2014</option>
+      </select>
+    
+      <span>Level</span>  
+      <select>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>
+    </div>
+    
+    <input id="edit_customer_button" type="submit" value="Save Changes"/>
   </div>
-</section>
+  <div class="clear"></div>
+</div>

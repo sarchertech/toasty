@@ -26,6 +26,7 @@ body {
   background-image: url('../images/header_background.png'),
                     url('../images/swirly_pattern_light.png'); 
   background-repeat: repeat-x, repeat;
+  color: #333;
 }
 
 ol, ul {

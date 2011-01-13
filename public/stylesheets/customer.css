@@ -326,34 +326,23 @@ h4 {
   height: 400px;
 }
 
-#edit_customer_button {
-  height: 67px;
-  width: 310px;
-  padding: 5px 10px 6px;
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  letter-spacing: -2px;
-  text-align: left;
-  padding-left: 60px;
-  padding-top: 12px;
-  font-size: 34px;
-  font-family: myriad pro, arial;
-  text-shadow: 1px 1px #999;
-  line-height: 1;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-box-shadow: 2px 4px 4px #999;
-  -webkit-box-shadow: 0 4px 4px #999;
-  border: 3px solid #F5F5F5;
-  cursor: pointer;
-  float: right;
-  margin-top: 15px;
-  margin-right: 20px;
-  background: url('../images/edit_button_bg.png') no-repeat;
+#edit_link_wrapper {
+  float: right;	
+  width: 290px;
+  height: 35px;
+  padding-left: 40px;
+  background: url(../images/edit_icon.png) no-repeat;
 }
 
-#delete_customer_button {
+#customers #edit_link_wrapper a {
+  font-size: 25px;
+  text-align: left;
+  color: #333;
+  font-weight: bold;
+}  
+
+
+#customers #delete_customer_button {
   height: 67px;
   width: 310px;
   padding: 5px 10px 6px;
@@ -378,4 +367,30 @@ h4 {
   margin-top: 15px;
   margin-right: 20px;
   background: url('../images/delete_button_bg.png') no-repeat;
+}
+
+/* customer#edit */
+
+#edit_customer_button {
+  height: 65px;
+  width: 280px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: -2px;
+  text-align: left;
+  padding-left: 60px;
+  padding-right: 20px;
+  padding-top: 15px;
+  font-size: 35px;
+  font-family: myriad pro, arial;
+  text-shadow: 1px 1px #999;
+  line-height: 1;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-box-shadow: 2px 4px 4px #999;
+  -webkit-box-shadow: 0 4px 4px #999;
+  border: 3px solid #F5F5F5;
+  cursor: pointer;
+  background: url('../images/edit_button_bg.png') no-repeat;
 }

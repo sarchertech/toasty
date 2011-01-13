@@ -25,7 +25,7 @@
 
   <div id="employee_right">
     <div id="edit_link_wrapper">
-    <h6>Edit this Employee</h6>
+      <%= link_to "Edit this Employee", edit_salon_user_path(@current_salon, @user)%>
     </div>
   
     <%= button_to "Delete Employee", salon_user_path(@current_salon, @user),

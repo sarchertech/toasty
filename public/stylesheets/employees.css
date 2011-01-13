@@ -14,7 +14,9 @@
   -moz-box-shadow: 2px 4px 4px #999;
   box-shadow: 2px 4px 4px #999;
   padding: 15px;
-  z-index: 40;
+  z-index: 2;
+  position: relative;
+  overflow: auto;
 }
 
 #employee_list {
@@ -54,50 +56,43 @@
 	margin-bottom: -45px;
 }
 
-#new_employee_tab {
-	width: 150px;
+#user_tab_wrapper div {
+  float: left;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  width: 150px;
 	height: 40px;
-	background-color: #c2e7ff;
-	float: left;
 	margin-top: 25px;
+	padding-top: 3px;
+	background-color: blue;
+	position: relative;
+	z-index: 1;
+}
+
+#user_tab_wrapper div a {
+  color: #333;
+}
+
+.employee_list_tab div#employee_list_tab {
+  background-color: #c2e7ff;
+  z-index: 3;
+}
+
+.employee_new_tab div#new_employee_tab {
+  background-color: #c2e7ff;
+  z-index: 3;
+}
+
+#new_employee_tab {
 	margin-right: 10px;
 	margin-left: 20px;
-	padding-top: 3px;
-	border-radius: 5px;
-  	-moz-border-radius: 5px;
-  	-webkit-border-radius: 5px;
 }
 
 #employee_list_tab {
-	width: 150px;
-	height: 40px;
-	background-color: #c2e7ff;
-	float: left;
-	margin-top: 25px;
-	padding-top: 3px;
-	border-radius: 5px;
-  	-moz-border-radius: 5px;
-  	-webkit-border-radius: 5px;
 }
 
 /*new employee*/
-
-#new_employee_content_wrapper {
-  width: 940px;
-  margin: auto;
-  margin-bottom: 10px;
-  margin-top: 25px;
-  border: 2px solid #FFFFFF;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  background: #c2e7ff;
-  -webkit-box-shadow: 2px 4px 4px #999;
-  -moz-box-shadow: 2px 4px 4px #999;
-  box-shadow: 2px 4px 4px #999;
-  padding: 15px;
-  overflow: auto;
-}
 
 #employee_left {
   width: 460px;

@@ -45,7 +45,8 @@ h4 {
   -moz-box-shadow: 2px 4px 4px #999;
   box-shadow: 2px 4px 4px #999;
   padding: 15px;
-  z-index: 40;
+  position: relative;
+  z-index: 2;
 }
 
 #customer_search_box {
@@ -160,15 +161,23 @@ h4 {
   border-radius: 5px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  background-color: green;
+  background-color: blue;
+  position: relative;
+  z-index: 1;
+}
+
+#tab_wrapper div a {
+  color: #333;
 }
 
 .customer_list_tab div#search_tab {
   background-color: #c2e7ff;
+  z-index: 3;
 }
 
-.customer_new_tab div {
+.customer_new_tab div#new_customer_tab {
   background-color: #c2e7ff;
+  z-index: 3;
 }
 
 #search_tab {

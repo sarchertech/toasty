@@ -11,39 +11,35 @@
   </div>
 </div>
 
- <div id="new_employee_content_wrapper">  
-   <div id="employee_left"> 
-      <input class="admin_form_field" type="text" size="19" placeholder="First Name"  maxlength="40"/> 
-      <input class="admin_form_field" type="text" size="19" placeholder="Last Name" maxlength="40"/>       
-      <input class="admin_form_field" type="text" size="19" placeholder="Password" maxlength="50"/> 
-      <input class="admin_form_field" type="text" size="19" placeholder="Password Confirmation" maxlength="50"/>   
+<div id="employee_content_wrapper">  
+  <div id="employee_left"> 
+    <input class="admin_form_field" type="text" size="19" placeholder="First Name"  maxlength="40"/> 
+    <input class="admin_form_field" type="text" size="19" placeholder="Last Name" maxlength="40"/>       
+    <input class="admin_form_field" type="text" size="19" placeholder="Password" maxlength="50"/> 
+    <input class="admin_form_field" type="text" size="19" placeholder="Password Confirmation" maxlength="50"/>   
+  </div>
+
+  <div id="employee_right"> 
+    <div id="employee_dropdowns"> 
+      <p> 
+        <span>Employee's Security Level</span>  
+        <select> 
+          <option>Employee</option> 
+          <option>Manager</option>
+          <option>Owner</option> 
+        </select> 
+        <br />
+        <span>Employee's Salon Location</span>  
+        <select> 
+          <option>Douglas</option> 
+          <option>Marietta</option>
+          <option>Paulding</option> 
+        </select>
+        <br/>
+        <input type="checkbox" class="styled" id="all_salons"> 
+        <label for="all_salons">This Employee can Work at all Salons</label>
+      </p>
     </div>
-
-    <div id="employee_right"> 
-      <div id="employee_dropdowns"> 
-            <p> 
-              <span>Employee's Security Level</span>  
-              <select> 
-                <option>Employee</option> 
-                <option>Manager</option>
-                <option>Owner</option> 
-              </select> 
-              <br>
-              <span>Employee's Salon Location</span>  
-              <select> 
-                <option>Douglas</option> 
-                <option>Marietta</option>
-                <option>Paulding</option> 
-              </select>
-              <br>
-              <input type="checkbox" class="styled" id="all_salons"> 
-              <label for="all_salons">This Employee can Work at all Salons</label>
-            </p> 
-
-          </div>
-          <input id="add_employee_button" type="button" value="Add Employee"/> 
-      
-      </div>
-
-
+    <input id="add_employee_button" type="button" value="Add Employee"/> 
+  </div>
 </div>

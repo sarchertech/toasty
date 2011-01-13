@@ -1,7 +1,8 @@
 class CustomerSearchController < ApplicationController
   #POST /customer_search
   def create
-    @customers = scope.customers.filter(name, level, type).limit(30)
+    @customers = scope.customers.filter(name, level, type).limit(30).
+                       by_tanned(tanned)
 
     render :partial => "customers/customer_table"
   end
@@ -18,6 +19,10 @@ class CustomerSearchController < ApplicationController
 
   def level
     search[:level]
+  end
+
+  def tanned
+    search[:tanned]
   end
 
   def search

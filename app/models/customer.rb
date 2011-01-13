@@ -42,12 +42,15 @@ class Customer < ActiveRecord::Base
 
   #add functionality for this later
   scope :by_tanned, lambda { |tanned|
-    return if tanned[:days].blank? || tanned[:hhn].blank?
+    return if tanned.blank? || tanned[:days].blank? || tanned[:hhn].blank?
     
-    if tanned[:hhn] == "have"
-      #where last session created_at user a join
+    if tanned[:hhn] == "have"     
+      joins("LEFT JOIN tan_sessions ON customers.id = tan_sessions.customer_id").
+      where("tan_sessions.created_at > ?", tanned[:days].to_i.days.ago ) 
     elsif tanned[:hhn] == "have_not"
-
+      joins("LEFT JOIN tan_sessions ON customers.id = tan_sessions.customer_id").
+      where("tan_sessions.created_at < ? OR tan_sessions.created_at IS NULL", 
+            tanned[:days].to_i.days.ago) 
     end
   }
 

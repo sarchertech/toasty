@@ -69,5 +69,15 @@ class CustomerSearchControllerTest < ActionController::TestCase
     post :create, :salon_id => @salon.to_param, :search => {:name => "brown",
       :type => {:per_session => "4"}}
     assert_equal(1, assigns(:customers).count)
+
+    tan_session = Factory.create(:tan_session, :customer_id => customer.id)
+
+    post :create, :salon_id => @salon.to_param, 
+         :search => {:tanned => {:hhn => "have", :days => "30"}}
+    assert_equal(1, assigns(:customers).count)
+
+    post :create, :salon_id => @salon.to_param, 
+         :search => {:tanned => {:hhn => "have_not", :days => "30"}}
+    assert_equal(4, assigns(:customers).count)
   end
 end

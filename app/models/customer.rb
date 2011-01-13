@@ -40,6 +40,17 @@ class Customer < ActiveRecord::Base
     by_name(name).by_level(level).by_type(type)
   }
 
+  #add functionality for this later
+  scope :by_tanned, lambda { |tanned|
+    return if tanned[:days].blank? || tanned[:hhn].blank?
+    
+    if tanned[:hhn] == "have"
+      #where last session created_at user a join
+    elsif tanned[:hhn] == "have_not"
+
+    end
+  }
+
   scope :by_name, lambda { |name|
     return if name.blank?
     name = name.split(' ')

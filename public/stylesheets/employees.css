@@ -65,7 +65,7 @@
 	height: 40px;
 	margin-top: 25px;
 	padding-top: 3px;
-	background-color: blue;
+	background-color: #99bfd7;
 	position: relative;
 	z-index: 1;
 }
@@ -86,7 +86,7 @@
 
 #new_employee_tab {
 	margin-right: 10px;
-	margin-left: 20px;
+	margin-left: 10px;
 }
 
 #employee_list_tab {

@@ -16,13 +16,13 @@
   <%= form_tag(:controller => "customer_search", :action => "create") do %>
   <input id="customer_search_box" type="text" size="30" placeholder="search" maxlength="30" name="search[name]" autocomplete="off"/>
   <div id="search_filters">
-    <input type="checkbox" class="styled" id="recurring" name="search[recurring]">
+    <input type="checkbox" class="styled" id="recurring" name="search[type][recurring]" value="1">
     <label for="recurring">Recurring</label>
-    <input type="checkbox" class="styled" id="per_month">
+    <input type="checkbox" class="styled" id="per_month" name="search[type][per_month]" value="2">
     <label for="per_month">Per Month</label>
-    <input type="checkbox" class="styled" id="package">
+    <input type="checkbox" class="styled" id="package" name="search[type][package]" value="3">
     <label for="package">Package</label>
-    <input type="checkbox" class="styled" id="per_session">
+    <input type="checkbox" class="styled" id="per_session" name="search[type][per_session]" value="4">
     <label for="per_session">Per Session</label>
 
     <br />

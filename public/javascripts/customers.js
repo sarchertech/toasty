@@ -24,4 +24,8 @@ $(document).ready(function() {
 
   $("#customer_search_box").bind("keyup", customerSearch); 
   $("#search_filters input").change(customerSearch);
+
+  $("nav select").change(function() {
+    location.href = $("nav select option:selected").val();
+  });
 });

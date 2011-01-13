@@ -55,17 +55,22 @@ def customer_seed
     3 * a - 2
   end
   
+  time = Time.now
 
   (1..10000).each do
     a = rand(10) + 1
     s = rand(3) + by_three(a)
+    t = time + rand(180).days
     
     Factory.create(:customer, :first_name => f[rand(50)],
       :last_name => l[rand(50)],
       :city => c[rand(12)],
       :account_id => a,
       :salon_id => s,
-      :phone_number => r[rand(10)]+p[rand(10)]+n[rand(10)] ) 
+      :phone_number => r[rand(10)]+p[rand(10)]+n[rand(10)],
+      :level => rand(5) + 1,
+      :customer_type => rand(4) + 1,
+      :paid_through => t) 
   end
 end
 
@@ -89,8 +94,20 @@ def user_seed
   end  
 end
 
+def tan_session_seed
+  time = Time.now
+
+  (1..10000).each do |i|
+    t = time - rand(500).days
+    
+    Factory.create(:tan_session, :customer_id => i, 
+                   :created_at => t)
+  end
+end
+
 account_seed
 salon_seed
 bed_seed
 customer_seed
 user_seed
+tan_session_seed

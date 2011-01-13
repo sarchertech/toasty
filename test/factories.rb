@@ -12,6 +12,8 @@ Factory.define :customer do |f|
   f.account_id 1
   f.salon_id 1
   f.customer_type 1
+  f.sessions_left 5
+  f.paid_through "2011-01-30"
 end
 
 Factory.define :user do |f|

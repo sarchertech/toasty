@@ -5,9 +5,8 @@
         <%= link_to customer.first_name + " " + customer.last_name, [@current_salon, customer] %>
       </td>
       <td class="phone_number"><%= phone_number(customer.phone_number) %></td>
-      <td class="type">recurring level 1</td>
-      <td class="details">(customer details)
-      </td>
+      <td class="type"><%= customer.word_for_type %> level <%= customer.level %></td>
+      <td class="details"><%= customer_details(customer) %></td>
     </tr> 
   <% end %>
 </table>

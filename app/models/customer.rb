@@ -76,6 +76,19 @@ class Customer < ActiveRecord::Base
     where([str] + type.values)
   }
 
+  def word_for_type
+    case customer_type
+    when 1
+      "recurring"
+    when 2
+      "per month"
+    when 3
+      "package"
+    when 4
+      "per session"
+    end
+  end
+
   private
 
   def san

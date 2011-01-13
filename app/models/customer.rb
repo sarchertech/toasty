@@ -45,12 +45,9 @@ class Customer < ActiveRecord::Base
 
   scope :by_level, lambda { |level|
     if level
-      val = level.values
-      bind = []
-      val.count.times { bind << "?" }
-      str = "level IN (#{bind.join(",")})"
+      str = "level IN (#{('?,' * level.values.count).chop})"
       #convert to array so where will see it as 3 args
-      query = ([] << str) + val      
+      query = ([] << str) + level.values      
 
       where(query)
     end

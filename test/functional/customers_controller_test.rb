@@ -43,15 +43,15 @@ class CustomersControllerTest < ActionController::TestCase
     assert_equal(@salon.customers, assigns(:customers))
   end
 
-  test "should get show and assign a customer scoped to current account" do
-    get :show, :id => @customer.to_param
-    assert_response :success
-    assert_equal(@customer, assigns(:customer))
+  #test "should get show and assign a customer scoped to current account" do
+    #get :show, :id => @customer.to_param
+    #assert_response :success
+    #assert_equal(@customer, assigns(:customer))
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get :show, :id => @customer2.to_param
-    end
-  end
+    #assert_raises(ActiveRecord::RecordNotFound) do
+      #get :show, :id => @customer2.to_param
+    #end
+  #end
 
   test "should get show and assign a customer scoped to current salon" do
     get :show, :salon_id => @salon.to_param, :id => @customer.to_param
@@ -64,20 +64,20 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should get new" do
-    get :new
+    get :new, :salon_id => @salon.to_param
     assert_response :success 
     assert assigns(:customer).new_record?
   end
   
-  test "should get edit and assign a customer scoped to current account" do
-    get :edit, :id => @customer.to_param
-    assert_response :success
-    assert_equal(@customer, assigns(:customer))
+  #test "should get edit and assign a customer scoped to current account" do
+    #get :edit, :id => @customer.to_param
+    #assert_response :success
+    #assert_equal(@customer, assigns(:customer))
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get :edit, :id => @customer2.to_param
-    end
-  end
+    #assert_raises(ActiveRecord::RecordNotFound) do
+      #get :edit, :id => @customer2.to_param
+    #end
+  #end
 
   test "should get edit and assign a customer scoped to current salon" do
     get :edit, :salon_id => @salon.to_param, :id => @customer.to_param
@@ -115,8 +115,9 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should render new if customer not successfully created" do
-     post :create, :customer => Factory.attributes_for(:customer, 
-       :salon_id => @salon.to_param, :account_id => nil, :state => nil)
+     post :create, :salon_id => @salon.to_param, 
+       :customer => Factory.attributes_for(:customer, :account_id => nil, 
+                                           :state => nil)
 
      assert_template("new")
   end
@@ -147,7 +148,8 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should render edit if customer not successfully updated" do
-    put :update, :id => @customer.to_param, :customer => {:state => nil}
+    put :update, :salon_id => @salon.to_param, :id => @customer.to_param, 
+        :customer => {:state => nil}
 
     assert_template("edit")
   end

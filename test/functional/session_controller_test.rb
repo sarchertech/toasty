@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SessionControllerTest < ActionController::TestCase
-  setup :initialize_account_and_subdomain
+  setup :initialize_account_and_subdomain, :initialize_salon
 
   test "should generate and recognize /login via get" do
     route = {:path => "#{@request.url}/login", :method => :get }

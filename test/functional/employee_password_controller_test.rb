@@ -18,4 +18,9 @@ class EmployeePasswordControllerTest < ActionController::TestCase
 
     assert_routing(route, action)
   end
+
+  test "should get edit" do
+    get :edit
+    assert_response :success
+  end
 end

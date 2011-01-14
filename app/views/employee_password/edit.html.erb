@@ -5,7 +5,7 @@
   <div id="login_wrapper">
     <%= flash_handler %>
     <div id="form_fields">
-      <%= form_tag("/salons/#{@current_salon.to_param}/change_password", :method => :put) do %>
+      <%= form_tag(change_password_path) do %>
         <input id="admin_login_field" type="text" size="19" placeholder="Username" name="login" maxlength="50" autocomplete="off"/>
         <input id="admin_login_field" type="password" size="19" placeholder="Password" name="password" maxlength="50" autocomplete="off"/>
         <input id="login_button" type="submit" size="19" value="login" maxlength="50"/>

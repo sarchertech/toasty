@@ -20,7 +20,7 @@ class SessionController < ApplicationController
   # DELETE /logout
   def destroy
     session[:user_id] = nil
-    redirect_to(login_url(@current_salon.to_param))
+    redirect_to(login_url)
   end
 
   private
@@ -45,7 +45,6 @@ class SessionController < ApplicationController
   end
 
   def successful_login_redirect
-    redirect_to("/")
-    #redirect_to(new_salon_tan_session_path(@current_account.salons.first))
+    redirect_to(new_salon_tan_session_url(@current_account.salons.first))
   end
 end

@@ -6,21 +6,28 @@ Toasty::Application.routes.draw do
     resources :customers
     resources :users
     resources :tan_sessions
-    match 'customer_search' => 'customer_search#create', 
-     :as => 'customer_search', :via => :post, 
   end
 
   resources :customers, :constraints => {:subdomain => /.+/}
   resources :users, :constraints => {:subdomain => /.+/}
 
-  match 'login' => 'session#new', :as => 'new_login', :via => :get, 
-                                  :constraints => {:subdomain => /.+/}
+  match '/salons/:salon_id/customer_search' => 'customer_search#create', 
+    :as => 'customer_search', :via => :post
 
-  match 'login' => 'session#create', :as => 'login', :via => :post, 
+  match '/login' => 'session#new', :as => 'new_login', :via => :get, 
+                                   :constraints => {:subdomain => /.+/}
+
+  match '/login' => 'session#create', :as => 'login', :via => :post, 
+                                      :constraints => {:subdomain => /.+/}
+
+  match '/logout' => 'session#destroy', :as => 'logout', :via => :delete, 
                                      :constraints => {:subdomain => /.+/}
 
-  match 'logout' => 'session#destroy', :as => 'logout', :via => :delete, 
-                                     :constraints => {:subdomain => /.+/}
+  match '/change_password' => 'employee_password#edit',
+    :as => 'edit_password', :via => :get
+  
+  match '/change_password' => 'employee_password#update',
+    :as => 'change_password', :via => :put 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

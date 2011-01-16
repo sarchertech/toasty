@@ -288,4 +288,29 @@ class CustomerTest < ActiveSupport::TestCase
     @rhonda.sessions_left = nil
     assert !@rhonda.valid?
   end
+
+  test "word_for_type should return customer type in words" do
+    @rhonda.customer_type = 1
+    assert_equal("recurring", @rhonda.word_for_type)
+    
+    @rhonda.customer_type = 2
+    assert_equal("per month", @rhonda.word_for_type)
+  
+    @rhonda.customer_type = 3
+    assert_equal("package", @rhonda.word_for_type)
+    
+    @rhonda.customer_type = 4
+    assert_equal("per session", @rhonda.word_for_type)
+  end
+
+  test "details should return information based on customer type" do
+    @rhonda.customer_type = 2
+    @rhonda.paid_through = time = Time.now + 30.days
+    expected = "paid through #{time.strftime('%b %d') }"
+    assert_equal(expected, @rhonda.details)
+
+    @rhonda.customer_type = 3
+    @rhonda.sessions_left = 5   
+    assert_equal("5 sessions left", @rhonda.details)
+  end
 end

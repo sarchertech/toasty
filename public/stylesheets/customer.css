@@ -29,7 +29,7 @@ h4 {
   margin: auto;
 }
 
-#content_wrapper {
+#customers #content_wrapper {
   width: 940px;
   margin: auto;
   margin-bottom: 10px;
@@ -133,15 +133,6 @@ h4 {
 #customers .name a {
   color: #333;
   text-decoration: underline;
-}
-
-#customers .level {
-  font-size: 25px;
-}
-
-#customers .notes {
-  padding-top: 4px;
-  line-height: 1;
 }
 
 #tab_wrapper {
@@ -317,7 +308,6 @@ h4 {
 
 #left_wrapper {
   width: 600px;
-  height: 400px;
   margin-left: 20px;
 }
 

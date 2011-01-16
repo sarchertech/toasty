@@ -89,6 +89,15 @@ class Customer < ActiveRecord::Base
     end
   end
 
+  def details
+    case customer_type
+    when 2
+      "paid through #{paid_through.strftime('%b %d') }"
+    when 3
+      "#{sessions_left} sessions left"
+    end
+  end
+
   private
 
   def san

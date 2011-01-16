@@ -17,13 +17,20 @@
    <div id="left_wrapper">
    <h3><%= @customer.first_name + " " + @customer.last_name %></h3>
    
+   <h4><%= type_and_details_for(@customer) %></h4>
+   
+   <br />
+   
+   <h4>Level <%= @customer.level %></h4>
+   
+   <br />
+   
    <h4><%= phone_number(@customer.phone_number) %></h4>
    <h4><%= @customer.email %></h4>
    <% if @customer.customer_number%>
      <h4><%= @customer.customer_number %> (keyfob number)</h4>
    <% end %>
    
-   <br />
    <br />
    
    <h4><%= @customer.address %></h4>

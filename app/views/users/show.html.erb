@@ -15,11 +15,13 @@
   <div id="employee_left"> 
     <h3><%= @user.first_name + " " + @user.last_name %></h3> 
 
-    <h4>mkrontz</h4> 
+    <h4><%= @user.login %></h4> 
     <h4>Owner</h4> 
-    <br>
-    <h5>This Employee can Work at all Salons</h5> 
-    <br> 
+    <br />
+    <% if @user.access_all_locations? %>
+      <h5>This Employee can Work at all Salons</h5> 
+    <% end %>
+    <br /> 
   
   </div>
 

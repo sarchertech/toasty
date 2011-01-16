@@ -34,7 +34,10 @@
     <div id="edit_link_wrapper">
       <%= link_to "Edit this Customer", edit_salon_customer_path(@current_salon, @customer)%>
     </div>
-  <input id="delete_customer_button" type="button" value="Delete Customer"/>
+    
+    <%= button_to "Delete Customer", salon_customer_path(@current_salon, @customer),
+                                     :method => :delete, :id => "delete_customer_button",
+                                     :confirm => "are you sure you want to delete this customer?" %>
   </div>
   <div class="clear"></div>
   

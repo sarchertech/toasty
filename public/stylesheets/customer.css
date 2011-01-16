@@ -1,4 +1,4 @@
-/*customer*/
+/*customers*/
 
 body#customers {
   overflow-y: scroll;
@@ -326,7 +326,7 @@ h4 {
   height: 400px;
 }
 
-#edit_link_wrapper {
+#customers #edit_link_wrapper {
   float: right;	
   width: 290px;
   height: 35px;

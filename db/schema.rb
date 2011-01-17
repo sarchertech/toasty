@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
     t.integer  "account_id"
     t.integer  "salon_id"
     t.boolean  "under_18",        :default => false
-    t.integer  "customer_type",   :default => 0
+    t.integer  "customer_type",   :default => 1
     t.date     "paid_through"
     t.integer  "sessions_left"
     t.datetime "created_at"

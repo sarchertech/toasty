@@ -234,7 +234,7 @@ h4 {
   background: url('../images/button_bg.png') no-repeat;
 }
 
-.admin_form_field {
+#admin_form_fields input {
   display: block;
   width: 420px;
   height: 40px;
@@ -250,7 +250,7 @@ h4 {
   padding-left: 5px;
 }
 
-#address_box {
+#content_left textarea {
   display: block;
   width: 420px;
   height: 80px;
@@ -300,6 +300,7 @@ h4 {
   display: block;
   line-height: 40px;
   float: left;
+  cursor: pointer;
 }
 
 #radio_button_wrapper input {

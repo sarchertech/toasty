@@ -22,8 +22,9 @@ function showActiveSlider() {
   var active_select = active_slider + " select";
   var active_input = active_slider + " input";
 
-  $(active_select + "," + active_input).attr("disabled", "");
-  $(active_slider).show();
+  //$(active_select + "," + active_input).attr("disabled", "");
+  //$(active_slider).show();
+  showSlider(active_slider);
 }
 
 function showSlider(slider) {
@@ -36,6 +37,8 @@ function showSlider(slider) {
 }
 
 $(document).ready(function() {
+  $("input").attr("autocomplete", "off")
+
   $("#customer_search_form").submit(function() {
     return false;
   });

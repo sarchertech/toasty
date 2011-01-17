@@ -14,22 +14,32 @@ class Customer < ActiveRecord::Base
 
   validates_presence_of :paid_through, :if => :month_to_month?
   
-  validates_numericality_of :phone_number, :zip_code
+  validates_numericality_of :phone_number, :zip_code, :allow_blank => true
 
   validates_numericality_of :sessions_left, :greater_than => 0, :if => :package?
 
   validates_length_of :last_name, :first_name, :maximum => 40
-  validates_length_of :phone_number, :is => 10, 
+  validates_length_of :phone_number, :is => 10, :allow_blank => true,
                       :message => "must be 10 digits long"
-  validates_length_of :zip_code, :is => 5,
+  validates_length_of :zip_code, :is => 5, :allow_blank => true,
                       :message => "must be 5 digits long"
 
   validates_format_of :last_name, :first_name, :without => /[^A-Za-z-]/,
-                      :message => "can only contain letters, & hypens, no spaces"
+                      :message => "can only contain letters & hypens-no spaces"
   validates_format_of :email, :with => /^.+@.+\..+$/, :allow_blank => true,
                       :message => "not a valid email"
 
   validates_inclusion_of :level, :in => 0..5
+
+  validates_inclusion_of :state, :in => %w{AL AK AS AZ AR CA CO CT DE DC FM FL 
+                                           GA GU HI ID IL IN IA KS KY LA ME MH 
+                                           MD MA MI MN MS MO MT NE NV NH NJ NM 
+                                           NY NC ND MP OH OK OR PW PA PR RI SC 
+                                           SD TN TX UT VT VI VA WA WV WI WY AE 
+                                           AA AP}, :allow_blank => true,
+                                           :message => "is not a valid postal
+                                                        abbreviation"
+
 
   #1 == recurring 2 == month to month 3 == by the package 4 == per session
   validates_inclusion_of :customer_type, :in => 1..4
@@ -106,6 +116,7 @@ class Customer < ActiveRecord::Base
     self.customer_number = customer_number.strip if self.customer_number
     self.email = email.strip if self.email
     self.phone_number = phone_number.gsub(/[.-]/, "") if self.phone_number
+    self.state = state.upcase if self.state
   end
 
   def nilify
@@ -121,7 +132,8 @@ class Customer < ActiveRecord::Base
   end
 
   def validate_paid_through
-    errors.add(:paid_through, "must be at least 1 day in the future") if in_past?
+    error_string = "date must be at least 1 day in the future" 
+    errors.add(:paid_through, error_string) if in_past?
   end
 
   def in_past?

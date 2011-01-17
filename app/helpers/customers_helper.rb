@@ -15,4 +15,8 @@ module CustomersHelper
 
     output.html_safe
   end
+
+  def customer_error_handler
+    render :partial => 'errors' if @customer.errors.any?
+  end
 end

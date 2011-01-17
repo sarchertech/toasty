@@ -33,7 +33,7 @@
    
    <br />
    
-   <h4><%= @customer.address %></h4>
+   <h4><%= sanitize(simple_format(@customer.address), :tags => %w{br p}) %></h4>
    <h4><%= @customer.city + ", " + @customer.state %></h4>
    <h4><%= @customer.zip_code %></h4>
   </div> 

@@ -8,7 +8,7 @@ class CustomerTest < ActiveSupport::TestCase
   test "Customer has valid attributes-no mistakes in migrations" do
     assert_nothing_raised do
       attributes = %w{last_name first_name customer_number level 
-                      email phone_number address address_2 
+                      email phone_number address 
                       city zip_code state account_id 
                       salon_id under_18 customer_type paid_through
                       sessions_left}
@@ -306,5 +306,19 @@ class CustomerTest < ActiveSupport::TestCase
     @rhonda.customer_type = 3
     @rhonda.sessions_left = 5   
     assert_equal("5 sessions left", @rhonda.details)
+  end
+
+  test "state should be a valid postal abbreviation" do
+    @rhonda.state = "xx"
+
+    assert !@rhonda.valid?
+  end
+
+  test "state should automatically upcase" do
+    @rhonda.state = "tx"
+
+    @rhonda.valid?
+
+    assert_equal("TX", @rhonda.state)
   end
 end

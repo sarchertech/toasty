@@ -7,8 +7,7 @@ class CreateCustomers < ActiveRecord::Migration
       t.integer :level, :default => 0
       t.string :email
       t.string :phone_number
-      t.string :address
-      t.string :address_2
+      t.text :address
       t.string :city
       t.string :zip_code
       t.string :state

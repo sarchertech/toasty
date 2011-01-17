@@ -8,10 +8,11 @@
       <%= f.text_field(:email, :size => 19, :maxlength => 50, :placeholder => "Email (optional)") %>
     </div>
     <%= f.text_area(:address, :cols => 19, :rows => 3, :placeholder => "Address")%>
-    <%= f.text_field(:city, :size => 15, :maxlength => 28, :class => "admin_short_form_field", :placeholder => "City")%>
-    <%= f.text_field(:zip_code, :size => 5, :maxlength => 5, :class => "admin_short_form_field", :placeholder => "Zip")%>
-    <%= f.text_field(:state, :size => 2, :maxlength => 2, :class => "admin_short_form_field", :id => "state_field",
-      :placeholder => "State")%>
+    <div id="admin_short_form_fields">
+      <%= f.text_field(:city, :size => 15, :maxlength => 28, :placeholder => "City")%>
+      <%= f.text_field(:zip_code, :size => 5, :maxlength => 5, :placeholder => "Zip")%>
+      <%= f.text_field(:state, :size => 2, :maxlength => 2, :id => "state_field", :placeholder => "State")%>
+    </div>
   </div>
 
   <div id="content_right">
@@ -43,7 +44,7 @@
       <div id="per_month_slider">
         <span>Level</span>  
         <%= f.select(:level, (1..5).to_a, {}, {:id => nil})%>
-    
+        
         <span>Paid Through</span>
         <%= f.date_select(:paid_through, :order => [:month, :day, :year], :start_year => (Time.zone.now.year))%>
       </div>
@@ -62,5 +63,7 @@
       </div>
     </div>
     <%= customer_form_submit_button %>
+    
+    <%= customer_error_handler %>
   </div>
 <% end %>

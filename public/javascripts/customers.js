@@ -1,4 +1,4 @@
-var search_timeout = undefined
+var search_timeout = undefined;
 
 function customerSearch() {
   if(search_timeout != undefined) {
@@ -17,11 +17,21 @@ function customerSearch() {
   }, 250);
 }
 
+function showActiveSlider() {
+  var active_slider = $("#sliders").attr("data-active-slider");
+  var active_select = active_slider + " select";
+  var active_input = active_slider + " input";
+
+  $(active_select + "," + active_input).attr("disabled", "");
+  $(active_slider).show();
+}
+
 function showSlider(slider) {
-  $(".customer_slider select").attr("disabled", "disabled");
-  $(".customer_slider input").attr("disabled", "disabled");
-  $(".customer_slider").hide();
+  $("#sliders div select").attr("disabled", "disabled");
+  $("#sliders div input").attr("disabled", "disabled");
+  $("#sliders div").hide();
   $(slider + " select").attr("disabled", "");
+  $(slider + " input").attr("disabled", "");
   $(slider).show();
 }
 
@@ -38,33 +48,10 @@ $(document).ready(function() {
     location.href = $("nav select option:selected").val();
   });
 
-  $("#customer_customer_type_1").click(function() {
-    showSlider("#recurring_slider");
+  showActiveSlider();
+
+  $("#radio_button_wrapper input").click(function() {
+    var selected = $(this).attr("data-slider-name")
+    showSlider(selected);
   });
-
-  $("#customer_customer_type_2").click(function() {
-    showSlider("#per_month_slider");
-  });
-
-  $("#customer_customer_type_3").click(function() {
-    showSlider("#package_slider");
-    $("#package_slider input").attr("disabled", "");
-  });
-
-  $("#customer_customer_type_4").click(function() {
-    showSlider("#per_session_slider");
-  });
-
-  $(".recurring_active #recuccing_slider select").attr("disabled", "");
-
-  $(".per_month_active #per_month_slider select").attr("disabled", "");
-
-  $(".package_active #package_slider select").attr("disabled", "");
-  $(".package_active #package_slider input").attr("disabled", "");
-
-  $(".per_session_active #per_session_slider select").attr("disabled", "");
-
-  $(".customer_new #customer_customer_type_1").attr("checked", "checked");
-
-  $(".customer_new #recurring_slider select").attr("disabled", "");
 });

@@ -286,11 +286,9 @@ h4 {
 }
 
 #radio_button_wrapper {
-  height: 30px;
-  margin-top: 10px;
-  margin-right: 30px;
   margin-bottom: 20px;
   border-bottom: 1px solid #333;
+  overflow: auto;
 }
 
 #content_right .field_with_errors {
@@ -298,46 +296,42 @@ h4 {
 }
 
 #radio_button_wrapper label {
+  font-size: 17px;
+  display: block;
+  line-height: 40px;
+  float: left;
+}
+
+#radio_button_wrapper input {
+  float: left;
+  display: block;
+  margin-top: 12px;
+  margin-right: 5px;
+}
+
+#radio_button_wrapper p {
+  float: left;
+  height: 40px;
   padding-right: 20px;
-  font-size: 15px;
-  text-align: center;
 }
 
-.customer_slider {
+#sliders div {
   font-size: 15px;
-  margin-bottom: 15px;
   display: none;
-  line-height: 20px;
-}
-
-.customer_slider .level_select {
-  margin-right: 15px;
-}
-
-.recurring_active #recurring_slider {
-  display: block;
-}
-
-.package_active #package_slider {
-  display: block;
-}
-
-.per_month_active #per_month_slider {
-  display: block;
-}
-
-.per_session_active #per_session_slider {
-  display: block;
-}
-
-.customer_new #recurring_slider {
-  display: block;
+  height: 60px;
 }
 
 #package_slider {
   position: relative;
-  top: -1px;
-  margin-bottom: 14px;
+  top: -4px;
+}
+
+#sliders div select:first-of-type {
+  margin-right: 15px;
+}
+
+#sliders * {
+  font-size: 17px;
 }
 
 /* show customer */

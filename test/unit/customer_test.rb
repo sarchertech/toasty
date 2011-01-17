@@ -88,12 +88,6 @@ class CustomerTest < ActiveSupport::TestCase
     assert_equal("krontz", @rhonda.last_name)
   end
 
-  test "customer_number should not be blank" do
-    @rhonda.customer_number = nil
-
-    assert !@rhonda.valid?
-  end
-
   test "customer_number should strip leading and trailing spaces" do
     @rhonda.customer_number = " 1234 "
 

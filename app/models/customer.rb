@@ -8,7 +8,7 @@ class Customer < ActiveRecord::Base
 
   validate :validate_paid_through, :if => :month_to_month?
 
-  validates_presence_of :last_name, :first_name, :customer_number, :level,
+  validates_presence_of :last_name, :first_name, :level,
                         :phone_number, :address, :city, :zip_code,
                         :state, :account_id, :salon_id
 
@@ -26,7 +26,7 @@ class Customer < ActiveRecord::Base
 
   validates_format_of :last_name, :first_name, :without => /[^A-Za-z-]/,
                       :message => "can only contain letters, & hypens, no spaces"
-  validates_format_of :email, :with => /^.+@.+\..+$/, :allow_nil => true,
+  validates_format_of :email, :with => /^.+@.+\..+$/, :allow_blank => true,
                       :message => "not a valid email"
 
   validates_inclusion_of :level, :in => 0..5

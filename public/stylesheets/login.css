@@ -170,3 +170,58 @@ input {
   word-spacing: 2px;
   margin-top: -40px;
 }
+
+#change_password {
+	width: 250px;
+	margin-top: -65px;
+	margin-left: -45px;
+	font-size: 20px;
+	font-weight: bold;
+  	color: #333333;
+}
+
+#change_password a{
+  color: #333;
+}
+
+/*change password*/
+
+#change_form_fields {
+  width: 100%;
+  float: left;
+  margin: auto;
+  margin-top: -65px;
+}
+
+#change_wrapper {
+  width: 400px;
+  height: 100px;
+  text-align: left;
+  font-family: myriad pro, arial;
+  font-size: 60px;
+  letter-spacing: -2px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+#change_button {
+  background-color: #2b2b2b;
+  display: inline-block;
+  padding: 5px 10px 6px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 30px;
+  font-family: arial;
+  line-height: 1;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-box-shadow: 2px 7px 7px black;
+  -webkit-box-shadow: 0 7px 7px black;
+  border: 1px solid black;
+  position: relative;
+  cursor: pointer;
+  margin-left: 112px;
+}
+
+

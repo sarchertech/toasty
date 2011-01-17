@@ -2,13 +2,15 @@
 </div>
   
 <div id="main_content_case_study">
-  <div id="login_wrapper">
+  <div id="change_wrapper">
     <%= flash_handler %>
-    <div id="form_fields">
+    <div id="change_form_fields">
       <%= form_tag(change_password_path) do %>
         <input id="admin_login_field" type="text" size="19" placeholder="Username" name="login" maxlength="50" autocomplete="off"/>
-        <input id="admin_login_field" type="password" size="19" placeholder="Password" name="password" maxlength="50" autocomplete="off"/>
-        <input id="login_button" type="submit" size="19" value="login" maxlength="50"/>
+        <input id="admin_login_field" type="password" size="19" placeholder="Old Password" name="password" maxlength="50" autocomplete="off"/>
+        <input id="admin_login_field" type="text" size="19" placeholder="New Password" name="login" maxlength="50" autocomplete="off"/>
+        <input id="admin_login_field" type="password" size="19" placeholder="New Pass Confirm" name="password" maxlength="50" autocomplete="off"/>
+        <input id="change_button" type="submit" size="19" value="Change Password" maxlength="50"/>
       <% end %>
     </div>
   </div>

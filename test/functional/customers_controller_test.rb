@@ -114,6 +114,12 @@ class CustomersControllerTest < ActionController::TestCase
     assert_redirected_to salon_customer_path(@salon, assigns(:customer))
   end
 
+  test "should not raise error if create customers has no customer params" do
+    assert_nothing_raised do
+      post :create, :salon_id => @salon.to_param
+    end
+  end
+
   test "should render new if customer not successfully created" do
      post :create, :salon_id => @salon.to_param, 
        :customer => Factory.attributes_for(:customer, :account_id => nil, 

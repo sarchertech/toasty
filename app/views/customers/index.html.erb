@@ -13,7 +13,7 @@
 </div>
    
 <div id="content_wrapper">  
-  <%= form_tag(:controller => "customer_search", :action => "create") do %>
+  <%= form_tag({:controller => "customer_search", :action => "create"}, :id => "customer_search_form") do %>
   <input id="customer_search_box" type="text" size="30" placeholder="search" maxlength="30" name="search[name]" autocomplete="off"/>
   <div id="search_filters">
     <input type="checkbox" class="styled" id="recurring" name="search[type][recurring]" value="1">

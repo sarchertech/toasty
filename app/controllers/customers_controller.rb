@@ -28,7 +28,7 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(params[:customer])
     @customer.account_id = @current_account.id
-    @customer.salon_id = current_salon(params[:customer][:salon_id]).id
+    @customer.salon_id = current_salon(customer_salon_id).id
 
     respond_to do |format|
       if @customer.save
@@ -64,5 +64,11 @@ class CustomersController < ApplicationController
     respond_to do |format|
       format.html {redirect_to(plural_url("customers") )}
     end
+  end
+
+  private
+
+  def customer_salon_id
+    params[:customer][:salon_id] rescue nil
   end
 end

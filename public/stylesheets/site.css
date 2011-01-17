@@ -33,6 +33,10 @@ ol, ul {
 	list-style: none;
 }
 
+.field_with_errors * {
+  border: 2px solid red;
+}
+
 header {
   width: 940px;
   height: 76px;

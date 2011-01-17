@@ -1,0 +1,58 @@
+<%= form_for([@current_salon, @customer]) do |f| %>
+<div id="content_left">
+  <input class="admin_form_field" type="text" size="19" placeholder="First Name" maxlength="40"/>
+  <input class="admin_form_field" type="text" size="19" placeholder="Last Name" maxlength="40"/>
+  <input class="admin_form_field" type="text" size="19" placeholder="Phone Number" maxlength="12"/>
+  <input class="admin_form_field" type="text" size="19" placeholder="Keyfob Number (optional)" maxlength="10"/> 
+  <input class="admin_form_field" type="text" size="19" placeholder="Email" maxlength="50"/>   
+  <textarea id="address_box" type="text_box" cols="19" rows="3" placeholder="Address" /></textarea>
+  <input class="admin_short_form_field" type="text" size="15" placeholder="City" maxlength="20"/>
+  <input class="admin_short_form_field" type="text" size="5" placeholder="Zip" maxlength="5"/>
+  <input id="state_field" class="admin_short_form_field" type="text" size="2" placeholder="State" maxlength="2"/>
+</div>
+
+<div id="content_right" class="<%= (@customer.word_for_type.parameterize("_") + "_active") if @customer.word_for_type %>">
+  <div id="radio_button_wrapper">
+    <%= f.radio_button(:customer_type, 1) %>
+    <%= f.label(:customer_type_1, "Recurring") %>
+    <%= f.radio_button(:customer_type, 2) %>
+    <%= f.label(:customer_type_2, "Per Month") %>
+    <%= f.radio_button(:customer_type, 3) %>
+    <%= f.label(:customer_type_3, "Package") %>
+    <%= f.radio_button(:customer_type, 4) %>
+    <%= f.label(:customer_type_4, "Per Session") %>
+  </div>
+  
+  <div id="recurring_slider" class="customer_slider">
+    <span>Level</span>  
+    <%= f.select(:level, [1,2,3,4,5], options = {}, 
+      html_options = {:id => nil, :class => "level_select", :disabled => true})%>
+  </div>
+
+  <div id="per_month_slider" class="customer_slider">
+    <span>Level</span>  
+    <%= f.select(:level, [1,2,3,4,5], options = {}, 
+      html_options = {:id => nil, :class => "level_select", :disabled => true})%>
+    
+    <span>Paid Through</span>
+    <%= f.date_select(:paid_through, :order => [:month, :day, :year], :disabled => true)%>
+  </div>
+  
+  <div id="package_slider" class="customer_slider">
+    <span>Level</span>  
+    <%= f.select(:level, [1,2,3,4,5], options = {}, 
+      html_options = {:id => nil, :class => "level_select", :disabled => true})%>
+    
+    <span>Sessions Paid for</span>
+    <%= f.text_field(:sessions_left, :size => 3, :maxlength => 3, :disabled => true) %>
+  </div>
+  
+  <div id="per_session_slider" class="customer_slider">
+    <span>Level</span>  
+    <%= f.select(:level, [1,2,3,4,5], options = {}, 
+      html_options = {:id => nil, :class => "level_select", :disabled => true})%>
+  </div>
+  
+  <%= customer_form_submit_button %>
+</div>
+<% end %>

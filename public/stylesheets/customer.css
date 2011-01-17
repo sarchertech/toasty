@@ -293,15 +293,51 @@ h4 {
   border-bottom: 1px solid #333;
 }
 
+#content_right .field_with_errors {
+  display: inline;
+}
+
 #radio_button_wrapper label {
   padding-right: 20px;
   font-size: 15px;
   text-align: center;
 }
 
-#by_the_month {
+.customer_slider {
   font-size: 15px;
+  margin-bottom: 15px;
+  display: none;
   line-height: 20px;
+}
+
+.customer_slider .level_select {
+  margin-right: 15px;
+}
+
+.recurring_active #recurring_slider {
+  display: block;
+}
+
+.package_active #package_slider {
+  display: block;
+}
+
+.per_month_active #per_month_slider {
+  display: block;
+}
+
+.per_session_active #per_session_slider {
+  display: block;
+}
+
+.customer_new #recurring_slider {
+  display: block;
+}
+
+#package_slider {
+  position: relative;
+  top: -1px;
+  margin-bottom: 14px;
 }
 
 /* show customer */
@@ -359,7 +395,6 @@ h4 {
 }
 
 /* customer#edit */
-
 #edit_customer_button {
   height: 65px;
   width: 280px;

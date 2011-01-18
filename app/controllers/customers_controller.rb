@@ -62,7 +62,8 @@ class CustomersController < ApplicationController
     @customer.destroy
 
     respond_to do |format|
-      format.html {redirect_to(plural_url("customers") )}
+      format.html {redirect_to(plural_url("customers"),
+                     :notice => "Customer was successfully deleted" )}
     end
   end
 

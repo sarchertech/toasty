@@ -39,6 +39,10 @@ function showSlider(slider) {
 $(document).ready(function() {
   $("input").attr("autocomplete", "off")
 
+  showActiveSlider();
+
+  $("#customers #flash").delay(350).fadeIn('slow').delay(4000).fadeOut('slow')
+
   $("#customer_search_form").submit(function() {
     return false;
   });
@@ -50,8 +54,6 @@ $(document).ready(function() {
   $("nav select").change(function() {
     location.href = $("nav select option:selected").val();
   });
-
-  showActiveSlider();
 
   $("#radio_button_wrapper input").click(function() {
     var selected = $(this).attr("data-slider-name")

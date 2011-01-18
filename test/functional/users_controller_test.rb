@@ -12,8 +12,8 @@ class UsersControllerTest < ActionController::TestCase
                                 :salon_id => @salon.id + 1)
   end
 
-  test "should generate and recognize /salons/:salon_id/users" do
-    route = {:path => "#{@request.url}/salons/#{@salon.to_param}/users",
+  test "should generate and recognize /salons/:salon_id/employees" do
+    route = {:path => "#{@request.url}/salons/#{@salon.to_param}/employees",
              :method => :get}
     action = {:controller => "users", :action => "index",
               :salon_id => @salon.to_param}

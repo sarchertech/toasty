@@ -16,6 +16,14 @@ module CustomersHelper
     output.html_safe
   end
 
+  def customer_cancel_changes_link
+    unless @customer.new_record?
+      %Q{<div id="cancel_link_wrapper"> 
+        #{link_to "Cancel Changes",salon_customer_path(@current_salon,@customer)}
+      </div>}.html_safe
+    end
+  end
+
   def customer_error_handler
     render :partial => 'errors' if @customer.errors.any?
   end

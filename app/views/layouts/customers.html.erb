@@ -7,13 +7,14 @@
   <%= csrf_meta_tag %>
 </head>
 <body id="customers">
-   <header>
-      <a id="logo" href="#">toasty</a>
+  <header>
+    <a id="logo" href="#">toasty</a>
+    <%= main_nav %>
+    
+    <%= flash_handler %>
+  </header>
 
-      <%= main_nav %>
-    </header>
-
-<%= yield %>
+  <%= yield %>
 
   <footer>
     <p>Copyright &copy;, 2010 Toasty, LLC</p>

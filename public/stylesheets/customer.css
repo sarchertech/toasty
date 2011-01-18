@@ -4,6 +4,34 @@ body#customers {
   overflow-y: scroll;
 }
 
+#customers #flash {
+  width: 940px;
+  margin: auto;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 5px;
+  clear: both;
+  display: none;
+}
+
+#customers #flash p {
+  background-color: whitesmoke;
+  padding: 0px 5px;
+  float: right;
+  position: relative;
+  top: 10px;
+}
+
+#customers #flash #alert {
+  color: red;
+}
+
+#customers #flash #notice {
+  color: green;
+  border: 3px solid green;
+}
+
 h2 {
   font-size: 20px;
   letter-spacing: -1px;
@@ -199,6 +227,7 @@ h4 {
 #customers #error_explanation {
   margin-top: 25px;
   color: red;
+  clear: both;
 }
 
 #customers #error_explanation h4 {
@@ -230,7 +259,6 @@ h4 {
 #add_customer_button {
   height: 65px;
   width: 280px;
-  color: black;
   text-decoration: none;
   font-weight: bold;
   letter-spacing: -2px;
@@ -240,19 +268,16 @@ h4 {
   padding-top: 15px;
   font-size: 35px;
   font-family: myriad pro, arial;
-  text-shadow: 1px 1px #999;
   line-height: 1;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  -moz-box-shadow: 2px 4px 4px #999;
-  -webkit-box-shadow: 0 4px 4px #999;
+  border-radius: 5px;
   border: 3px solid #F5F5F5;
   cursor: pointer;
   background: url('../images/button_bg.png') no-repeat;
 }
 
 #admin_form_fields input {
-  display: block;
   width: 420px;
   height: 40px;
   margin-left: 10px;
@@ -387,12 +412,9 @@ h4 {
   padding-top: 12px;
   font-size: 34px;
   font-family: myriad pro, arial;
-  text-shadow: 1px 1px #999;
   line-height: 1;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  -moz-box-shadow: 2px 4px 4px #999;
-  -webkit-box-shadow: 0 4px 4px #999;
   border: 3px solid #F5F5F5;
   cursor: pointer;
   float: right;
@@ -415,13 +437,31 @@ h4 {
   padding-top: 15px;
   font-size: 35px;
   font-family: myriad pro, arial;
-  text-shadow: 1px 1px #999;
   line-height: 1;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  -moz-box-shadow: 2px 4px 4px #999;
-  -webkit-box-shadow: 0 4px 4px #999;
   border: 3px solid #F5F5F5;
   cursor: pointer;
   background: url('../images/edit_button_bg.png') no-repeat;
+}
+
+#customers #cancel_link_wrapper {
+  float: left;
+  margin: 15px 0px;	
+  background: url(../images/cancel_icon.png) no-repeat;
+  position: relative;
+  margin-left: 1px;
+}
+
+#customers #cancel_link_wrapper a {
+  width: 290px;
+  height: 61px;
+  line-height: 61px;
+  padding-left: 60px;
+  font-size: 35px;
+  letter-spacing: -2px;
+  text-align: left;
+  color: #333;
+  font-weight: bold;
+  display: block;
 }

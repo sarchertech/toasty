@@ -37,8 +37,8 @@ class Customer < ActiveRecord::Base
                                            NY NC ND MP OH OK OR PW PA PR RI SC 
                                            SD TN TX UT VT VI VA WA WV WI WY AE 
                                            AA AP}, :allow_blank => true,
-                                           :message => "is not a valid postal
-                                                        abbreviation"
+                                           :message => "- %{value} is not a valid
+                                                        postal abbreviation"
 
 
   #1 == recurring 2 == month to month 3 == by the package 4 == per session

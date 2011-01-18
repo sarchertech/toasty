@@ -10,8 +10,8 @@
     <%= f.text_area(:address, :cols => 19, :rows => 3, :placeholder => "Address")%>
     <div id="admin_short_form_fields">
       <%= f.text_field(:city, :size => 15, :maxlength => 28, :placeholder => "City")%>
-      <%= f.text_field(:zip_code, :size => 5, :maxlength => 5, :placeholder => "Zip")%>
       <%= f.text_field(:state, :size => 2, :maxlength => 2, :id => "state_field", :placeholder => "State")%>
+      <%= f.text_field(:zip_code, :size => 5, :maxlength => 5, :placeholder => "Zip")%>
     </div>
   </div>
 
@@ -63,6 +63,8 @@
       </div>
     </div>
     <%= customer_form_submit_button %>
+    
+    <%= customer_cancel_changes_link %>
     
     <%= customer_error_handler %>
   </div>

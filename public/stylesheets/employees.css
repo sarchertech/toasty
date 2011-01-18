@@ -111,6 +111,22 @@ body#employees {
   float: right;
 }
 
+#employee_left input {
+  display: block;
+  width: 420px;
+  height: 40px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-right: 25px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  font-family: myriad pro, arial;
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
 #employee_dropdowns {
   float: right;
   font-size: 16px;
@@ -161,18 +177,16 @@ body#employees {
 #update_employee_button {
   float: right;
   height: 65px;
-  width: 330px;
   color: black;
   margin-top: 20px;
   margin-bottom: 12px;
   margin-right: 16px;
-  text-decoration: none;
   font-weight: bold;
   letter-spacing: -2px;
   text-align: left;
   padding-left: 60px;
   padding-right: 20px;
-  padding-top: 15px;
+  padding-top: 12px;
   font-size: 35px;
   font-family: myriad pro, arial;
   text-shadow: 1px 1px #999;
@@ -183,7 +197,7 @@ body#employees {
   -webkit-box-shadow: 0 4px 4px #999;
   border: 3px solid #F5F5F5;
   cursor: pointer;
-  background: url('../images/update_button_bg.png') no-repeat;
+  background: url('../images/edit_button_bg.png') no-repeat;
 }
 
 /*show user*/

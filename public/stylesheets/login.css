@@ -161,7 +161,7 @@ input {
   margin-top: 90px;
 }
 
-#login .alert {
+#login #alert {
   font-size: 20px;
   font-family: myriad pro, arial;
   font-weight: bold;

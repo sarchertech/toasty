@@ -28,8 +28,8 @@ body#customers {
 }
 
 #customers #flash #notice {
-  color: green;
-  border: 3px solid green;
+  color: #0BB516;
+  border: 3px solid #0BB516;
 }
 
 h2 {
@@ -259,13 +259,14 @@ h4 {
 #add_customer_button {
   height: 65px;
   width: 280px;
+  color: #333;
   text-decoration: none;
   font-weight: bold;
   letter-spacing: -2px;
   text-align: left;
   padding-left: 60px;
   padding-right: 20px;
-  padding-top: 15px;
+  padding-top: 10px;
   font-size: 35px;
   font-family: myriad pro, arial;
   line-height: 1;
@@ -403,13 +404,13 @@ h4 {
   height: 67px;
   width: 310px;
   padding: 5px 10px 6px;
-  color: black;
+  color: #333;
   text-decoration: none;
   font-weight: bold;
   letter-spacing: -2px;
   text-align: right;
   padding-right: 20px;
-  padding-top: 12px;
+  padding-top: 10px;
   font-size: 34px;
   font-family: myriad pro, arial;
   line-height: 1;
@@ -434,7 +435,7 @@ h4 {
   text-align: left;
   padding-left: 60px;
   padding-right: 20px;
-  padding-top: 15px;
+  padding-top: 10px;
   font-size: 35px;
   font-family: myriad pro, arial;
   line-height: 1;

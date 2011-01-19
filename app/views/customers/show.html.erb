@@ -14,44 +14,39 @@
    
 <div id="content_wrapper">
   <div id="content_left">
-   <div id="left_wrapper">
-   <h3><%= @customer.first_name + " " + @customer.last_name %></h3>
+    <div id="left_wrapper">
+      <h3><%= @customer.first_name + " " + @customer.last_name %></h3>
    
-   <h4><%= type_and_details_for(@customer) %></h4>
+      <h4><%= type_and_details_for(@customer) %></h4>
    
-   <br />
+      <br />
    
-   <h4>Level <%= @customer.level %></h4>
+      <h4>Level <%= @customer.level %></h4>
    
-   <br />
+      <br />
    
-   <h4><%= phone_number(@customer.phone_number) %></h4>
-   <h4><%= @customer.email %></h4>
-   <% if @customer.customer_number%>
-     <h4><%= @customer.customer_number %> (keyfob number)</h4>
-   <% end %>
+      <h4><%= phone_number(@customer.phone_number) %></h4>
+      <h4><%= @customer.email %></h4>
+      <% if @customer.customer_number%>
+        <h4><%= @customer.customer_number %> (keyfob number)</h4>
+      <% end %>
    
-   <br />
+      <br />
    
-   <h4><%= sanitize(simple_format(@customer.address), :tags => %w{br p}) %></h4>
-   <h4><%= @customer.city + ", " + @customer.state %></h4>
-   <h4><%= @customer.zip_code %></h4>
-  </div> 
+      <h4><%= sanitize(simple_format(@customer.address), :tags => %w{br p}) %></h4>
+      <h4><%= @customer.city + ", " + @customer.state %></h4>
+      <h4><%= @customer.zip_code %></h4>
+    </div> 
   </div>
 
   <div id="content_right">
     
-    <div id="edit_link_wrapper">
-      <%= link_to "Edit this Customer", edit_salon_customer_path(@current_salon, @customer)%>
-    </div>
+    <%= link_to "Edit this Customer", edit_salon_customer_path(@current_salon, @customer),
+      :class => "edit_link"%>
     
     <%= button_to "Delete Customer", salon_customer_path(@current_salon, @customer),
-                                     :method => :delete, :id => "delete_customer_button",
+                                     :method => :delete, :class => "delete_button",
                                      :confirm => "are you sure you want to DELETE this customer?" %>
-  </div>
-  <div class="clear"></div>
-  
-
   </div>
   <div class="clear"></div>
 </div>

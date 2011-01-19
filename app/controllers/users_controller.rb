@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.account_id = @current_account.id
-    @user.salon_id = current_salon(params[:user][:salon_id]).id
+    @user.salon_id = current_salon(user_salon_id).id
 
     respond_to do |format|
       if @user.save
@@ -64,5 +64,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html {redirect_to(plural_url("users") )}
     end
+  end
+
+  private
+
+  def user_salon_id
+    params[:user][:salon_id] rescue nil
   end
 end

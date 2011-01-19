@@ -22,10 +22,18 @@ nav, header, footer, section, aside {
 body {
   font-size: 75%; 
 	line-height: 1.5;
-  font-family: Myriad Pro, Helvetica, Arial, sans-serif;
+  font-family: myriad pro, arial;
   background-image: url('../images/header_background.png'),
                     url('../images/swirly_pattern_light.png'); 
   background-repeat: repeat-x, repeat;
+  color: #333;
+}
+
+body * {
+  font-family: 'myriad pro', arial;
+}
+
+input {
   color: #333;
 }
 
@@ -98,5 +106,66 @@ footer p {
   margin-top: 50px;
 }
 
-section#content {
+/* buttons */
+
+.update_button, .add_button, .delete_button  {
+  height: 65px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  letter-spacing: -2px;
+  text-align: left;
+  padding-left: 60px;
+  padding-right: 20px;
+  padding-top: 12px;
+  font-size: 35px;
+  text-shadow: 1px 1px #999;
+  line-height: 1;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-box-shadow: 2px 4px 4px #999;
+  -webkit-box-shadow: 0 4px 4px #999;
+  border: 3px solid #F5F5F5;
+  cursor: pointer;
 }
+
+.update_button {
+  background: url('../images/edit_button_bg.png') no-repeat;
+}
+
+.add_button {
+  background: url('../images/button_bg.png') no-repeat;
+}
+
+.delete_button {
+  background: url('../images/delete_button_bg.png') no-repeat;
+}
+
+.edit_link {
+  display: block;
+  font-size: 25px;
+  font-weight: bold;
+  height: 35px;
+  padding-left: 40px;
+  background: url(../images/edit_icon.png) no-repeat;
+}  
+
+.cancel_link {
+  margin: 15px 0px;	
+  background: url(../images/cancel_icon.png) no-repeat;
+  width: 290px;
+  height: 61px;
+  line-height: 61px;
+  padding-left: 62px;
+  font-size: 35px;
+  letter-spacing: -2px;
+  text-align: left;
+  font-weight: bold;
+  display: block;
+}
+
+
+
+
+
+

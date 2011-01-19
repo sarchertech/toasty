@@ -6,10 +6,10 @@ module CustomersHelper
 
   def customer_form_submit_button
     if @customer.new_record?
-      output = '<input id="add_customer_button" type="submit" 
+      output = '<input class="add_button" type="submit" 
                 value="Add Customer"/>'
     else
-      output = '<input id="edit_customer_button" type="submit" 
+      output = '<input class="update_button" type="submit" 
                 value="Save Changes"/>'
     end
 
@@ -18,9 +18,8 @@ module CustomersHelper
 
   def customer_cancel_changes_link
     unless @customer.new_record?
-      %Q{<div id="cancel_link_wrapper"> 
-        #{link_to "Cancel Changes",salon_customer_path(@current_salon,@customer)}
-      </div>}.html_safe
+     link_to("Cancel Changes", salon_customer_path(@current_salon,@customer),
+       :class => "cancel_link").html_safe
     end
   end
 

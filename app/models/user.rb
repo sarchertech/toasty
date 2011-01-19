@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
                         
   validates_presence_of :password, :if => :should_have_password?
 
-  validates_presence_of :password_confirmation, :if => :password
+  validates_presence_of :password_confirmation, :if => :password_present?
 
   validates_length_of :last_name, :maximum => 40, :minimum => 2
   validates_length_of :first_name, :maximum => 40
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   
   validates_inclusion_of :security_level, :in => 0..4
 
-  validates_confirmation_of :password
+  validates_confirmation_of :password, :if => :password_present?
 
   validates_exclusion_of :password, 
                          :in => %w{123456 1234567 12345678 1234567890 password 
@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   def has_password?(submitted_password)
     if encrypted_password == encrypt(submitted_password)
       self.password_attempts = 0
-      self.save
+      self.save!
       true
     else
       wrong_password
@@ -92,6 +92,10 @@ class User < ActiveRecord::Base
     new_record? || password
   end
 
+  def password_present?
+    password.present?
+  end
+
   def password_must_not_contain_name
     if password_includes_name?
       errors.add(:password, "is too similar to name")
@@ -109,6 +113,7 @@ class User < ActiveRecord::Base
   def san
     self.last_name = last_name.strip.downcase if self.last_name
     self.first_name = first_name.strip.downcase if self.first_name
+    self.password = nil if password.blank? # nil password to allow blank form
   end
   
   def auto_create_login

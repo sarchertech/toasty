@@ -4,34 +4,6 @@ body#customers {
   overflow-y: scroll;
 }
 
-#customers #flash {
-  width: 940px;
-  margin: auto;
-  font-size: 26px;
-  font-weight: bold;
-  margin-bottom: 0px;
-  margin-top: 5px;
-  clear: both;
-  display: none;
-}
-
-#customers #flash p {
-  background-color: whitesmoke;
-  padding: 0px 5px;
-  float: right;
-  position: relative;
-  top: 10px;
-}
-
-#customers #flash #alert{
-  color: red;
-}
-
-#customers #flash #notice {
-  color: #0BB516;
-  border: 3px solid #0BB516;
-}
-
 h2 {
   font-size: 20px;
   letter-spacing: -1px;
@@ -224,21 +196,6 @@ h4 {
 }
 
 /* new customer */
-
-#customers #error_explanation {
-  margin-top: 25px;
-  color: red;
-  clear: both;
-}
-
-#customers #error_explanation h4 {
-  font-size: 20px;
-}
-
-#customers #error_explanation ul {
-  font-size: 15px;
-}
-
 #customers .field_with_errors * {
   border: 2px solid red;
 }

@@ -42,7 +42,7 @@ $(document).ready(function() {
 
   showActiveSlider();
 
-  $("#customers #flash").delay(350).fadeIn('slow').delay(4000).fadeOut('slow')
+  $("#flash").delay(350).fadeIn('slow').delay(4000).fadeOut('slow')
 
   $("#customer_search_form").submit(function() {
     return false;

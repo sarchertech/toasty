@@ -277,8 +277,19 @@ class UserTest < ActiveSupport::TestCase
     @michael.password = " "  
     @michael.password_confirmation = " "
 
-    assert !@michael.valid?
+    assert !@michael.has_password?(" ")
   end
+
+  test "password cant be set to a blank" do
+    @michael.save
+    @michael = User.find(@michael.id)
+
+    @michael.password = ""  
+    @michael.password_confirmation = ""
+    
+    assert !@michael.has_password?("")
+  end
+
 
   test "too_many_tries should return true if attempts too high" do
     @michael.password_attempts = 0

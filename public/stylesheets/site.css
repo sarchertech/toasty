@@ -175,5 +175,48 @@ footer p {
   margin-top: 10px;
 }
 
+/* errors */
 
+#error_explanation {
+  margin-top: 25px;
+  color: red;
+  clear: both;
+}
+
+#error_explanation h4 {
+  font-size: 20px;
+}
+
+#error_explanation ul {
+  font-size: 15px;
+}
+
+/* flash */
+#flash {
+  width: 940px;
+  margin: auto;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 5px;
+  clear: both;
+  display: none;
+}
+
+#flash p {
+  background-color: whitesmoke;
+  padding: 0px 5px;
+  float: right;
+  position: relative;
+  top: 10px;
+}
+
+#flash #alert{
+  color: red;
+}
+
+#flash #notice {
+  color: #0BB516;
+  border: 3px solid #0BB516;
+}
 

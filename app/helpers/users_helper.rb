@@ -1,10 +1,10 @@
 module UsersHelper
   def employee_form_submit_button
     if @user.new_record?
-      output = '<input id="add_employee_button" type="submit" 
-                value="Add Customer"/>'
+      output = '<input class="add_button" type="submit" 
+                value="Add Employee"/>'
     else
-      output = '<input id="update_employee_button" type="submit" 
+      output = '<input class="update_button" type="submit" 
                 value="Save Changes"/>'
     end
 

@@ -1,30 +1,32 @@
 <%= form_for([@current_salon, @user]) do |f| %>
-  <div id="employee_left"> 
-    <input type="text" size="19" placeholder="First Name"  maxlength="40"/> 
-    <input type="text" size="19" placeholder="Last Name" maxlength="40"/>       
-    <input type="text" size="19" placeholder="Password" maxlength="50"/> 
-    <input type="text" size="19" placeholder="Password Confirmation" maxlength="50"/>   
+  <div id="employee_left">
+    <%= f.text_field(:first_name, :size => 19, :maxlength => 40, :placeholder => "First Name") %>
+    <%= f.text_field(:last_name, :size => 19, :maxlength => 40, :placeholder => "Last Name") %> 
+    <%= f.password_field(:password, :size => 19, :maxlength => 20, :placeholder => "Password") %>
+    <%= f.password_field(:password_confirmation, :size => 19, :maxlength => 20, :placeholder => "Confirm Password") %> 
   </div>
 
   <div id="employee_right"> 
     <div id="employee_dropdowns"> 
-      <p> 
-        <span>Employee's Security Level</span>  
+      <p>
+        <label>Employee's Security Level</label>  
         <select> 
           <option>Employee</option> 
           <option>Manager</option>
           <option>Owner</option> 
         </select> 
-        <br />
-        <span>Employee's Salon Location</span>  
+      </p>
+      <p>
+        <label>Employee's Salon Location</label>  
         <select> 
           <option>Douglas</option> 
           <option>Marietta</option>
           <option>Paulding</option> 
         </select>
-        <br/>
+      </p>
+      <p>
+        <label for="all_salons">Employee can work at all Salons?</label>
         <input type="checkbox" class="styled" id="all_salons"> 
-        <label for="all_salons">This Employee can work at all Salons</label>
       </p>
     </div>
     <%= employee_form_submit_button %>

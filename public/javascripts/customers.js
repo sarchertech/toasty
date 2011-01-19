@@ -37,6 +37,7 @@ function showSlider(slider) {
 }
 
 $(document).ready(function() {
+  //TODO eventually need to remove this and redefine rails form helpers instead
   $("input").attr("autocomplete", "off")
 
   showActiveSlider();

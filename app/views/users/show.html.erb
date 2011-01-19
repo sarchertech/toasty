@@ -26,12 +26,10 @@
   </div>
 
   <div id="employee_right">
-    <div id="edit_link_wrapper">
-      <%= link_to "Edit this Employee", edit_salon_user_path(@current_salon, @user)%>
-    </div>
+    <%= link_to "Edit this Employee", edit_salon_user_path(@current_salon, @user), :class => "edit_link"%>
   
     <%= button_to "Delete Employee", salon_user_path(@current_salon, @user),
-                                     :method => :delete, :id => "delete_employee_button",
+                                     :method => :delete, :class => "delete_button",
                                      :confirm => "are you sure you want to DELETE this user?" %>
   </div>
 </div>

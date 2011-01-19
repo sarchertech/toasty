@@ -332,14 +332,14 @@ h4 {
 }
 
 #sliders div {
-  font-size: 15px;
   display: none;
   height: 40px;
 }
 
-#package_slider {
-  position: relative;
-  top: 0px;
+#package_slider input {
+  margin: 0px;
+  padding: 0px;
+  font-weight: bold;
 }
 
 #sliders div select:first-of-type {

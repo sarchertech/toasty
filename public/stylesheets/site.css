@@ -33,7 +33,7 @@ body * {
   font-family: 'myriad pro', arial;
 }
 
-input {
+input, a {
   color: #333;
 }
 
@@ -150,7 +150,7 @@ footer p {
   background: url(../images/edit_icon.png) no-repeat;
 }  
 
-.cancel_link {
+#.cancel_link {
   margin: 15px 0px;	
   background: url(../images/cancel_icon.png) no-repeat;
   width: 290px;
@@ -164,8 +164,16 @@ footer p {
   display: block;
 }
 
-
-
+.cancel_link {
+  background: url(../images/cancel_icon.png) no-repeat;
+  display: block;
+  padding-left: 37px;
+  height: 32px;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 10px;
+}
 
 
 

@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
   create_table "users", :force => true do |t|
     t.string   "last_name"
     t.string   "first_name"
-    t.integer  "security_level",       :default => 0
+    t.integer  "security_level",       :default => 1
     t.integer  "account_id"
     t.integer  "salon_id"
     t.string   "login"

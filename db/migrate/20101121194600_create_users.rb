@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration
     create_table :users do |t|
       t.string :last_name
       t.string :first_name
-      t.integer :security_level, :default => 0
+      t.integer :security_level, :default => 1
       t.references :account
       t.references :salon
       t.string :login

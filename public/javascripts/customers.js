@@ -8,7 +8,7 @@ function customerSearch() {
   search_timeout = setTimeout(function() {
     search_timeout = undefined;
 
-    var form = $("#content_wrapper form");
+    var form = $("#customer_search_form");
     var url = form.attr("action");  
     var formData = form.serialize();
     $.post(url, formData, function(html) {

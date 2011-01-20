@@ -80,6 +80,17 @@ class User < ActiveRecord::Base
     end
   end
 
+  def word_for_security_level
+    case security_level
+    when 1
+      "employee"
+    when 2
+      "manager"
+    when 3
+      "owner"
+    end
+  end
+
   private
   
   def wrong_password

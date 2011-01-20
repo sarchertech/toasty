@@ -1,4 +1,4 @@
-<div id="user_tab_wrapper">
+<div id="tab_wrapper">
   <div id="employee_list_tab">
     <h2>
       <%= link_to "Employee List", salon_users_path(@current_salon) %>
@@ -11,6 +11,6 @@
   </div>
 </div>
  
-<div id="employee_content_wrapper">  
+<div class="content_wrapper">  
   <%= render :partial => 'form' %>
 </div>

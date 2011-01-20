@@ -9,24 +9,12 @@
   <div id="employee_right"> 
     <div id="employee_dropdowns"> 
       <p>
-        <label>Employee's Security Level</label>  
-        <select> 
-          <option>Employee</option> 
-          <option>Manager</option>
-          <option>Owner</option> 
-        </select> 
+        <%= f.label(:security_level) %>  
+        <%= f.select(:security_level, {"Employee" => 1, "Manager" => 2, "Owner" => 3}, {})%>
       </p>
       <p>
-        <label>Employee's Salon Location</label>  
-        <select> 
-          <option>Douglas</option> 
-          <option>Marietta</option>
-          <option>Paulding</option> 
-        </select>
-      </p>
-      <p>
-        <label for="all_salons">Employee can work at all Salons?</label>
-        <input type="checkbox" class="styled" id="all_salons"> 
+        <%= f.label(:access_all_locations, "Employee can work at all Salons?")%>
+        <%= f.check_box(:access_all_locations)%>
       </p>
     </div>
     <%= employee_form_submit_button %>

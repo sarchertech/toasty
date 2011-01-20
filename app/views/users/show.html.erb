@@ -1,4 +1,4 @@
-<div id="user_tab_wrapper">
+<div id="tab_wrapper">
   <div id="employee_list_tab">
     <h2>
       <%= link_to "Employee List", salon_users_path(@current_salon) %>
@@ -11,18 +11,15 @@
   </div>
 </div>
 
-<div id="employee_content_wrapper">  
+<div id="show_employee_content_wrapper" class="content_wrapper">  
   <div id="employee_left"> 
     <h3><%= @user.first_name + " " + @user.last_name %></h3> 
 
-    <h4><%= @user.login %></h4> 
-    <h4>Owner</h4> 
-    <br />
+    <p><%= @user.login %></p> 
+    <p><%= @user.word_for_security_level %></p> 
     <% if @user.access_all_locations? %>
-      <h5>This Employee can Work at all Salons</h5> 
+      <p id="all_salons">This Employee can Work at all Salons</p> 
     <% end %>
-    <br /> 
-  
   </div>
 
   <div id="employee_right">

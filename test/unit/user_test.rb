@@ -363,4 +363,15 @@ class UserTest < ActiveSupport::TestCase
     @michael.password_attempts = 10 
     assert_equal("wait 5 minutes", @michael.how_long)
   end
+
+  test "word_for_security_level should return security level in words" do
+    @michael.security_level = 1
+    assert_equal("employee", @michael.word_for_security_level)
+
+    @michael.security_level = 2
+    assert_equal("manager", @michael.word_for_security_level)
+
+    @michael.security_level = 3
+    assert_equal("owner", @michael.word_for_security_level)
+  end
 end

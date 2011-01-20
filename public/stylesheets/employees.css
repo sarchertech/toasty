@@ -4,27 +4,6 @@ body#employees {
 }
 
 /*employee index*/
-
-#employee_content_wrapper {
-  width: 940px;
-  margin: auto;
-  margin-bottom: 10px;
-  /*margin-top: 25px; */
-  border: 2px solid #FFFFFF;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  background: #c2e7ff;
-  -webkit-box-shadow: 2px 4px 4px #999;
-  -moz-box-shadow: 2px 4px 4px #999;
-  box-shadow: 2px 4px 4px #999;
-  padding: 15px;
-  z-index: 2;
-  position: relative;
-  overflow: auto;
-  padding-top: 25px;
-}
-
 #employee_list {
   width: 920px;
   margin: auto;
@@ -53,33 +32,6 @@ body#employees {
 #employees .name a {
   color: #333;
   text-decoration: underline;
-}
-
-#user_tab_wrapper {
-	width: 940px;
-	height: 80px;
-	margin: auto;
-  margin-bottom: -22px;
-  padding-left: 25px;
-}
-
-#user_tab_wrapper div {
-  float: left;
-  border-radius: 6px;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  width: 150px;
-	height: 40px;
-	margin-top: 25px;
-	padding-top: 3px;
-	background-color: #99bfd7;
-	position: relative;
-	z-index: 1;
-}
-
-#user_tab_wrapper div a {
-  color: #333;
-  display: block;
 }
 
 .employee_list_tab div#employee_list_tab {
@@ -156,13 +108,21 @@ body#employees {
 
 /*show user*/
 
-#employees h3 {
+#show_employee_content_wrapper h3 {
   font-size: 55px;
   letter-spacing: -1px;
   line-height: 1;
+  margin-bottom: 5px;
 }
 
-h5 {
+#show_employee_content_wrapper p {
+  font-size: 35px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+p#all_salons {
   font-size: 25px;
-  text-align: left;
+  margin-top: 10px;
 }

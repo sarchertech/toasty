@@ -1,4 +1,4 @@
-<div id="user_tab_wrapper" class="employee_list_tab">
+<div id="tab_wrapper" class="employee_list_tab">
   <div id="employee_list_tab">
     <h2>
       <%= link_to "Employee List", salon_users_path(@current_salon) %>
@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<div id="employee_content_wrapper">  
+<div class="content_wrapper">  
   <div id="employee_list">
     <table>
       <% @users.each do |user| %> 
@@ -22,7 +22,7 @@
           <td class="employee_login">
             <%= user.login %>
           </td> 
-          <td class="security_level">manager</td> 
+          <td class="security_level"><%= user.word_for_security_level %></td> 
         </tr>
       <% end %>  
     </table>

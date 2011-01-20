@@ -22,7 +22,7 @@ nav, header, footer, section, aside {
 body {
   font-size: 75%; 
 	line-height: 1.5;
-  font-family: myriad pro, arial;
+  font-family: 'myriad pro', arial;
   background-image: url('../images/header_background.png'),
                     url('../images/swirly_pattern_light.png'); 
   background-repeat: repeat-x, repeat;
@@ -107,7 +107,6 @@ footer p {
 }
 
 /* buttons */
-
 .update_button, .add_button, .delete_button  {
   height: 65px;
   margin-top: 20px;
@@ -220,3 +219,65 @@ footer p {
   border: 3px solid #0BB516;
 }
 
+/* forms */
+#admin_form_fields input {
+  width: 420px;
+  height: 40px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-right: 25px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+/* content_wrapper and tabs */
+.content_wrapper {
+  width: 940px;
+  margin: auto;
+  margin-bottom: 10px;
+  /*margin-top: 25px; */
+  border: 2px solid #FFFFFF;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  background: #c2e7ff;
+  -webkit-box-shadow: 2px 4px 4px #999;
+  -moz-box-shadow: 2px 4px 4px #999;
+  box-shadow: 2px 4px 4px #999;
+  padding: 15px;
+  z-index: 2;
+  position: relative;
+  top: -22px;
+  overflow: auto;
+  padding-top: 25px;
+}
+
+#tab_wrapper {
+  width: 940px;
+  height: 80px;
+  margin: auto;
+  padding-left: 25px;
+}
+
+#tab_wrapper div {
+  float: left;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  width: 150px;
+  height: 40px;
+  margin-top: 25px;
+  padding-top: 3px;
+  background-color: #99bfd7;
+  position: relative;
+  z-index: 1;
+}
+
+#tab_wrapper div a {
+  color: #333;
+  display: block;
+}

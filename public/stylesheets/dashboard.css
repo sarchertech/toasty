@@ -108,7 +108,8 @@
 #dash_minutes p {
   background: url('../images/dash_minute_box.png') no-repeat;
   width: 102px;
-  height: 102px;
+  height: 87px;
+  padding-top: 15px;
   margin: auto;
   margin-top: 6px;
   margin-bottom: 14px;
@@ -116,14 +117,23 @@
   color: #303030;
   font-weight: bold;
   letter-spacing: -2px;
-  text-align: center;
+  display: block;
   -webkit-box-shadow: 2px 4px 4px black;
   -moz-box-shadow: 2px 4px 4px black;
   box-shadow: 2px 4px 4px black;
 }
 
-#dash_minutes p span {
-  padding-right: 11px;
+#dash_minutes #tan_session_minutes {
+  font-size: 50px;
+  display: block;
+  width: 60px;
+  margin: auto;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  outline: none;
+  text-align: center;
+  padding-right: 5px;
 }
 
 #dash_start {

@@ -1,73 +1,42 @@
 <section id="content">
   <section id="dash_buttons">
     <ul>
-    	<li id="dash_button_1">
-    		<a href=""><span>1</span><span>Level 1</span></a>
-    	</li>
-    	<li id="dash_button_2">
-    		<a href=""><span>2</span><span>Level 1</span></a>
-    	</li>
-    	<li id="dash_button_3">
-    		<a href=""><span>3</span><span>Level 1</span></a>
-    	</li>
-    	<li id="dash_button_4">
-    		<a href=""><span>4</span><span>Level 1</span></a>
-    	</li>
-    	<li id="dash_button_5">
-    		<a href=""><span>5</span><span>Level 2</span></a>
-    	</li>
-    	<li id="dash_button_6">
-    		<a href=""><span>6</span><span>Level 2</span></a>
-    	</li>
-    	<li id="dash_button_7">
-    		<a href=""><span>7</span><span>Level 3</span></a>
-    	</li>
-    	<li id="dash_button_8">
-    		<a href=""><span>8</span><span>Level 3</span></a>
-    	</li>
-    	<li id="dash_button_9">
-    		<a href=""><span>9</span><span>Level 3</span></a>
-    	</li>
-    	<li id="dash_button_10">
-    		<a href=""><span>10</span><span>Level 3</span></a>
-    	</li>
-    	<li id="dash_button_11">
-    		<a href=""><span>11</span><span>Level 3</span></a>
-    	</li>
-    	<li id="dash_button_12">
-    		<a href=""><span>12</span><span>Level 3</span></a>
-    	</li>
-    	<li id="dash_button_13">
-    		<a href=""><span>13</span><span>Level 3</span></a>
-    	</li>
-    	<li id="dash_button_14">
-    		<a href=""><span>14</span><span>Level 3</span></a>
-    	</li>
-    	<li id="dash_button_15">
-    		<a href=""><span>15</span><span>Level 3</span></a>
-    	</li>
+      <% @beds.each do |bed| %>
+        <% number = bed.bed_number %>
+    	  <li id="<%= number %>">
+    		  <%= link_to(salon_tan_sessions_path(@current_salon.to_param), "data-bed" => number) do %>
+    		    <span><%= number %></span>
+    		    <span>Level <%= bed.level %></span>
+    		  <% end %>
+    	  </li>
+    	<% end %>
     </ul>
   </section>
   <section id="dash_controls">
     <section id="dash_bed_controls">
-      <div id="dash_minutes">
-        <a id="dash_up_arrow" href="#"></a>
-        <p><span>15</span></p>
-        <a id="dash_down_arrow" href="#"></a>
-      </div>
-      <div id="dash_start">
-        <h2>
-          Room
-          <span>15</span>
-        </h2>
-        <form>
-          <input id="reset" type="image" src="/images/reset_button.png" name="reset" width="92" height="38" alt="reset button" />
-          <p id="delay">Delay</p>
-          <input id="delay_text" name="session[delay]" type="text" size="1" value="3" maxlength="1"/>
-          <input id="start_admin" type="image" src="/images/start_button_admin.png" name="reset" width="239" height="73" alt="start button" />
-        </form>
-        <p id="admin_customer_name">Krontz, Michael <br /> Level 1</p>
-      </div>
+      <%= form_for([@current_salon, @tan_session]) do |f|%>
+        <%= f.hidden_field(:bed_id) %>
+        <div id="dash_minutes">
+          <a id="dash_up_arrow" href="#"></a>
+          <p>
+            <%= f.text_field(:minutes, :size => 2, :maxlength => 2, :value => 2) %>
+          </p>
+          <a id="dash_down_arrow" href="#"></a>
+        </div>
+        <div id="dash_start">
+          <h2>
+            Room
+            <span>15</span>
+          </h2>
+          <form>
+            <input id="reset" type="image" src="/images/reset_button.png" name="reset" width="92" height="38" alt="reset button" />
+            <p id="delay">Delay</p>
+            <input id="delay_text" name="tan_session[delay]" type="text" size="1" value="3" maxlength="1"/>
+            <input id="start_admin" type="image" src="/images/start_button_admin.png" name="reset" width="239" height="73" alt="start button" />
+          </form>
+          <p id="admin_customer_name">Krontz, Michael <br /> Level 1</p>
+        </div>
+      <% end %>
     </section>
     
     <section id="dash_customer_search">

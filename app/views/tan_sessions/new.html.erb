@@ -4,7 +4,7 @@
       <% @beds.each do |bed| %>
         <% number = bed.bed_number %>
     	  <li id="<%= number %>">
-    		  <%= link_to(salon_tan_sessions_path(@current_salon.to_param), "data-bed" => number) do %>
+    		  <%= link_to("#", "data-bed" => number) do %>
     		    <span><%= number %></span>
     		    <span>Level <%= bed.level %></span>
     		  <% end %>
@@ -26,12 +26,12 @@
         <div id="dash_start">
           <h2>
             Room
-            <span>15</span>
+            <span></span>
           </h2>
           <form>
             <input id="reset" type="image" src="/images/reset_button.png" name="reset" width="92" height="38" alt="reset button" />
             <p id="delay">Delay</p>
-            <input id="delay_text" name="tan_session[delay]" type="text" size="1" value="3" maxlength="1"/>
+            <%= f.text_field(:delay, :size => 1, :maxlength => 1, :value => 3)%>
             <input id="start_admin" type="image" src="/images/start_button_admin.png" name="reset" width="239" height="73" alt="start button" />
           </form>
           <p id="admin_customer_name">Krontz, Michael <br /> Level 1</p>

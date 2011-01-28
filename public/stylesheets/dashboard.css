@@ -32,17 +32,42 @@
   background-color: gray;
 }
 
-#dash_buttons li._0 {
+#dash_buttons li._0 a {
   background: url('../images/dash_green_up.png') no-repeat;
 }
 
+#dash_buttons li._0 a:active {
+  background: none;
+}
+
+#dash_buttons li._0 {
+  background: url('../images/dash_green_down.png') no-repeat;
+}
+
+#dash_buttons li._4 a {
+  background: url('../images/dash_red_up.png') no-repeat;
+}
+
+#dash_buttons li._4 a:active {
+  background: none;
+}
+
 #dash_buttons li._4 {
-  background-color: red;
+  background: url('../images/dash_red_down.png') no-repeat;
+}
+
+#dash_buttons li._1 a, #dash_buttons li._3 a, #dash_buttons li._5 a {
+  background: url('../images/dash_yellow_up.png') no-repeat;
 }
 
 #dash_buttons li._1, #dash_buttons li._3, #dash_buttons li._5 {
-  background-color: yellow;
+  background: url('../images/dash_yellow_down.png') no-repeat;
 }
+
+#dash_buttons li._1:active, #dash_buttons li._3:active, #dash_buttons li._5:active {
+  background: none;
+}
+/*end buttons*/
 
 #dash_buttons a {
   display: block;

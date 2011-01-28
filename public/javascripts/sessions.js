@@ -10,7 +10,8 @@ function activateBed(form) {
 	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + delay,
 	  success: function() {
-	    alert('bed ' + bed + ' activated');
+	    //alert('bed ' + bed + ' activated');
+	    getTimeStatus(14);
 	  },
 	  error: function(xhr, ajaxOptions, thrownError){
 	    alert('bed not activated--' + thrownError );
@@ -35,8 +36,27 @@ function getTimeStatus(beds) {
 function applyTimeStatus(json) {
   $.each(json, function(i, val) {
     $("#_" + val.number).removeClass().addClass("_" + val.status);
+    var countdown_span = $("#_" + val.number + " .countdown");
+    var status_span = $("#_" + val.number + " .level_and_status");
+    
+    if (val.status == 1) {
+      status_span.html("Delay");
+    }
+    else if (val.status == 5) {
+      status_span.html("Cooling");
+    }
+    else if (val.status == 3) {
+      status_span.html("Running");
+    }
+    else {
+      status_span.html("Level " +status_span.attr("data-bed-level")); 
+    };
+    
     if (val.time) {
-      $("#_" + val.number + " .countdown").html(minutes(val.time));
+      countdown_span.html(minutes(val.time)).attr("data-time-seconds", val.time);
+    }
+    else {
+      countdown_span.attr("data-time-seconds", 0).html("");
     };
   });
 };
@@ -46,6 +66,17 @@ function minutes(seconds) {
   var seconds = seconds % 60;
   seconds = ( seconds < 10 ? "0" : "" ) + seconds
   return minutes + ":" + seconds;
+};
+
+function ticker() {
+  //$("#dash_buttons .countdown").html(minutes($("#dash_buttons .countdown").attr("data-time-seconds") - 1))
+  $("#dash_buttons .countdown").each(function(i, val) {
+    var seconds = $(val).attr("data-time-seconds");
+    if (seconds > 0) {
+      $(val).html(minutes(seconds -1)).attr("data-time-seconds", seconds -1);
+    };
+    //$(val).html(val.attr("data-time-seconds") -1 );
+  });
 };
 
 $(document).ready(function() {
@@ -62,4 +93,13 @@ $(document).ready(function() {
 	});
 	
 	getTimeStatus(14);
+	
+	window.setInterval(function() {
+	  getTimeStatus(14);
+  }, 60000);
+	
+	window.setInterval(function() {
+	  //getTimeStatus(14);
+	  ticker();
+  }, 1000);
 });

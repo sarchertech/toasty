@@ -1,5 +1,22 @@
 function isTmaxLocal() {
-}
+};
+
+function activateBed(form) {
+  var form = form;
+  var url = "http://localhost:4567/1/";
+	var bed = $("#tan_session_bed_id").val();
+	var minutes = $("#tan_session_minutes").val();
+	var delay = $("#tan_session_delay").val();
+	$.ajax({
+	  url: url + bed + "/" + minutes + "/" + delay,
+	  success: function() {
+	    alert('bed ' + bed + ' activated');
+	  },
+	  error: function(xhr, ajaxOptions, thrownError){
+	    alert('bed not activated--' + thrownError );
+	  }
+	});
+};
 
 function getTimeStatus(beds) {
 	var url = "http://localhost:4567/2/"
@@ -33,21 +50,7 @@ function minutes(seconds) {
 
 $(document).ready(function() {
   $("#new_tan_session").submit(function() {
-    var form = $(this)
-    var url = "http://localhost:4567/1/"
-		var bed = $("#tan_session_bed_id").val();
-		var minutes = $("#tan_session_minutes").val();
-		var delay = $("#tan_session_delay").val();
-		//$.get(url + bed + "/" + minutes + "/" + delay);
-		$.ajax({
-		  url: url + bed + "/" + minutes + "/" + delay,
-		  success: function() {
-		    alert('bed ' + bed + ' activated');
-		  },
-		  error: function(xhr, ajaxOptions, thrownError){
-		    alert('bed not activated--' + thrownError );
-		  }
-		});
+    activateBed($(this));
     return false;
   });
 

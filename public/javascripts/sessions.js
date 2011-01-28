@@ -75,7 +75,6 @@ function ticker() {
     if (seconds > 0) {
       $(val).html(minutes(seconds -1)).attr("data-time-seconds", seconds -1);
     };
-    //$(val).html(val.attr("data-time-seconds") -1 );
   });
 };
 

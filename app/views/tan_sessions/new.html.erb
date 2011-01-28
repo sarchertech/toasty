@@ -3,10 +3,11 @@
     <ul>
       <% @beds.each do |bed| %>
         <% number = bed.bed_number %>
-    	  <li id="<%= number %>">
+    	  <li id="_<%= number %>">
     		  <%= link_to("#", "data-bed" => number) do %>
     		    <span><%= number %></span>
-    		    <span>Level <%= bed.level %></span>
+    		    <span class="countdown"></span>
+    		    <span class="level_and_status" data-bed-level="<%= bed.level %>">Level <%= bed.level %></span>
     		  <% end %>
     	  </li>
     	<% end %>

@@ -12,6 +12,7 @@
   overflow: hidden;
 }
 
+/* buttons */
 #dash_buttons {
   width: 480px;
   float: left; 
@@ -28,7 +29,19 @@
   margin-bottom: 7px;
   width: 156px;
   height: 79px;
+  background-color: gray;
+}
+
+#dash_buttons li._0 {
   background: url('../images/dash_green_up.png') no-repeat;
+}
+
+#dash_buttons li._4 {
+  background-color: red;
+}
+
+#dash_buttons li._1, #dash_buttons li._3, #dash_buttons li._5 {
+  background-color: yellow;
 }
 
 #dash_buttons a {
@@ -50,6 +63,16 @@
   top: -5px; 
 }
 
+#dash_buttons a span:nth-of-type(2) {
+  font-size: 25px;
+  float: right;
+  padding-right: 15px;
+  padding-top: 13px;
+  font-weight: bold;
+  margin-bottom: -44px;
+  line-height: 25px;
+}
+
 #dash_buttons a span:last-of-type {
   font-size: 15px;
   font-weight: bold;
@@ -59,6 +82,8 @@
   top: 44px;
   left: -13px;
   opacity: 0.7;
+  clear: right;
+  padding-right: 3px;
 }
 
 #dash_controls {

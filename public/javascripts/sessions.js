@@ -19,6 +19,20 @@ function activateBed(form) {
 	});
 };
 
+function resetBed() {
+  var url = "http://localhost:4567/3/";
+  var bed = $("#tan_session_bed_id").val();
+  $.ajax({
+    url: url + bed,
+    success: function() {
+      getTimeStatus(14);
+    },
+    error: function(xhr, ajaxOptions, throwError){
+      alert('bed not reset--' + thrownError );
+    }
+  });
+};
+
 function getTimeStatus(beds) {
 	var url = "http://localhost:4567/2/"
 	$.ajax({
@@ -89,6 +103,11 @@ $(document).ready(function() {
 		$("#dash_start h2 span").html(num);
 		$("#tan_session_bed_id").val(num);
 		return false;
+	});
+	
+	$("#reset").click(function() {
+	  resetBed();
+	  return false;
 	});
 	
 	getTimeStatus(14);

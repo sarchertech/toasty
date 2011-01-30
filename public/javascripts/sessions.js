@@ -17,10 +17,14 @@ function activateBed(form) {
 	    alert('bed not activated--' + thrownError );
 	  }
 	});
+	//$("#_" + bed).removeClass().addClass("_1");
+	//$("#_" + bed + " .level_and_status").html("Delay");
+	$("#bed_activated p").html("Bed " + bed + " Activated");
+	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');
 };
 
 function resetBed() {
-  var url = "http://localhost:4567/3/";
+  var url = "http://localhost:4567/2/";
   var bed = $("#tan_session_bed_id").val();
   $.ajax({
     url: url + bed,
@@ -31,10 +35,12 @@ function resetBed() {
       alert('bed not reset--' + thrownError );
     }
   });
+	$("#bed_activated p").html("Bed " + bed + " Reset");
+	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');
 };
 
 function getTimeStatus(beds) {
-	var url = "http://localhost:4567/2/"
+	var url = "http://localhost:4568/"
 	$.ajax({
 	  url: url + beds,
 	  dataType: 'json',
@@ -67,7 +73,7 @@ function applyTimeStatus(json) {
     };
     
     if (val.time) {
-      countdown_span.html(minutes(val.time)).attr("data-time-seconds", val.time);
+      countdown_span.html(minutes(val.time)).attr("data-time-seconds", (val.time));
     }
     else {
       countdown_span.attr("data-time-seconds", 0).html("");
@@ -120,5 +126,5 @@ $(document).ready(function() {
 	//window.setInterval(function() {
 	  //getTimeStatus(14);
 	  //ticker();
-  //}, 1000);
+  //}, 1025);
 });

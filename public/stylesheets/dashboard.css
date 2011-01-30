@@ -273,3 +273,26 @@
   -moz-box-shadow: 2px 4px 4px black;
   box-shadow: 2px 4px 4px black;
 }
+
+/* bed activated */
+#bed_activated {
+  width: 940px;
+  margin: auto;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  clear: both;
+	display: none;
+}
+
+#bed_activated p {
+  background-color: whitesmoke;
+  padding: 0px 5px;
+  float: left;
+  position: relative;
+	left: 509px;
+  top: 7px;
+  color: #0BB516;
+  border: 3px solid #0BB516;
+}

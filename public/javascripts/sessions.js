@@ -11,7 +11,7 @@ function activateBed(form) {
 	  url: url + bed + "/" + minutes + "/" + delay,
 	  success: function() {
 	    //alert('bed ' + bed + ' activated');
-	    getTimeStatus(6);
+	    //getTimeStatus(6);
 	  },
 	  error: function(xhr, ajaxOptions, thrownError){
 	    alert('bed not activated--' + thrownError );
@@ -25,7 +25,7 @@ function resetBed() {
   $.ajax({
     url: url + bed,
     success: function() {
-      getTimeStatus(6);
+      //getTimeStatus(6);
     },
     error: function(xhr, ajaxOptions, throwError){
       alert('bed not reset--' + thrownError );
@@ -114,10 +114,10 @@ $(document).ready(function() {
 	
 	window.setInterval(function() {
 	  getTimeStatus(6);
-  }, 5000);
-	
-	window.setInterval(function() {
-	  //getTimeStatus(14);
-	  ticker();
   }, 1000);
+	
+	//window.setInterval(function() {
+	  //getTimeStatus(14);
+	  //ticker();
+  //}, 1000);
 });

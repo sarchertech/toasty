@@ -36,7 +36,7 @@
   background: url('../images/dash_green_up.png') no-repeat;
 }
 
-#dash_buttons li._0 a:active {
+#dash_buttons li._0 a:focus {
   background: none;
 }
 
@@ -48,7 +48,7 @@
   background: url('../images/dash_red_up.png') no-repeat;
 }
 
-#dash_buttons li._4 a:active {
+#dash_buttons li._4 a:focus {
   background: none;
 }
 
@@ -64,7 +64,7 @@
   background: url('../images/dash_yellow_down.png') no-repeat;
 }
 
-#dash_buttons li._1:active, #dash_buttons li._3:active, #dash_buttons li._5:active {
+#dash_buttons li._1 a:focus, #dash_buttons li._3 a:focus, #dash_buttons li._5 a:active {
   background: none;
 }
 /*end buttons*/

@@ -24,7 +24,8 @@ function resetBed() {
   var bed = $("#tan_session_bed_id").val();
   $.ajax({
     url: url + bed,
-    success: function() {
+    success: function(data) {
+			//alert("bed reset");
       getTimeStatus(6);
     },
     error: function(xhr, ajaxOptions, throwError){
@@ -98,8 +99,9 @@ $(document).ready(function() {
     return false;
   });
 
-	$("#dash_buttons a").click(function() {
+	$("#dash_buttons a").mousedown(function() {
 		var num = $(this).attr("data-bed")
+		$(this).focus()
 		$("#dash_start h2 span").html(num);
 		$("#tan_session_bed_id").val(num);
 		return false;
@@ -114,7 +116,7 @@ $(document).ready(function() {
 	
 	window.setInterval(function() {
 	  getTimeStatus(6);
-  }, 5000);
+  }, 10000);
 	
 	window.setInterval(function() {
 	  //getTimeStatus(14);

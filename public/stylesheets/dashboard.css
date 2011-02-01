@@ -36,7 +36,7 @@
   background: url('../images/dash_green_up.png') no-repeat;
 }
 
-#dash_buttons li._0 a:focus {
+#dash_buttons li._0 a.bed_active {
   background: none;
 }
 
@@ -48,7 +48,7 @@
   background: url('../images/dash_red_up.png') no-repeat;
 }
 
-#dash_buttons li._4 a:focus {
+#dash_buttons li._4 a.bed_active {
   background: none;
 }
 
@@ -64,8 +64,20 @@
   background: url('../images/dash_yellow_down.png') no-repeat;
 }
 
-#dash_buttons li._1 a:focus, #dash_buttons li._3 a:focus, #dash_buttons li._5 a:active {
+#dash_buttons li._1 a.bed_active, #dash_buttons li._3 a.bed_active, #dash_buttons li._5 a.bed_active {
   background: none;
+}
+
+#dashboard #dash_buttons a .bed_loading {
+  background: url('../images/ajax-loader.gif') no-repeat 74% center;
+  display: block;
+  height: 16px;
+  width: 16px;
+  float: right;
+  position: relative;
+  top: 40%;
+  left: -32px;
+  display: none;
 }
 /*end buttons*/
 
@@ -88,7 +100,7 @@
   top: -5px; 
 }
 
-#dash_buttons a span:nth-of-type(2) {
+#dash_buttons a span.countdown {
   font-size: 25px;
   float: right;
   padding-right: 15px;
@@ -98,7 +110,7 @@
   line-height: 25px;
 }
 
-#dash_buttons a span:last-of-type {
+#dash_buttons a span.level_and_status {
   font-size: 15px;
   font-weight: bold;
   display: block;  

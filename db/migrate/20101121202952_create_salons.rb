@@ -10,6 +10,8 @@ class CreateSalons < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.string :staffed_hours
+      t.string :static_ip
+      t.string :auto_ip
       
       t.timestamps
     end

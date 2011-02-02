@@ -1,0 +1,15 @@
+<div id="login_logo">
+</div>
+  
+<div id="main_content_case_study">
+  <div id="login_wrapper">
+    <p>Please login with your keyfob</p>
+    
+    <%= flash_handler %>
+    <div id="form_fields">
+      <%= form_tag(:action => "create") do %>
+        <input id="admin_login_field" type="password" size="19" placeholder="Password" name="password" maxlength="50" autocomplete="off"/>
+      <% end %>
+    </div>
+  </div>
+</div>

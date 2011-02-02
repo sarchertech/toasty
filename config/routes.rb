@@ -6,6 +6,14 @@ Toasty::Application.routes.draw do
     resources :customers
     resources :users, :path => 'employees'
     resources :tan_sessions
+    resources :customer_tan_sessions
+    match '/customer_login' => 'customer_session#new', :as => 'new_customer_login', :via => :get, 
+                                   :constraints => {:subdomain => /.+/}
+    match '/customer_login' => 'customer_session#create', :as => 'customer_login', :via => :post, 
+                                      :constraints => {:subdomain => /.+/}
+
+    match '/customer_logout' => 'customer_session#destroy', :as => 'customer_logout', :via => :delete, 
+                                     :constraints => {:subdomain => /.+/}
   end
 
   resources :customers, :constraints => {:subdomain => /.+/}

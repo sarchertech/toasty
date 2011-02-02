@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toasty</title> 
+  <%= stylesheet_link_tag "site.css", "dashboard.css", "customer_dashboard.css" %>
+  <%= javascript_include_tag "jquery-1.4.4.min.js", "jquery.rails.js", "sessions.js" %>
+  <%= csrf_meta_tag %>
+</head>
+<body id="customer_dashboard">
+   <header>
+      <a id="logo" href="#">toasty</a>
+
+      <div id="bed_activated"><p></p></div>
+    </header>
+
+<%= yield %>
+
+  <footer>
+    <p>Copyright &copy;, 2010 Toasty, LLC</p>
+  </footer>
+</body>
+</html>

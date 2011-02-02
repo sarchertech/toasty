@@ -1,0 +1,47 @@
+<section id="content">
+  <section id="dash_buttons">
+    <ul>
+      <% @beds.each do |bed| %>
+        <% number = bed.bed_number %>
+    	  <li id="_<%= number %>" data-bed-loading="0">
+    		  <%= link_to("#", "data-bed" => number) do %>
+    		    <span><%= number %></span>
+    		    <span class="countdown"></span>
+    		    <span class="bed_loading"></span>
+    		    <span class="level_and_status" data-bed-level="<%= bed.level %>">Level <%= bed.level %></span>
+    		  <% end %>
+    	  </li>
+    	<% end %>
+    </ul>
+  </section>
+  <section id="dash_controls">
+    <section id="customer_dash_name_box">
+       
+    </section>
+    <section id="dash_bed_controls">
+      <%= form_for([@current_salon, @tan_session]) do |f|%>
+        <%= f.hidden_field(:bed_id) %>
+        <div id="dash_minutes">
+          <a id="dash_up_arrow" href="#"></a>
+          <p>
+            <%= f.text_field(:minutes, :size => 2, :maxlength => 2, :value => 2) %>
+          </p>
+          <a id="dash_down_arrow" href="#"></a>
+        </div>
+        <div id="dash_start">
+          <h2>
+            Room
+            <span></span>
+          </h2>
+          <form>
+            <input id="reset" type="image" src="/images/reset_button.png" name="reset" width="92" height="38" alt="reset button" />
+            <p id="delay">Delay</p>
+            <%= f.text_field(:delay, :size => 1, :maxlength => 1, :value => 3)%>
+            <input id="start_admin" type="image" src="/images/start_button_admin.png" name="reset" width="239" height="73" alt="start button" />
+          </form>
+          <p id="admin_customer_name">Krontz, Michael <br /> Level 1</p>
+        </div>
+      <% end %>
+    </section>
+  </section>
+</section>

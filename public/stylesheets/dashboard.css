@@ -1,5 +1,5 @@
 /* dashboard */
-#dashboard #content {
+#dashboard #content, #customer_dashboard #content {
   width: 932px;
   padding: 20px;  
   background-color: #b9e4ff;
@@ -68,7 +68,7 @@
   background: none;
 }
 
-#dashboard #dash_buttons a .bed_loading {
+#dash_buttons a .bed_loading {
   background: url('../images/ajax-loader.gif') no-repeat 74% center;
   display: block;
   height: 16px;

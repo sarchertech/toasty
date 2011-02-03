@@ -15,6 +15,9 @@
     </ul>
   </section>
   <section id="dash_controls">
+    <section id="customer_dash_name_box">
+       
+    </section>
     <section id="dash_bed_controls">
       <%= form_for([@current_salon, @tan_session]) do |f|%>
         <%= f.hidden_field(:bed_id) %>
@@ -39,10 +42,6 @@
           <p id="admin_customer_name">Krontz, Michael <br /> Level 1</p>
         </div>
       <% end %>
-    </section>
-    
-    <section id="dash_customer_search">
-      <input id="dash_search_box" type="text" size="19" value="Search" maxlength="50"/>
     </section>
   </section>
 </section>

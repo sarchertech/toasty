@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
     t.string   "city"
     t.string   "state"
     t.string   "staffed_hours"
+    t.string   "static_ip"
+    t.string   "auto_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

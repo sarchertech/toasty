@@ -4,7 +4,7 @@
       <% @beds.each do |bed| %>
         <% number = bed.bed_number %>
     	  <li id="_<%= number %>" data-bed-loading="0">
-    		  <%= link_to("#", "data-bed" => number) do %>
+    		  <%= link_to("#", "data-bed" => number, "data-maxtime" => bed.max_time) do %>
     		    <span><%= number %></span>
     		    <span class="countdown"></span>
     		    <span class="bed_loading"></span>

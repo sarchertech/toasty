@@ -1,6 +1,7 @@
-var activate_url = "http://localhost:4567/1/";
-var status_url = "http://localhost:4567/2/";
-var reset_url = "http://localhost:4567/3/";
+var ip = "192.168.1.8"
+var activate_url = "http://" + ip + ":4567/1/";
+var status_url = "http://" + ip + ":4567/2/";
+var reset_url = "http://" + ip + ":4567/3/";
 var number_of_beds = 15
 
 function isTmaxLocal() {
@@ -161,14 +162,50 @@ function ticker() {
 function selectBed() {
   var a = $(this);
 	var num = a.attr("data-bed");
+	var max = a.attr("data-maxtime");
 	$("#dash_buttons a").removeClass("bed_active");
 	a.addClass("bed_active");
 	$("#dash_start h2 span").html(num);
 	$("#tan_session_bed_id").val(num);
+	$time_box.attr("data-maxtime", max)
+	if(+$time_box.val() > max ) {
+		$time_box.val(max)
+	};
 	return false;
 };
 
 $(document).ready(function() {
+  $index = $("#tan_session_minutes");
+  $time_box = $("#tan_session_minutes");
+  
+  $("body").click(function() {
+    return false;
+  });
+  
+  $("body").mousedown(function() {
+    return false;
+  });
+  
+  $(document)[0].oncontextmenu = function() {return false;}
+  
+  $("#dash_up_arrow").mousehold(function(){
+    $max = $index.attr("data-maxtime")
+    if(+$index.val() < $max) {
+  		$index.val(+$index.val()+1 );
+  	}
+  });
+
+  $("#dash_down_arrow").mousehold(function(){
+  	if(+$index.val() > 2) {
+  		$index.val( +$index.val()-1 );
+  	}
+  });
+  
+  $("#start_admin").click(function() {
+    activateBed($(this));
+    return false;
+  });
+  
   $("#new_tan_session").submit(function() {
     activateBed($(this));
     return false;
@@ -189,7 +226,7 @@ $(document).ready(function() {
 	
 	window.setInterval(function() {
 	  getTimeStatus(number_of_beds);
-  }, 10000);
+  }, 20000);
 	
 	//window.setInterval(function() {
 	  //getTimeStatus(14);

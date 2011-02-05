@@ -43,4 +43,27 @@ class CustomerSessionControllerTest < ActionController::TestCase
     post :create, :salon_id => @salon.to_param, :customer_number => "1234"
     assert_equal(@customer.id, session[:customer_id])
   end
+
+  test "should not make customer session if locked out" do
+    @customer = Factory.create(:customer, :customer_number => "1234",
+                               :salon_id => @salon.id, 
+                               :account_id => @account.id)
+    @tan_session = Factory.create(:tan_session, :customer_id => @customer.id,
+                                  :salon_id => @salon.id)
+    
+    post :create, :salon_id => @salon.to_param, :customer_number => "1234"
+    assert_equal(nil, session[:customer_id])
+  end
+
+  test "should make customer session if not locked out" do
+    @customer = Factory.create(:customer, :customer_number => "1234",
+                               :salon_id => @salon.id, 
+                               :account_id => @account.id)
+    @tan_session = Factory.create(:tan_session, :customer_id => @customer.id,
+                                  :salon_id => @salon.id, 
+                                  :created_at => 1.day.ago)
+    
+    post :create, :salon_id => @salon.to_param, :customer_number => "1234"
+    assert_equal(@customer.id, session[:customer_id])
+  end
 end

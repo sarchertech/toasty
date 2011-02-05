@@ -1,4 +1,4 @@
-var ip = "192.168.1.8"
+var ip = "localhost"
 var activate_url = "http://" + ip + ":4567/1/";
 var status_url = "http://" + ip + ":4567/2/";
 var reset_url = "http://" + ip + ":4567/3/";
@@ -159,8 +159,7 @@ function ticker() {
   });
 };
 
-function selectBed() {
-  var a = $(this);
+function selectBed(a) {
 	var num = a.attr("data-bed");
 	var max = a.attr("data-maxtime");
 	$("#dash_buttons a").removeClass("bed_active");
@@ -210,8 +209,18 @@ $(document).ready(function() {
     activateBed($(this));
     return false;
   });
-
-	$("#dash_buttons a").mousedown(selectBed);
+  
+  var hidden = true
+  
+	$("#dash_buttons a").mousedown(function() {
+	  selectBed($(this));
+	  if(hidden) {
+	    $("#please").hide(300, function() {
+	      $("#dash_controls_wrapper").show();
+	    });
+	    hidden = false
+	  };
+	});
 	
 	$("#dash_buttons a").click(function() {
 	  return false;

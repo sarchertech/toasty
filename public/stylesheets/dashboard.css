@@ -285,6 +285,34 @@
   -moz-box-shadow: 2px 4px 4px black;
   box-shadow: 2px 4px 4px black;
 }
+/* control box */
+#dash_controls_wrapper {
+  display: none;
+}
+
+#please {
+  color: white;
+	font-family: myriad pro, arial, black;
+	font-size: 45px;
+	font-weight: bold;
+	letter-spacing: -2px;
+	text-align: center;
+	margin-left: -4px;
+	margin-top: 72px;
+}
+
+#post_active {
+  color: white;
+	font-family: myriad pro, arial, black;
+	font-size: 45px;
+	font-weight: bold;
+	letter-spacing: -2px;
+	text-align: center;
+	margin-left: -4px;
+	margin-top: 72px;
+	display: none;
+}
+
 
 /* bed activated */
 #bed_activated {

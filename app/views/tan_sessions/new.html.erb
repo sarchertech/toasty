@@ -16,29 +16,33 @@
   </section>
   <section id="dash_controls">
     <section id="dash_bed_controls">
-      <%= form_for([@current_salon, @tan_session]) do |f|%>
-        <%= f.hidden_field(:bed_id) %>
-        <div id="dash_minutes">
-          <a id="dash_up_arrow" href="#"></a>
-          <p>
-            <%= f.text_field(:minutes, :size => 2, :maxlength => 2, :value => 2) %>
-          </p>
-          <a id="dash_down_arrow" href="#"></a>
-        </div>
-        <div id="dash_start">
-          <h2>
-            Room
-            <span></span>
-          </h2>
-          <form>
-            <input id="reset" type="image" src="/images/reset_button.png" name="reset" width="92" height="38" alt="reset button" />
-            <p id="delay">Delay</p>
-            <%= f.text_field(:delay, :size => 1, :maxlength => 1, :value => 3)%>
-            <input id="start_admin" type="image" src="/images/start_button_admin.png" name="reset" width="239" height="73" alt="start button" />
-          </form>
-          <p id="admin_customer_name">Krontz, Michael <br /> Level 1</p>
-        </div>
-      <% end %>
+      <div id="dash_controls_wrapper">
+        <%= form_for([@current_salon, @tan_session]) do |f|%>
+          <%= f.hidden_field(:bed_id) %>
+          <div id="dash_minutes">
+            <a id="dash_up_arrow" href="#"></a>
+            <p>
+              <%= f.text_field(:minutes, :size => 2, :maxlength => 2, :value => 2) %>
+            </p>
+            <a id="dash_down_arrow" href="#"></a>
+          </div>
+          <div id="dash_start">
+            <h2>
+              Room
+              <span></span>
+            </h2>
+            <form>
+              <input id="reset" type="image" src="/images/reset_button.png" name="reset" width="92" height="38" alt="reset button" />
+              <p id="delay">Delay</p>
+              <%= f.text_field(:delay, :size => 1, :maxlength => 1, :value => 3)%>
+              <input id="start_admin" type="image" src="/images/start_button_admin.png" name="reset" width="239" height="73" alt="start button" />
+            </form>
+            <p id="admin_customer_name">Krontz, Michael <br /> Level 1</p>
+          </div>
+        <% end %>
+      </div>
+      <p id="please">Please Select a Bed</p>
+      <p id="post_active">Bed 15 Will Activate in 6 Minutes</p>
     </section>
     
     <section id="dash_customer_search">

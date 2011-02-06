@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20101121203950) do
   end
 
   add_index "customers", ["account_id"], :name => "index_customers_on_account_id"
+  add_index "customers", ["salon_id", "customer_number"], :name => "index_customers_on_salon_id_and_customer_number", :unique => true
   add_index "customers", ["salon_id"], :name => "index_customers_on_salon_id"
 
   create_table "salons", :force => true do |t|

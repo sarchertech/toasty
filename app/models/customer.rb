@@ -44,6 +44,8 @@ class Customer < ActiveRecord::Base
   #1 == recurring 2 == month to month 3 == by the package 4 == per session
   validates_inclusion_of :customer_type, :in => 1..4
 
+  validates_uniqueness_of :customer_number, :scope => :salon_id
+
   default_scope :order => 'created_at DESC'
 
   scope :filter, lambda { |name, level, type|

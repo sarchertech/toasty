@@ -321,4 +321,13 @@ class CustomerTest < ActiveSupport::TestCase
 
     assert_equal("TX", @rhonda.state)
   end
+
+  test "customer number should be unique" do
+    @rhonda.customer_number = "1"
+    @rhonda.save
+
+    customer2 = Factory.build(:customer, :customer_number => "1" )
+
+    assert !customer2.valid?
+  end
 end

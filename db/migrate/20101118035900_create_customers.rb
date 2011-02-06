@@ -23,6 +23,7 @@ class CreateCustomers < ActiveRecord::Migration
 
     add_index :customers, :account_id
     add_index :customers, :salon_id
+    add_index :customers, [:salon_id, :customer_number], :unique => true
   end
 
   def self.down

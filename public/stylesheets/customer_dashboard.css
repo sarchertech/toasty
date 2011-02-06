@@ -53,20 +53,40 @@
   cursor: default;
 }
 
-#dash_buttons li._1 a, #dash_buttons li._3 a, #dash_buttons li._4 a, 
+/* #dash_buttons li._1 a, #dash_buttons li._3 a, #dash_buttons li._4 a, 
 #dash_buttons li._5 a {
   background: url('../images/dash_red_up.png') no-repeat;
 }
 
 #dash_buttons li._1, #dash_buttons li._3, #dash_buttons li._4, 
 #dash_buttons li._5 {
-  background: url('../images/dash_red_down.png') no-repeat;
+  background: url('../images/dash_red_up.png') no-repeat;
 }
 
 #dash_buttons li._1 a.bed_active, #dash_buttons li._3 a.bed_active, 
 #dash_buttons li.4, #dash_buttons li._5 a.bed_active {
   background: none;
+} */
+
+#customer_dashboard #dash_buttons li {
+  background: gray;
 }
+
+#customer_dashboard #dash_buttons li.green {
+  background: url('../images/dash_green_down.png') no-repeat;
+}
+
+#customer_dashboard #dash_buttons li.green a {
+  background: url('../images/dash_green_up.png') no-repeat;
+}
+
+#customer_dashboard #dash_buttons li.green a.bed_active {
+  background: none;
+}
+
+#customer_dashboard #dash_buttons li.red {
+  background: url('../images/dash_red_up.png') no-repeat;
+} 
 
 /* customer_dashboard controls */
 #customer_info {

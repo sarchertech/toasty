@@ -1,22 +1,19 @@
 function activateBed() {
-  var form = $("#new_tan_session");
   var url = $activate_url;
 	var bed = $("#tan_session_bed_id").val();
 	var minutes = $("#tan_session_minutes").val();
-	var delay = 6;
 	$.ajax({
-	  url: url + bed + "/" + minutes + "/" + delay,
+	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
-  	  var num = $("#dash_start h2 span").html();
-  	  var a = $("#_" + num + " a")
-  	  $("#post_active").html("Bed " + num + " Will Activate <br /> in 6 Minutes");
+  	  var a = $("#_" + bed + " a")
+  	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
   	    $("#post_active").fadeIn(1000);
   	  });
 	  },
-	  error: function(xhr, ajaxOptions, thrownError){
+	  error: function(){
 	    $sent = false
-	    alert('bed not activated--' + thrownError );
+	    alert('bed not activated please try again');
 	  }
 	});
 
@@ -43,38 +40,73 @@ function getTimeStatus(beds) {
 
 function applyTimeStatus(json) {
   $.each(json, function(i, val) {
-    var l = $("#_" + val.number)
-    if (l.attr("data-bed-loading") == "0") {
-      l.removeClass().addClass("_" + val.status);
+    var bedli = $("#_" + val.number);
+    var bed = bedli.children("a");
+    var disabled = bed.attr("data-bed-disabled");
+    if (!disabled) {
+      bed.attr("data-bed-status", val.status);
+      if (val.status == "0") {
+        bedli.removeClass().addClass("green");
+      }
+      else {
+        bedli.removeClass().addClass("red");
+      };
+    };
+  });
+};
+
+function disableBeds() {
+  $("#dash_buttons li a").each(function() {
+    var bed = $(this)
+    var bl = bed.attr("data-bed-level");
+    if ($cl < bl) {
+      bed.attr("data-bed-disabled", "disabled");
     }
   });
 };
 
 function selectBed(a) {
-	var num = a.attr("data-bed");
-	var max = a.attr("data-maxtime");
-	var level = a.children(".level_and_status").attr("data-bed-level")
-	$("#dash_buttons a").removeClass("bed_active");
-	a.addClass("bed_active");
-	$("#dash_start h2 span").html(num);
-	$("#tan_session_bed_id").val(num);
-	$time_box.attr("data-maxtime", max);
-	$("#max_time").html("Max Time " + max + " Minutes");
-	$("#bed_level").html("Level " + level + " Bed")
-	if(+$time_box.val() > max ) {
-		$time_box.val(max);
-	};
+	par = a.parent();
+	if (par.hasClass("green")) {
+	  var num = a.attr("data-bed");
+  	var max = a.attr("data-maxtime");
+  	var level = a.attr("data-bed-level")
+  	
+  	$("#dash_buttons a").removeClass("bed_active");
+  	a.addClass("bed_active");
+  	$("#dash_start h2 span").html(num);
+  	$("#tan_session_bed_id").val(num);
+  	$time_box.attr("data-maxtime", max);
+  	$("#max_time").html("Max Time " + max + " Minutes");
+  	$("#bed_level").html("Level " + level + " Bed")
+  	if(+$time_box.val() > max ) {
+  		$time_box.val(max);
+  	};
+  	if($hidden) {
+	    $("#please").hide(300, function() {
+	      $("#dash_controls_wrapper").show();
+	    });
+	    $hidden = false
+	  };
+  };
 	return false;
 };
 
 $(document).ready(function() {
-  $ip = "localhost"
+  $ip = "localhost";
   $activate_url = "http://" + $ip + ":4567/1/";
   $status_url = "http://" + $ip + ":4567/2/";
-  $number_of_beds = 15
+  $number_of_beds = 15;
+  $delay = 6;
   $index = $("#tan_session_minutes");
   $time_box = $("#tan_session_minutes");
-  $sent = false
+  $cl = $("#bottom_level").attr("data-customer-level")
+  $sent = false;
+  $hidden = true;
+  
+  disableBeds();
+	
+	getTimeStatus($number_of_beds);
   
   $("body").click(function() {
     return false;
@@ -84,7 +116,7 @@ $(document).ready(function() {
     return false;
   });
   
-  $(document)[0].oncontextmenu = function() {return false;}
+  //$(document)[0].oncontextmenu = function() {return false;}
   
   $("#dash_up_arrow").mousehold(function(){
     max = $index.attr("data-maxtime")
@@ -99,26 +131,12 @@ $(document).ready(function() {
   	}
   });
   
-  $("#start_admin").click(function() {
-    activateBed($(this));
-    return false;
-  });
-  
   $("#new_tan_session").submit(function() {
-    activateBed($(this));
     return false;
   });
-  
-  var hidden = true
   
 	$("#dash_buttons a").mousedown(function() {
 	  selectBed($(this));
-	  if(hidden) {
-	    $("#please").hide(300, function() {
-	      $("#dash_controls_wrapper").show();
-	    });
-	    hidden = false
-	  };
 	});
   
   var depressed = false
@@ -155,9 +173,7 @@ $(document).ready(function() {
 	  return false;
 	});
 	
-	getTimeStatus($number_of_beds);
-	
-	window.setInterval(function() {
+	/*window.setInterval(function() {
 	  getTimeStatus($number_of_beds);
-  }, 20000);
+  }, 20000);*/
 });

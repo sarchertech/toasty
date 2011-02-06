@@ -118,7 +118,7 @@ function applyTimeStatus(json) {
     
     if (l.attr("data-bed-loading") == "0") {
       l.removeClass().addClass("_" + val.status);
-    }
+    };
     
     if (val.status == 1) {
       status_span.html("Delay");

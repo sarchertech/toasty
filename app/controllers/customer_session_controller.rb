@@ -1,6 +1,7 @@
 class CustomerSessionController < ApplicationController
   #GET /customer_login
   def new
+    session[:customer_id] = nil
   end
 
   #POST /customer_login

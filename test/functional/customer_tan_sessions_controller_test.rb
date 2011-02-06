@@ -6,6 +6,8 @@ class CustomerTanSessionsControllerTest < ActionController::TestCase
   setup do
     @bed = Factory.create(:bed, :salon_id => @salon.id)
     @bed = Factory.create(:bed, :salon_id => @salon.id + 1)
+    @customer = Factory.create(:customer, :salon_id => @salon.id)
+    session[:customer_id] = @customer.id
   end
 
   test "should get new" do

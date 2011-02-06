@@ -330,4 +330,14 @@ class CustomerTest < ActiveSupport::TestCase
 
     assert !customer2.valid?
   end
+
+  test "customer number should be set if blank" do
+    @salon = Factory.create(:salon)
+    @rhonda.customer_number = nil
+    @rhonda.save
+
+    customer2 = Factory.build(:customer, :customer_number => nil )
+    
+    assert customer2.valid?
+  end
 end

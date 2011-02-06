@@ -4,7 +4,7 @@ class Customer < ActiveRecord::Base
   has_many :tan_sessions  
   has_many :beds, :through => :tan_sessions
 
-  before_validation :san, :nilify
+  before_validation :san, :nilify, :set_customer_number
 
   validate :validate_paid_through, :if => :month_to_month?
 
@@ -130,6 +130,18 @@ class Customer < ActiveRecord::Base
     else
       self.paid_through = nil
       self.sessions_left = nil
+    end
+  end
+
+  def set_customer_number
+    if customer_number.blank?
+      set = lambda do
+        self.customer_number = "na" + Time.now.usec.to_s
+        salon = Salon.find(salon_id)
+        customer = salon.customers.find_by_customer_number(customer_number)
+        set.call if customer
+      end
+      set.call
     end
   end
 

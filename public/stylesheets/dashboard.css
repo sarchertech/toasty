@@ -32,43 +32,47 @@
   background-color: gray;
 }
 
-#dash_buttons li._0 a {
+#dashboard #dash_buttons li._0 a {
   background: url('../images/dash_green_up.png') no-repeat;
 }
 
-#dash_buttons li._0 a.bed_active {
+#dashboard #dash_buttons li._0 a.bed_active {
   background: none;
 }
 
-#dash_buttons li._0 {
+#dashboard #dash_buttons li._0 {
   background: url('../images/dash_green_down.png') no-repeat;
 }
 
-#dash_buttons li._4 a {
+#dashboard #dash_buttons li._4 a {
   background: url('../images/dash_red_up.png') no-repeat;
 }
 
-#dash_buttons li._4 a.bed_active {
+#dashboard #dash_buttons li._4 a.bed_active {
   background: none;
 }
 
-#dash_buttons li._4 {
+#dashboard #dash_buttons li._4 {
   background: url('../images/dash_red_down.png') no-repeat;
 }
 
-#dash_buttons li._1 a, #dash_buttons li._3 a, #dash_buttons li._5 a {
+#dashboard #dash_buttons li._1 a, #dashboard #dash_buttons li._3 a, 
+#dashboard #dash_buttons li._5 a {
   background: url('../images/dash_yellow_up.png') no-repeat;
 }
 
-#dash_buttons li._1, #dash_buttons li._3, #dash_buttons li._5 {
+#dashboard #dash_buttons li._1, #dashboard #dash_buttons li._3, 
+#dashboard #dash_buttons li._5 {
   background: url('../images/dash_yellow_down.png') no-repeat;
 }
 
-#dash_buttons li._1 a.bed_active, #dash_buttons li._3 a.bed_active, #dash_buttons li._5 a.bed_active {
+#dashboard #dash_buttons li._1 a.bed_active, 
+#dashboard #dash_buttons li._3 a.bed_active, 
+#dashboard #dash_buttons li._5 a.bed_active {
   background: none;
 }
 
-#dash_buttons a .bed_loading {
+#dashboard #dash_buttons a .bed_loading {
   background: url('../images/ajax-loader.gif') no-repeat 74% center;
   display: block;
   height: 16px;

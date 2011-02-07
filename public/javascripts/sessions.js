@@ -1,8 +1,9 @@
-var ip = "localhost"
-var activate_url = "http://" + ip + ":4567/1/";
-var status_url = "http://" + ip + ":4567/2/";
-var reset_url = "http://" + ip + ":4567/3/";
-var number_of_beds = 15
+ip = "192.168.1.2";
+activate_url = "http://" + ip + ":4567/1/";
+status_url = "http://" + ip + ":4568/";
+reset_url = "http://" + ip + ":4567/2/"
+
+var number_of_beds = 6;
 
 function isTmaxLocal() {
 };
@@ -177,13 +178,13 @@ $(document).ready(function() {
   $index = $("#tan_session_minutes");
   $time_box = $("#tan_session_minutes");
   
-  $("body").click(function() {
-    return false;
-  });
+  //$("body").click(function() {
+    //return false;
+  //});
   
-  $("body").mousedown(function() {
-    return false;
-  });
+  //$("body").mousedown(function() {
+    //return false;
+  //});
   
   $(document)[0].oncontextmenu = function() {return false;}
   
@@ -235,7 +236,7 @@ $(document).ready(function() {
 	
 	window.setInterval(function() {
 	  getTimeStatus(number_of_beds);
-  }, 20000);
+  }, 1000);
 	
 	//window.setInterval(function() {
 	  //getTimeStatus(14);

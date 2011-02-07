@@ -66,7 +66,7 @@ function applyTimeStatus(json) {
       if (val.status == "0") {
         bedli.removeClass().addClass("green");
       }
-      else if (val.status == "4" && bed.attr("data-session-over") == "true") {
+      else if (val.status == "4" && bed.attr("data-session-over") == "true" && !val.time) {
         bedli.removeClass().addClass("green");
       }
       else {
@@ -114,11 +114,11 @@ function selectBed(a) {
 };
 
 $(document).ready(function() {
-  $ip = "localhost";
+  $ip = "192.168.1.2";
   $activate_url = "http://" + $ip + ":4567/1/";
-  $status_url = "http://" + $ip + ":4567/2/";
-  $reset_url = "http://" + $ip + ":4567/3/"
-  $number_of_beds = 15;
+  $status_url = "http://" + $ip + ":4568/";
+  $reset_url = "http://" + $ip + ":4567/2/"
+  $number_of_beds = 6;
   $delay = 6;
   $form = $("#new_tan_session")
   $index = $("#tan_session_minutes");

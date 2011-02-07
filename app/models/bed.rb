@@ -11,6 +11,17 @@ class Bed < ActiveRecord::Base
                          :message => "must be between 1 and 15"
   validates_inclusion_of :level, :in => 1..6
   validates_inclusion_of :max_time, :in => 5..20
+  
+  def session_over?
+    tan_session = self.tan_sessions.last
+    time = tan_session.minutes + 12 if tan_session
+    finished = tan_session.created_at + time.minutes if tan_session
+    if tan_session && finished > Time.zone.now 
+      return "false"
+    else
+      return "true"
+    end
+  end
 
   private 
 

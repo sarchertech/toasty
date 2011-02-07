@@ -2,11 +2,15 @@ function activateBed() {
   var url = $activate_url;
 	var bed = $("#tan_session_bed").val();
 	var minutes = $("#tan_session_minutes").val();
+	var a = $("#_" + bed + " a")
+	if ( a.attr("data-bed-status") == "4" ) {
+	  resetBed();
+	};
 	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
 	    createSession();
-  	  var a = $("#_" + bed + " a")
+  	  //var a = $("#_" + bed + " a")
   	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
   	    $("#post_active").fadeIn(1000);
@@ -23,6 +27,13 @@ function activateBed() {
   $("#_" + bed).attr("data-bed-loading", "1");
 	$("#bed_activated p").html("Bed " + bed + " Activated");
 	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');
+};
+
+function resetBed() {
+  bed = $("#tan_session_bed").val();
+  url = $reset_url + bed;
+  $.get(url);
+  alert("Please clean the bed before you tan");
 };
 
 function createSession() {
@@ -53,6 +64,9 @@ function applyTimeStatus(json) {
     if (!disabled) {
       bed.attr("data-bed-status", val.status);
       if (val.status == "0") {
+        bedli.removeClass().addClass("green");
+      }
+      else if (val.status == "4" && bed.attr("data-session-over") == "true") {
         bedli.removeClass().addClass("green");
       }
       else {
@@ -103,6 +117,7 @@ $(document).ready(function() {
   $ip = "localhost";
   $activate_url = "http://" + $ip + ":4567/1/";
   $status_url = "http://" + $ip + ":4567/2/";
+  $reset_url = "http://" + $ip + ":4567/3/"
   $number_of_beds = 15;
   $delay = 6;
   $form = $("#new_tan_session")

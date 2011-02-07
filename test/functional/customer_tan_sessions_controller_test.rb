@@ -24,4 +24,15 @@ class CustomerTanSessionsControllerTest < ActionController::TestCase
     get :new, :salon_id => @salon.to_param
     assert assigns(:tan_session).new_record?
   end
+
+  test "should create tan_session" do
+    @bed = Factory.create(:bed, :salon_id => @salon.id, :bed_number => 2)
+    
+    bed = @salon.beds.find_by_bed_number(2)
+    
+    assert_difference('TanSession.count') do
+      post :create, :salon_id => @salon.to_param, 
+           :tan_session => {:minutes => "5", :bed => "2"}    
+    end
+  end
 end

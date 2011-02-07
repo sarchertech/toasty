@@ -1,10 +1,11 @@
 function activateBed() {
   var url = $activate_url;
-	var bed = $("#tan_session_bed_id").val();
+	var bed = $("#tan_session_bed").val();
 	var minutes = $("#tan_session_minutes").val();
 	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
+	    createSession();
   	  var a = $("#_" + bed + " a")
   	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
@@ -22,6 +23,12 @@ function activateBed() {
   $("#_" + bed).attr("data-bed-loading", "1");
 	$("#bed_activated p").html("Bed " + bed + " Activated");
 	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');
+};
+
+function createSession() {
+  var url = $form.attr("action");
+  var data = $form.serialize();
+  $.post(url, data);
 };
 
 function getTimeStatus(beds) {
@@ -75,7 +82,7 @@ function selectBed(a) {
   	$("#dash_buttons a").removeClass("bed_active");
   	a.addClass("bed_active");
   	$("#dash_start h2 span").html(num);
-  	$("#tan_session_bed_id").val(num);
+  	$("#tan_session_bed").val(num);
   	$time_box.attr("data-maxtime", max);
   	$("#max_time").html("Max Time " + max + " Minutes");
   	$("#bed_level").html("Level " + level + " Bed")
@@ -98,6 +105,7 @@ $(document).ready(function() {
   $status_url = "http://" + $ip + ":4567/2/";
   $number_of_beds = 15;
   $delay = 6;
+  $form = $("#new_tan_session")
   $index = $("#tan_session_minutes");
   $time_box = $("#tan_session_minutes");
   $cl = $("#bottom_level").attr("data-customer-level")
@@ -159,9 +167,9 @@ $(document).ready(function() {
 	    depressed = false
 	    $(this).removeClass("start_active");
 	    activateBed();
-	    setTimeout(function() {
-	      location.reload();
-	    },2500);
+	    //setTimeout(function() {
+	      //location.reload();
+	    //},2500);
     };
 	});
 	

@@ -29,7 +29,7 @@
   margin-bottom: 7px;
   width: 156px;
   height: 79px;
-  background-color: gray;
+  background: url('../images/dash_grey_up.png') no-repeat;
 }
 
 #dashboard #dash_buttons li._0 a {

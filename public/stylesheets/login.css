@@ -1,3 +1,32 @@
+/* customer login */
+#customer_login {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+#customer_login #login_wrapper p {
+  font-size: 55px;
+  font-weight: bold;
+  margin-top: 110px;
+  margin-bottom: 30px;
+  letter-spacing: -3px;
+}
+
+#customer_login #login_wrapper {
+  width: 800px;
+}
+
+#customer_login_field {
+  position: relative;
+  left: -9999px;
+}
+
+#customer_login #login_wrapper #alert {
+  font-size: 25px;
+  color: red;
+  margin-top: 0px;
+  letter-spacing: -1px;
+}
 /*login pages*/
 
 html {

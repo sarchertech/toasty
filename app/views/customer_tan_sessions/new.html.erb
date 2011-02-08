@@ -18,7 +18,8 @@
   <section id="dash_controls">
     <section id="dash_bed_controls">
       <div id="dash_controls_wrapper">
-        <%= form_for(@tan_session, :url => salon_customer_tan_sessions_path(@current_salon) ) do |f|%>
+        <%= form_for(@tan_session, :url => salon_customer_tan_sessions_path(@current_salon),
+          :html => {"data-login-url" => salon_customer_login_path} ) do |f|%>
           <%= f.hidden_field(:bed) %>
           <div id="dash_minutes">
             <a id="dash_up_arrow" href="#"></a>

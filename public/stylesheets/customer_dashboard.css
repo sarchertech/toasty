@@ -69,7 +69,7 @@
 } */
 
 #customer_dashboard #dash_buttons li {
-  background: gray;
+  background: url('../images/dash_grey_up.png') no-repeat;
 }
 
 #customer_dashboard #dash_buttons li.green {

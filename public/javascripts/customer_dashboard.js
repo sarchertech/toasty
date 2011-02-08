@@ -10,7 +10,6 @@ function activateBed() {
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
 	    createSession();
-  	  //var a = $("#_" + bed + " a")
   	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
   	    $("#post_active").fadeIn(1000);
@@ -21,9 +20,9 @@ function activateBed() {
 	    alert('bed not activated please try again');
 	  }
 	});
+  $("#dash_buttons a").unbind("mousedown");
 
-	$("#_" + bed).removeClass().addClass("_1");
-
+	$("#_" + bed).removeClass().addClass("red");
   $("#_" + bed).attr("data-bed-loading", "1");
 	$("#bed_activated p").html("Bed " + bed + " Activated");
 	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');
@@ -113,11 +112,19 @@ function selectBed(a) {
 	return false;
 };
 
+function doTimeout() {
+  window.location = $form.attr("data-login-url");
+};
+
 $(document).ready(function() {
-  $ip = "192.168.1.2";
+  //$ip = "192.168.1.2";
+  $ip = "localhost";
+  //$activate_url = "http://" + $ip + ":4567/1/";
   $activate_url = "http://" + $ip + ":4567/1/";
-  $status_url = "http://" + $ip + ":4568/";
-  $reset_url = "http://" + $ip + ":4567/2/"
+  //$status_url = "http://" + $ip + ":4568/";
+  $status_url = "http://" + $ip + ":4567/2/";
+  //$reset_url = "http://" + $ip + ":4567/2/";
+  $reset_url = "http://" + $ip + ":4567/3/";
   $number_of_beds = 6;
   $delay = 6;
   $form = $("#new_tan_session")
@@ -182,21 +189,16 @@ $(document).ready(function() {
 	    depressed = false
 	    $(this).removeClass("start_active");
 	    activateBed();
-	    //setTimeout(function() {
-	      //location.reload();
-	    //},2500);
+	    setTimeout(function() {
+	      window.location = $form.attr("data-login-url");
+	    },3500);
     };
 	});
-	
-	$("body").click(function() {
-	  return false;
-	});
-	
-	$("#dash_buttons a").click(function() {
-	  return false;
-	});
-	
-	/*window.setInterval(function() {
-	  getTimeStatus($number_of_beds);
-  }, 20000);*/
+
+  var idleTimer = window.setTimeout(doTimeout, 60000);
+  
+  $(this).mousemove(function(e){
+    window.clearTimeout(idleTimer);
+    idleTimer = window.setTimeout(doTimeout, 60000);
+  });
 });

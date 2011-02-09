@@ -13,7 +13,7 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :state
       t.references :account
       t.references :salon
-      t.boolean :under_18, :default => 0
+      t.boolean :under_18, :default => false 
       t.integer :customer_type, :default => 1
       t.date :paid_through
       t.integer :sessions_left

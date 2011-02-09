@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.references :account
       t.references :salon
       t.string :login
-      t.boolean :access_all_locations, :default => 0
+      t.boolean :access_all_locations, :default => false 
       t.string :encrypted_password
       t.string :salt
       t.integer :password_attempts, :default => 0

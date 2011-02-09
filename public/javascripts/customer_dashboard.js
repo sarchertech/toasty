@@ -117,14 +117,14 @@ function doTimeout() {
 };
 
 $(document).ready(function() {
-  //$ip = "192.168.1.2";
-  $ip = "localhost";
-  //$activate_url = "http://" + $ip + ":4567/1/";
+  $ip = "192.168.1.2";
+  //$ip = "localhost";
   $activate_url = "http://" + $ip + ":4567/1/";
-  //$status_url = "http://" + $ip + ":4568/";
-  $status_url = "http://" + $ip + ":4567/2/";
-  //$reset_url = "http://" + $ip + ":4567/2/";
-  $reset_url = "http://" + $ip + ":4567/3/";
+  //$activate_url = "http://" + $ip + ":4567/1/";
+  $status_url = "http://" + $ip + ":4568/";
+  //$status_url = "http://" + $ip + ":4567/2/";
+  $reset_url = "http://" + $ip + ":4567/2/";
+  //$reset_url = "http://" + $ip + ":4567/3/";
   $number_of_beds = 6;
   $delay = 6;
   $form = $("#new_tan_session")

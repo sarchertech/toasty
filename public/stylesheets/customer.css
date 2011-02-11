@@ -64,20 +64,33 @@ h4 {
 }
 
 #customer_list {
-  width: 930px;
-  padding-left: 20px;
+  /*width: 930px;*/
+  padding-left: 0px;
   margin-bottom: 10px;
   color: #333;
+  margin: auto;
 }
 
 #customer_list table {
-  width: 910px;
+  /*width: 910px;*/
+  border-collapse: collapse;
+  margin: auto;
+  width: 100%;
+}
+
+#customer_list tr td:nth-child(1) {
+  padding: 0px 20px;
+}
+
+#customer_list tbody tr:nth-child(odd) {
+  background: #d7f0ff;
+  width: 100%;
 }
 
 .customer_info {
   font-weight: bold;
   font-size: 45px;
-  width: 900px;
+  /*width: 900px;*/
 }
 
 #customers td {

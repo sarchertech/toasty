@@ -19,4 +19,8 @@ $(document).ready(function() {
   $(document)[0].oncontextmenu = function() {
     return false;
   };
+  
+  setTimeout(function() {
+    $("#flash").fadeOut(2000);
+  },3000);
 });

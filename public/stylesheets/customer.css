@@ -17,10 +17,19 @@ h3 {
   line-height: 1;
 }
 
+#customers h3 {
+  width: 440px;
+  word-wrap: break-word;
+}
+
 h4 {
   font-size: 35px;
   letter-spacing: -1px;
   line-height: 1.2;
+}
+
+#customers h4 {
+  word-wrap: break-word;
 }
 
 #login_logo {

@@ -46,7 +46,7 @@ class Customer < ActiveRecord::Base
 
   validates_uniqueness_of :customer_number, :scope => :salon_id
 
-  default_scope :order => 'created_at DESC'
+  default_scope :order => 'customers.created_at DESC'
 
   scope :filter, lambda { |name, level, type|
     by_name(name).by_level(level).by_type(type)
@@ -57,9 +57,11 @@ class Customer < ActiveRecord::Base
     return if tanned.blank? || tanned[:days].blank? || tanned[:hhn].blank?
     
     if tanned[:hhn] == "have"     
+      select('DISTINCT customers.*').
       joins("LEFT JOIN tan_sessions ON customers.id = tan_sessions.customer_id").
       where("tan_sessions.created_at > ?", tanned[:days].to_i.days.ago ) 
     elsif tanned[:hhn] == "have_not"
+      select('DISTINCT customers.*').
       joins("LEFT JOIN tan_sessions ON customers.id = tan_sessions.customer_id").
       where("tan_sessions.created_at < ? OR tan_sessions.created_at IS NULL", 
             tanned[:days].to_i.days.ago) 

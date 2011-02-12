@@ -340,4 +340,15 @@ class CustomerTest < ActiveSupport::TestCase
     
     assert customer2.valid?
   end
+
+  test "scope by_tanned shouldn't return a customer more than once" do
+    @rhonda.save
+    @tan_session = Factory.create(:tan_session, :customer_id => @rhonda.id)
+    @tan_session2 = Factory.create(:tan_session, :customer_id => @rhonda.id)
+    @tan_session3 = Factory.create(:tan_session, :customer_id => @rhonda.id)
+
+    customers = Customer.by_tanned({:hhn => "have", :days => "30"})
+
+    assert_equal(1, customers.length)
+  end
 end

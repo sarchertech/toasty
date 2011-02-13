@@ -1,5 +1,3 @@
-var number_of_beds = 6;
-
 function isTmaxLocal() {
 };
 
@@ -171,6 +169,7 @@ function selectBed(a) {
 
 $(document).ready(function() {
   $ip = $('meta[name=tmax-ip]').attr('content');
+  $number_of_beds = $('meta[name=number-of-beds]').attr('content');
   $activate_url = "http://" + $ip + ":4567/1/";
   $status_url = "http://" + $ip + ":4568/";
   $reset_url = "http://" + $ip + ":4567/2/"
@@ -232,10 +231,10 @@ $(document).ready(function() {
 	  return false;
 	});
 	
-	getTimeStatus(number_of_beds);
+	getTimeStatus($number_of_beds);
 	
 	window.setInterval(function() {
-	  getTimeStatus(number_of_beds);
+	  getTimeStatus($number_of_beds);
   }, 10000);
 	
 	//window.setInterval(function() {

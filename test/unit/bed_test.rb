@@ -67,4 +67,14 @@ class BedTest < ActiveSupport::TestCase
     @sundash.max_time = "one"
     assert !@sundash.valid?
   end
+
+  test "by_number scope should order by bed number" do
+    bed1 = Factory.create(:bed, :bed_number => 3)
+    bed2 = Factory.create(:bed, :bed_number => 9)
+    bed3 = Factory.create(:bed, :bed_number => 2)
+
+    bed = Bed.by_number.last
+
+    assert_equal(9, bed.bed_number)
+  end
 end

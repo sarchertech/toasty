@@ -11,6 +11,8 @@ class Bed < ActiveRecord::Base
                          :message => "must be between 1 and 15"
   validates_inclusion_of :level, :in => 1..6
   validates_inclusion_of :max_time, :in => 5..20
+
+  scope :by_number, order("bed_number")
   
   def session_over?
     tan_session = self.tan_sessions.last

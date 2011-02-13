@@ -1,8 +1,3 @@
-ip = "192.168.1.2";
-activate_url = "http://" + ip + ":4567/1/";
-status_url = "http://" + ip + ":4568/";
-reset_url = "http://" + ip + ":4567/2/"
-
 var number_of_beds = 6;
 
 function isTmaxLocal() {
@@ -10,7 +5,7 @@ function isTmaxLocal() {
 
 function activateBed(form) {
   var form = form;
-  var url = activate_url;
+  var url = $activate_url;
 	var bed = $("#tan_session_bed_id").val();
 	var minutes = $("#tan_session_minutes").val();
 	var delay = $("#tan_session_delay").val();
@@ -52,7 +47,7 @@ function activateBed(form) {
 };
 
 function resetBed() {
-  var url = reset_url;
+  var url = $reset_url;
   var bed = $("#tan_session_bed_id").val();
   $.ajax({
     url: url + bed,
@@ -98,7 +93,7 @@ function resetBed() {
 };
 
 function getTimeStatus(beds) {
-	var url = status_url;
+	var url = $status_url;
 	$.ajax({
 	  url: url + beds,
 	  dataType: 'json',
@@ -175,6 +170,11 @@ function selectBed(a) {
 };
 
 $(document).ready(function() {
+  $ip = $('meta[name=tmax-ip]').attr('content');
+  $activate_url = "http://" + $ip + ":4567/1/";
+  $status_url = "http://" + $ip + ":4568/";
+  $reset_url = "http://" + $ip + ":4567/2/"
+  
   $index = $("#tan_session_minutes");
   $time_box = $("#tan_session_minutes");
   
@@ -236,7 +236,7 @@ $(document).ready(function() {
 	
 	window.setInterval(function() {
 	  getTimeStatus(number_of_beds);
-  }, 1000);
+  }, 10000);
 	
 	//window.setInterval(function() {
 	  //getTimeStatus(14);

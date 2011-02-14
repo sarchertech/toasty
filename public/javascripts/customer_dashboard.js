@@ -9,7 +9,7 @@ function activateBed() {
 	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
-	    //createSession();
+	    createSession();
   	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
   	    $("#post_active").fadeIn(1000);

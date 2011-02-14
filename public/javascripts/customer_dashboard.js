@@ -113,7 +113,7 @@ function selectBed(a) {
 };
 
 function doTimeout() {
-  window.location = $form.attr("data-login-url");
+  //window.location = $form.attr("data-login-url");
 };
 
 $(document).ready(function() {

@@ -185,7 +185,7 @@ $(document).ready(function() {
 	    depressed = false
 	    $(this).removeClass("start_active");
 	    activateBed();
-	    return false;
+	    //return false;
 	    //setTimeout(function() {
 	      //window.location = $form.attr("data-login-url");
 	    //},3500);

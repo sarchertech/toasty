@@ -3,9 +3,9 @@ function activateBed() {
 	var bed = $("#tan_session_bed").val();
 	var minutes = $("#tan_session_minutes").val();
 	var a = $("#_" + bed + " a")
-	//if ( a.attr("data-bed-status") == "4" ) {
+	if ( a.attr("data-bed-status") == "4" ) {
 	  resetBed();
-	//};
+	};
 	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {

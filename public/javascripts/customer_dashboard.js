@@ -186,9 +186,9 @@ $(document).ready(function() {
 	    $(this).removeClass("start_active");
 	    activateBed();
 	    //return false;
-	    //setTimeout(function() {
+	    setTimeout(function() {
 	      //window.location = $form.attr("data-login-url");
-	    //},3500);
+	    },3500);
     };
 	});
 

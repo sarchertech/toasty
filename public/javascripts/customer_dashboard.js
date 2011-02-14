@@ -9,7 +9,7 @@ function activateBed() {
 	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
-	    createSession();
+	    //createSession();
   	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
   	    $("#post_active").fadeIn(1000);
@@ -113,7 +113,7 @@ function selectBed(a) {
 };
 
 function doTimeout() {
-  //window.location = $form.attr("data-login-url");
+  window.location = $form.attr("data-login-url");
 };
 
 $(document).ready(function() {
@@ -187,7 +187,7 @@ $(document).ready(function() {
 	    activateBed();
 	    //return false;
 	    setTimeout(function() {
-	      //window.location = $form.attr("data-login-url");
+	      window.location = $form.attr("data-login-url");
 	    },3500);
     };
 	});

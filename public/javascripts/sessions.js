@@ -235,7 +235,7 @@ $(document).ready(function() {
 	
 	window.setInterval(function() {
 	  getTimeStatus($number_of_beds);
-  }, 10000);
+  }, 1000);
 	
 	//window.setInterval(function() {
 	  //getTimeStatus(14);

@@ -3,13 +3,13 @@ function activateBed() {
 	var bed = $("#tan_session_bed").val();
 	var minutes = $("#tan_session_minutes").val();
 	var a = $("#_" + bed + " a")
-	if ( a.attr("data-bed-status") == "4" ) {
+	//if ( a.attr("data-bed-status") == "4" ) {
 	  resetBed();
-	};
+	//};
 	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
-	    createSession();
+	    //createSession();
   	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
   	    $("#post_active").fadeIn(1000);
@@ -185,9 +185,9 @@ $(document).ready(function() {
 	    depressed = false
 	    $(this).removeClass("start_active");
 	    activateBed();
-	    setTimeout(function() {
-	      window.location = $form.attr("data-login-url");
-	    },3500);
+	    //setTimeout(function() {
+	      //window.location = $form.attr("data-login-url");
+	    //},3500);
     };
 	});
 

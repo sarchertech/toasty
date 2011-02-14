@@ -113,7 +113,7 @@ function selectBed(a) {
 };
 
 function doTimeout() {
-  window.location = $form.attr("data-login-url");
+  //window.location = $form.attr("data-login-url");
 };
 
 $(document).ready(function() {
@@ -185,16 +185,17 @@ $(document).ready(function() {
 	    depressed = false
 	    $(this).removeClass("start_active");
 	    activateBed();
+	    return false;
 	    //setTimeout(function() {
 	      //window.location = $form.attr("data-login-url");
 	    //},3500);
     };
 	});
 
-  var idleTimer = window.setTimeout(doTimeout, 60000);
+  //var idleTimer = window.setTimeout(doTimeout, 60000);
   
-  $(this).mousemove(function(e){
-    window.clearTimeout(idleTimer);
-    idleTimer = window.setTimeout(doTimeout, 60000);
-  });
+  //$(this).mousemove(function(e){
+    //window.clearTimeout(idleTimer);
+    //idleTimer = window.setTimeout(doTimeout, 60000);
+  //});
 });

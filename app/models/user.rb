@@ -141,6 +141,7 @@ class User < ActiveRecord::Base
   def prefix
     pre = lambda {|n| n.downcase.gsub(/[ -]/,'') }
     
+    #may not work with ruby 1.8.7
     (pre.call self.first_name)[0] + (pre.call self.last_name)[0..5]
   end
 

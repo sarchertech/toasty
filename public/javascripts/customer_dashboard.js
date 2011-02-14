@@ -186,6 +186,7 @@ $(document).ready(function() {
 	    $(this).removeClass("start_active");
 	    activateBed();
 	    //return false;
+	    window.clearTimeout(idleTimer);
 	    setTimeout(function() {
 	      window.location = $form.attr("data-login-url");
 	    },3500);

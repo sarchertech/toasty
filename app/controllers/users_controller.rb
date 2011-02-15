@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :set_current_user
+
   #GET /users
   #GET /salons/1/users
   def index

@@ -45,6 +45,11 @@ class SessionController < ApplicationController
   end
 
   def successful_login_redirect
-    redirect_to(new_salon_tan_session_url(@current_account.salons.first))
+    if session[:return_to]
+      redirect_to(session[:return_to])
+      session[:return_to] = nil
+    else
+      redirect_to(new_salon_tan_session_url(@current_account.salons.first))
+    end
   end
 end

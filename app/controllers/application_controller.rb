@@ -14,6 +14,17 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_current_user
+    if session[:user_id]
+      @current_user = @current_salon.users.find(session[:user_id])
+    end
+
+    unless @current_user
+      session[:return_to] = request.fullpath
+      redirect_to login_url    
+    end
+  end
+
   def scope
     @current_salon || @current_account
   end

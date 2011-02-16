@@ -133,12 +133,16 @@ $(document).ready(function() {
   disableBeds();
 	
 	getTimeStatus($number_of_beds);
+	
+	var idleTimer = window.setTimeout(doTimeout, 10000);
   
   $("body").click(function() {
     return false;
   });
   
   $("body").mousedown(function() {
+    window.clearTimeout(idleTimer);
+    idleTimer = window.setTimeout(doTimeout, 10000);
     return false;
   });
   
@@ -149,6 +153,7 @@ $(document).ready(function() {
     if(+$index.val() < max) {
   		$index.val(+$index.val()+1 );
   	}
+  	return false;
   });
 
   $("#dash_down_arrow").mousehold(function(){
@@ -192,11 +197,4 @@ $(document).ready(function() {
 	    },3500);
     };
 	});
-
-  var idleTimer = window.setTimeout(doTimeout, 60000);
-  
-  $(this).mousemove(function(e){
-    window.clearTimeout(idleTimer);
-    idleTimer = window.setTimeout(doTimeout, 60000);
-  });
 });

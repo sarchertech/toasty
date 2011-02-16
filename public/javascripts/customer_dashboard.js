@@ -132,7 +132,7 @@ $(document).ready(function() {
   
   disableBeds();
 	
-	//getTimeStatus($number_of_beds);
+	getTimeStatus($number_of_beds);
   
   $("body").click(function() {
     return false;

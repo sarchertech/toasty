@@ -193,10 +193,10 @@ $(document).ready(function() {
     };
 	});
 
-  var idleTimer = window.setTimeout(doTimeout, 10000);
+  var idleTimer = window.setTimeout(doTimeout, 90000);
   
-  $(this).mousemove(function(){
-    window.clearTimeout(idleTimer);
-    idleTimer = window.setTimeout(doTimeout, 10000);
-  });
+  //$(this).mousemove(function(){
+    //window.clearTimeout(idleTimer);
+    //idleTimer = window.setTimeout(doTimeout, 10000);
+  //});
 });

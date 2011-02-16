@@ -195,8 +195,8 @@ $(document).ready(function() {
 
   var idleTimer = window.setTimeout(doTimeout, 10000);
   
-  //$(this).mousemove(function(e){
-    //window.clearTimeout(idleTimer);
-    //idleTimer = window.setTimeout(doTimeout, 60000);
-  //});
+  $(this).mousemove(function(e){
+    window.clearTimeout(idleTimer);
+    var idleTimer = window.setTimeout(doTimeout, 10000);
+  });
 });

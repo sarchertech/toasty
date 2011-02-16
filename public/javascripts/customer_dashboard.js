@@ -132,7 +132,7 @@ $(document).ready(function() {
   
   disableBeds();
 	
-	getTimeStatus($number_of_beds);
+	//getTimeStatus($number_of_beds);
   
   $("body").click(function() {
     return false;
@@ -193,10 +193,10 @@ $(document).ready(function() {
     };
 	});
 
-  var idleTimer = window.setTimeout(doTimeout, 90000);
+  var idleTimer = window.setTimeout(doTimeout, 10000);
   
-  //$(this).mousemove(function(){
-    //window.clearTimeout(idleTimer);
-    //idleTimer = window.setTimeout(doTimeout, 10000);
-  //});
+  $(this).mousemove(function(){
+    window.clearTimeout(idleTimer);
+    idleTimer = window.setTimeout(doTimeout, 10000);
+  });
 });

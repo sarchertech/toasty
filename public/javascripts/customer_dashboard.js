@@ -195,7 +195,7 @@ $(document).ready(function() {
 
   var idleTimer = window.setTimeout(doTimeout, 10000);
   
-  $(this).mousemove(function(){
+  $(this).mousedown(function(){
     window.clearTimeout(idleTimer);
     idleTimer = window.setTimeout(doTimeout, 10000);
   });

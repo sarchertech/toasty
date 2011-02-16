@@ -134,7 +134,7 @@ $(document).ready(function() {
 	
 	getTimeStatus($number_of_beds);
 	
-	var idleTimer = window.setTimeout(doTimeout, 10000);
+	var idleTimer = window.setTimeout(doTimeout, 30000);
   
   $("body").click(function() {
     return false;
@@ -142,7 +142,7 @@ $(document).ready(function() {
   
   $("body").mousedown(function() {
     window.clearTimeout(idleTimer);
-    idleTimer = window.setTimeout(doTimeout, 10000);
+    idleTimer = window.setTimeout(doTimeout, 30000);
     return false;
   });
   

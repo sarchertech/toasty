@@ -26,21 +26,21 @@
 }
 
 #customer_dashboard #customer_first_name {
-	width: 250px;
 	color: white;
 	font-size: 30px;
-	line-height: 0;
-	float: left;
-	text-align: left;
-	margin-top: 15px;
+	line-height: .85;
+	width: 400px;
+	margin-top: 0px;
+	overflow: hidden;
 	letter-spacing: 0;
+	position: absolute;
 }
 
 #bottom_level {
   float: left;
   color: white;
   font-size: 20px;
-  padding-top: 20px;
+  padding-top: 42px;
 }
 
 /* customer dashboard arrow */

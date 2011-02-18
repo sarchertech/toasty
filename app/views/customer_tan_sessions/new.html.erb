@@ -50,7 +50,7 @@
     
     <section id="customer_notes">
       <div id="notebox">
-        <p id="customer_first_name"><%= @customer.first_name + " " + @customer.last_name %></p>
+        <p id="customer_first_name"><%= @customer.first_name.truncate(20) + " " + @customer.last_name.truncate(20) %></p>
         <p id="bottom_level" data-customer-level="<%= @customer.level %>">Level <%= @customer.level.to_s + ", " + type_and_details_for(@customer)%></p>
       </div>
     </section>

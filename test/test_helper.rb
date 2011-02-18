@@ -27,4 +27,10 @@ class ActiveSupport::TestCase
   def initialize_salon
     @salon = Factory.create(:salon, :account_id => @account.id)
   end
+
+  def initialize_user
+    @user = Factory.create(:user, :account_id => @account.id,
+                                          :salon_id => @salon.id)
+    session[:user_id] = @user.id
+  end
 end

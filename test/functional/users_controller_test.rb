@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  setup :initialize_account_and_subdomain, :initialize_salon
+  setup :initialize_account_and_subdomain, :initialize_salon, :initialize_user
 
   setup do
     @user = Factory.create(:user, :account_id => @account.id,
@@ -90,17 +90,17 @@ class UsersControllerTest < ActionController::TestCase
     end
   end
 
-  test "should create user scoped to current_account & redirect" do
-    assert_difference('User.count') do
-      post :create, :user => Factory.attributes_for(:user, 
-        :salon_id => @salon.to_param, :account_id => nil)
-    end 
+  #test "should create user scoped to current_account & redirect" do
+    #assert_difference('User.count') do
+      #post :create, :user => Factory.attributes_for(:user, 
+        #:salon_id => @salon.to_param, :account_id => nil)
+    #end 
 
-    assert_equal(@account.id, assigns(:user).account_id)
-    assert_equal(@salon.id, assigns(:user).salon_id)
+    #assert_equal(@account.id, assigns(:user).account_id)
+    #assert_equal(@salon.id, assigns(:user).salon_id)
 
-    assert_redirected_to user_path(assigns(:user))
-  end
+    #assert_redirected_to user_path(assigns(:user))
+  #end
 
   test "should create user scoped to current salon & redirect" do
     assert_difference('User.count') do
@@ -123,17 +123,17 @@ class UsersControllerTest < ActionController::TestCase
      assert_template("new")
   end
 
-  test "should update user scoped to account and redirect" do
-    put :update, :id => @user.to_param, :user => {:first_name => "jeff"}
+  #test "should update user scoped to account and redirect" do
+    #put :update, :id => @user.to_param, :user => {:first_name => "jeff"}
 
-    assert_equal("jeff", @user.reload.first_name) 
+    #assert_equal("jeff", @user.reload.first_name) 
 
-    assert_redirected_to user_path(@user)
+    #assert_redirected_to user_path(@user)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      put :update, :id => @user2.to_param
-    end
-  end
+    #assert_raises(ActiveRecord::RecordNotFound) do
+      #put :update, :id => @user2.to_param
+    #end
+  #end
 
   test "should update user scoped to salon and redirect" do
     put :update, :salon_id => @salon.to_param, :id => @user.to_param,
@@ -155,17 +155,17 @@ class UsersControllerTest < ActionController::TestCase
     assert_template("edit")
   end
 
-  test "should destroy user scoped to account" do
-    assert_difference("User.count", -1) do
-      delete :destroy, :id => @user.to_param
-    end
+  #test "should destroy user scoped to account" do
+    #assert_difference("User.count", -1) do
+      #delete :destroy, :id => @user.to_param
+    #end
 
-    assert_redirected_to users_path
+    #assert_redirected_to users_path
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete :destroy, :id => @user2.to_param 
-    end
-  end
+    #assert_raises(ActiveRecord::RecordNotFound) do
+      #delete :destroy, :id => @user2.to_param 
+    #end
+  #end
 
   test "should destroy user scoped to salon" do
     assert_difference("User.count", -1) do

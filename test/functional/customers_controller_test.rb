@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CustomersControllerTest < ActionController::TestCase
-  setup :initialize_account_and_subdomain, :initialize_salon
+  setup :initialize_account_and_subdomain, :initialize_salon, :initialize_user
 
   setup do
     @customer = Factory.create(:customer, :account_id => @account.id,
@@ -89,17 +89,17 @@ class CustomersControllerTest < ActionController::TestCase
     end
   end
 
-  test "should create customer scoped to current_account & redirect" do
-    assert_difference('Customer.count') do
-      post :create, :customer => Factory.attributes_for(:customer, 
-        :salon_id => @salon.to_param, :account_id => nil)
-    end 
+  #test "should create customer scoped to current_account & redirect" do
+    #assert_difference('Customer.count') do
+      #post :create, :customer => Factory.attributes_for(:customer, 
+        #:salon_id => @salon.to_param, :account_id => nil)
+    #end 
 
-    assert_equal(@account.id, assigns(:customer).account_id)
-    assert_equal(@salon.id, assigns(:customer).salon_id)
+    #assert_equal(@account.id, assigns(:customer).account_id)
+    #assert_equal(@salon.id, assigns(:customer).salon_id)
 
-    assert_redirected_to customer_path(assigns(:customer))
-  end
+    #assert_redirected_to customer_path(assigns(:customer))
+  #end
 
   test "should create customer scoped to current salon & redirect" do
     assert_difference('Customer.count') do
@@ -128,17 +128,17 @@ class CustomersControllerTest < ActionController::TestCase
      assert_template("new")
   end
 
-  test "should update customer scoped to account and redirect" do
-    put :update, :id => @customer.to_param, :customer => {:level => "2"}
+  #test "should update customer scoped to account and redirect" do
+    #put :update, :id => @customer.to_param, :customer => {:level => "2"}
 
-    assert_equal(2, @customer.reload.level) 
+    #assert_equal(2, @customer.reload.level) 
 
-    assert_redirected_to customer_path(@customer)
+    #assert_redirected_to customer_path(@customer)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      put :update, :id => @customer2.to_param
-    end
-  end
+    #assert_raises(ActiveRecord::RecordNotFound) do
+      #put :update, :id => @customer2.to_param
+    #end
+  #end
 
   test "should update customer scoped to salon and redirect" do
     put :update, :salon_id => @salon.to_param, :id => @customer.to_param,
@@ -160,17 +160,17 @@ class CustomersControllerTest < ActionController::TestCase
     assert_template("edit")
   end
 
-  test "should destroy customer scoped to account" do
-    assert_difference("Customer.count", -1) do
-      delete :destroy, :id => @customer.to_param
-    end
+  #test "should destroy customer scoped to account" do
+    #assert_difference("Customer.count", -1) do
+      #delete :destroy, :id => @customer.to_param
+    #end
 
-    assert_redirected_to customers_path
+    #assert_redirected_to customers_path
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete :destroy, :id => @customer2.to_param 
-    end
-  end
+    #assert_raises(ActiveRecord::RecordNotFound) do
+      #delete :destroy, :id => @customer2.to_param 
+    #end
+  #end
 
   test "should destroy customer scoped to salon" do
     assert_difference("Customer.count", -1) do

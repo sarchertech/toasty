@@ -22,6 +22,9 @@ Toasty::Application.routes.draw do
   match '/salons/:salon_id/customer_search' => 'customer_search#create', 
     :as => 'customer_search', :via => :post
 
+  match '/salons/:salon_id/customer_json_search' => 'customer_json_search#create', 
+    :as => 'customer_json_search', :via => :post
+
   match '/login' => 'session#new', :as => 'new_login', :via => :get, 
                                    :constraints => {:subdomain => /.+/}
 

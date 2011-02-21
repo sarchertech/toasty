@@ -288,6 +288,7 @@
   -webkit-box-shadow: 2px 4px 4px black;
   -moz-box-shadow: 2px 4px 4px black;
   box-shadow: 2px 4px 4px black;
+  outline: none;
 }
 /* control box */
 #dash_controls_wrapper {
@@ -340,3 +341,26 @@
   color: #0BB516;
   border: 3px solid #0BB516;
 }
+
+/* customer search dropdown */
+#customer_dropdown {
+  background: white;
+  font-size: 20px;
+  position: absolute;
+  width: 376px;
+  margin-left: 18px;
+  max-height: 100px;
+  overflow-y: auto;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-box-shadow: 2px 4px 4px black;
+  -moz-box-shadow: 2px 4px 4px black;
+  padding: 5px;
+  margin-top: 3px;
+  display: none;
+}
+
+#customer_dropdown .active {
+  background: #B9E4FF;
+}
+

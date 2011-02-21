@@ -50,7 +50,7 @@ class CustomerJsonSearchControllerTest < ActionController::TestCase
                               :last_name => "brown", :salon_id => @salon.id,)
   
     post :create, :salon_id => @salon.to_param, :name => "seth", :format => "js"
-    json = customer.to_json(:only => [:id, :first_name])
+    json = customer.to_json(:only => [:id, :first_name, :last_name])
     
     json_response = @response.body
     assert_equal("[" + json + "]", json_response)

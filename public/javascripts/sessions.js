@@ -167,6 +167,50 @@ function selectBed(a) {
 	return false;
 };
 
+var search_timeout = undefined;
+
+function customerJSONSearch() {
+  if(search_timeout != undefined) {
+    clearTimeout(search_timeout);
+  };
+  
+  search_timeout = setTimeout(function() {
+    search_timeout = undefined;
+    
+    var form = $("#customer_json_search_form");
+    var url = form.attr("action");  
+    var formData = form.serialize();
+    
+    $.ajax({
+      type: 'POST',
+      url: url,
+      data: formData,
+  	  dataType: 'json',
+  	  success: function(json) {
+  	    $number_of_customers = json.length;
+  	    applyCustomerJSONSearch(json);
+  	  },
+  	  error: function(xhr, ajaxOptions, thrownError){
+  	    //alert('status and times error--' + thrownError);
+  	    $number_of_customers = 0;
+  	    $("#customer_dropdown").html('');
+  	  }
+  	});
+  }, 250);
+};
+
+function applyCustomerJSONSearch(json) {
+  var customers_list = [];
+  
+  $.each(json, function(i, val) { 
+    cust = val.customer
+    customers_list.push('<li>' + cust.first_name + ' ' + cust.last_name + '</li>')
+  });
+  
+  $("#customer_dropdown").html(customers_list.join('')).show();
+  $("#customer_dropdown li:first-child").addClass('active');
+};
+
 $(document).ready(function() {
   $ip = $('meta[name=tmax-ip]').attr('content');
   $number_of_beds = $('meta[name=number-of-beds]').attr('content');
@@ -176,6 +220,38 @@ $(document).ready(function() {
   
   $index = $("#tan_session_minutes");
   $time_box = $("#tan_session_minutes");
+  $search_box = $("#dash_search_box")
+  $number_of_customers = 0
+  
+  $("#dash_search_box").bind("keyup", function(e) {
+    key = e.which
+    if (!(key == 37 || key == 38 || key == 39 || key == 40)) {
+      customerJSONSearch();
+    };
+  });
+  
+  $("#customer_dropdown li").live('click', function() {
+    $("#customer_dropdown li").removeClass('active');
+    $(this).addClass('active');
+    $search_box.focus();
+  });
+  
+  $("#customer_dropdown li").live('mouseover', function() {
+    $("#customer_dropdown li").removeClass('active');
+    $(this).addClass('active');
+  });
+  
+  $($search_box).bind("keydown", function(e) {
+    if(e.which == 40) {
+      $("#customer_dropdown li.active").removeClass('active').next().addClass('active');
+      return false;
+    }
+    else if (e.which == 38) {
+      $("#customer_dropdown li.active").removeClass('active').prev().addClass('active');
+      return false;
+    };
+    //$search_box.focus();
+  });
   
   //$("body").click(function() {
     //return false;
@@ -185,7 +261,7 @@ $(document).ready(function() {
     //return false;
   //});
   
-  $(document)[0].oncontextmenu = function() {return false;}
+  //$(document)[0].oncontextmenu = function() {return false;}
   
   $("#dash_up_arrow").mousehold(function(){
     $max = $index.attr("data-maxtime")
@@ -231,11 +307,11 @@ $(document).ready(function() {
 	  return false;
 	});
 	
-	getTimeStatus($number_of_beds);
+	//getTimeStatus($number_of_beds);
 	
-	window.setInterval(function() {
-	  getTimeStatus($number_of_beds);
-  }, 1000);
+	//window.setInterval(function() {
+	  //getTimeStatus($number_of_beds);
+  //}, 1000);
 	
 	//window.setInterval(function() {
 	  //getTimeStatus(14);

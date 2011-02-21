@@ -7,7 +7,7 @@ class CustomerJsonSearchController < ApplicationController
 
     respond_to do |format|
       if @customers.present?
-        customers =  @customers.to_json(:only => [:id, :first_name]) 
+        customers =  @customers.to_json(:only => [:id, :first_name, :last_name]) 
         format.js {render :json => customers }   
       else
         format.js {render :text => "customer not found", :status => 404}

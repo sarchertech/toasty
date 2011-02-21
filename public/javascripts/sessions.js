@@ -181,22 +181,33 @@ function customerJSONSearch() {
     var url = form.attr("action");  
     var formData = form.serialize();
     
-    $.ajax({
-      type: 'POST',
-      url: url,
-      data: formData,
-  	  dataType: 'json',
-  	  success: function(json) {
-  	    $number_of_customers = json.length;
-  	    applyCustomerJSONSearch(json);
-  	  },
-  	  error: function(xhr, ajaxOptions, thrownError){
-  	    //alert('status and times error--' + thrownError);
-  	    $number_of_customers = 0;
-  	    $("#customer_dropdown").html('');
-  	  }
-  	});
+    if ($search_box.val() == "") {
+      clearCustomerDropdown();
+    }
+    else {
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: formData,
+    	  dataType: 'json',
+    	  success: function(json) {
+    	    $number_of_customers = json.length;
+    	    applyCustomerJSONSearch(json);
+    	  },
+    	  error: function(xhr, ajaxOptions, thrownError){
+    	    //alert('status and times error--' + thrownError);
+          clearCustomerDropdown();
+    	  }
+    	});
+	  };
   }, 250);
+};
+
+function clearCustomerDropdown() {
+  $number_of_customers = 0;
+  setActive(0);
+  $("#customer_dropdown").html('');
+  $("#customer_dropdown_wrapper").hide();
 };
 
 function applyCustomerJSONSearch(json) {
@@ -204,11 +215,39 @@ function applyCustomerJSONSearch(json) {
   
   $.each(json, function(i, val) { 
     cust = val.customer
-    customers_list.push('<li>' + cust.first_name + ' ' + cust.last_name + '</li>')
+    name = (cust.first_name + " " + cust.last_name).substring(0, 40);
+    customers_list.push('<li id="cust' + i + '">' + name + '</li>')
   });
   
-  $("#customer_dropdown").html(customers_list.join('')).show();
-  $("#customer_dropdown li:first-child").addClass('active');
+  $($customer_dropdown).html(customers_list.join(''));
+  $("#customer_dropdown_wrapper").show();
+  setActive(0);
+};
+
+function setActive(num) {
+  $active = num
+  $("#customer_dropdown li.active").removeClass('active')
+  $("#customer_dropdown #cust" + $active).addClass('active'); 
+};
+
+function decrementActive() {
+  if ($active > 0) {
+    setActive($active - 1)
+    var height = $("#customer_dropdown li.active").height(); 
+    if ($("#customer_dropdown li.active").position().top < 0 ) {
+      $customer_dropdown.animate({ scrollTop: ($active * height )}, 150);
+    };
+  };
+};
+
+function incrementActive() {
+  if ($active < $number_of_customers - 1) {
+    setActive($active + 1);
+    var height = $("#customer_dropdown li.active").height(); 
+    if ($("#customer_dropdown li.active").position().top >= (height * 3) ) {
+      $customer_dropdown.animate({ scrollTop: (($active -3 ) * height)}, 150);
+    };
+  };
 };
 
 $(document).ready(function() {
@@ -220,8 +259,10 @@ $(document).ready(function() {
   
   $index = $("#tan_session_minutes");
   $time_box = $("#tan_session_minutes");
-  $search_box = $("#dash_search_box")
-  $number_of_customers = 0
+  $search_box = $("#dash_search_box");
+  $customer_dropdown = $("#customer_dropdown");
+  $number_of_customers = 0;
+  $active = 0;
   
   $("#dash_search_box").bind("keyup", function(e) {
     key = e.which
@@ -231,23 +272,22 @@ $(document).ready(function() {
   });
   
   $("#customer_dropdown li").live('click', function() {
-    $("#customer_dropdown li").removeClass('active');
-    $(this).addClass('active');
+    setActive($(this).index() );
     $search_box.focus();
   });
   
   $("#customer_dropdown li").live('mouseover', function() {
-    $("#customer_dropdown li").removeClass('active');
-    $(this).addClass('active');
+    setActive($(this).index() );
+    $search_box.focus();
   });
   
   $($search_box).bind("keydown", function(e) {
     if(e.which == 40) {
-      $("#customer_dropdown li.active").removeClass('active').next().addClass('active');
+      incrementActive();
       return false;
     }
     else if (e.which == 38) {
-      $("#customer_dropdown li.active").removeClass('active').prev().addClass('active');
+      decrementActive();
       return false;
     };
     //$search_box.focus();

@@ -343,21 +343,29 @@
 }
 
 /* customer search dropdown */
-#customer_dropdown {
-  background: white;
-  font-size: 20px;
+#customer_dropdown_wrapper {
   position: absolute;
-  width: 376px;
   margin-left: 18px;
-  max-height: 100px;
-  overflow-y: auto;
+  background: white;
+  padding: 5px;
+  margin-top: 3px;
   border-radius: 6px;
   -moz-border-radius: 6px;
   -webkit-box-shadow: 2px 4px 4px black;
   -moz-box-shadow: 2px 4px 4px black;
-  padding: 5px;
-  margin-top: 3px;
-  display: none;
+  display: none;  
+}
+
+#customer_dropdown {
+  font-size: 20px;
+  line-height: 1.25;
+  width: 376px;
+  max-height: 5em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space:nowrap;
+  list-style-type: none;
+  position: relative;
 }
 
 #customer_dropdown .active {

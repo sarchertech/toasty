@@ -343,6 +343,8 @@ $(document).ready(function() {
     return false;
   });
   
+  $("header a").unbind('click');
+  
   $("#tan_session_minutes").mousedown(function() {
     return false;
   });

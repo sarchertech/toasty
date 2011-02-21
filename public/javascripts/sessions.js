@@ -283,7 +283,7 @@ $(document).ready(function() {
   
   $($search_box).bind("keyup", function(e) {
     key = e.which
-    if (!(key == 37 || key == 38 || key == 39 || key == 40)) {
+    if (!(key == 37 || key == 38 || key == 39 || key == 40 || key == 27)) {
       customerJSONSearch();
     };
   });
@@ -304,6 +304,7 @@ $(document).ready(function() {
     setActive($(this).index() );
     $($search_form).submit();
     return false;
+    $search_box.focus()
   });
   
   $("#customer_dropdown li").live('mouseover', function() {
@@ -319,8 +320,10 @@ $(document).ready(function() {
     else if (e.which == 38) {
       decrementActive();
       return false;
+    }
+    else if (e.which == 27) {
+      clearCustomerDropdown();
     };
-    //$search_box.focus();
   });
   
   $("#search_customer_info_wrapper img").click(function() {

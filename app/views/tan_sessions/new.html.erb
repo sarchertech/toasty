@@ -22,7 +22,7 @@
           <div id="dash_minutes">
             <a id="dash_up_arrow" href="#"></a>
             <p>
-              <%= f.text_field(:minutes, :size => 2, :maxlength => 2, :value => 2) %>
+              <%= f.text_field(:minutes, :size => 2, :maxlength => 2, :value => 15) %>
             </p>
             <a id="dash_down_arrow" href="#"></a>
           </div>
@@ -37,7 +37,6 @@
               <%= f.text_field(:delay, :size => 1, :maxlength => 1, :value => 3)%>
               <input id="start_admin" type="image" src="/images/start_button_admin.png" name="reset" width="239" height="73" alt="start button" />
             </form>
-            <p id="admin_customer_name">Krontz, Michael <br /> Level 1</p>
           </div>
         <% end %>
       </div>
@@ -46,10 +45,18 @@
     </section>
     
     <section id="dash_customer_search">
-      <%= form_tag(customer_json_search_path, :id => "customer_json_search_form") do %>
-        <input id="dash_search_box" type="text" size="19" placeholder="Search" maxlength="40" name="name" autocomplete="off"/>
-      <% end %>
+      <div id="search_box_wrapper">
+        <%= form_tag(customer_json_search_path, :id => "customer_json_search_form") do %>
+          <input id="dash_search_box" type="text" size="19" placeholder="Search" maxlength="40" name="name" autocomplete="off"/>
+        <% end %>
         <div id="customer_dropdown_wrapper"><ul id="customer_dropdown"></ul></div>
+      </div>
+      <div id="search_customer_info_wrapper">
+        <p id="search_customer_name"></p>
+        <p id="search_customer_level"></p>
+        <p id="search_customer_status"></p>
+        <img src="/images/cancel_icon.png" width="32" height="32" alt="Angry face" />
+      </div>
     </section>
   </section>
 </section>

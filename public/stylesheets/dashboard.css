@@ -12,6 +12,11 @@
   overflow: hidden;
 }
 
+#dashboard {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 /* buttons */
 #dash_buttons {
   width: 480px;
@@ -251,16 +256,6 @@
   top: -5px;
 }
 
-#admin_customer_name {
-  float: left;
-  color: #e8f4f9;
-  font-size: 33px;
-  font-weight: bold;
-  padding-left: 2px;
-  letter-spacing: -1px;
-  line-height: 1.1;
-}
-
 #dash_customer_search {
   height: 109px;
   background-color: #4a4a4a;  
@@ -363,12 +358,56 @@
   max-height: 5em;
   overflow-y: auto;
   overflow-x: hidden;
-  white-space:nowrap;
+  white-space: nowrap;
   list-style-type: none;
   position: relative;
 }
 
+#customer_dropdown li {
+  padding-left: 3px;
+  cursor: pointer;
+}
+
 #customer_dropdown .active {
   background: #B9E4FF;
+}
+
+#search_box_wrapper {
+
+}
+
+#search_customer_info_wrapper {
+  padding-left: 10px;
+  padding-top: 8px;
+  overflow: hidden;
+  display: none;
+}
+
+#search_customer_info_wrapper p {
+  float: left;
+  color: #e8f4f9;
+  font-weight: bold;
+  letter-spacing: -1px;
+  clear: left;
+}
+
+#search_customer_name {
+  white-space: nowrap;
+  font-size: 27px;
+  line-height: 1.2;
+}
+
+p#search_customer_level, p#search_customer_status {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+#search_customer_info_wrapper img {
+  float: right;
+  display: block;
+  padding-right: 20px;
+  position: relative;
+  top: -10px;
+  cursor: pointer;
 }
 

@@ -12,6 +12,7 @@ function activateBed(form) {
 	  success: function() {
 	    //alert('bed ' + bed + ' activated');
 	    //getTimeStatus(6);
+	    clearCustomerInfo();
 	  },
 	  error: function(xhr, ajaxOptions, thrownError){
 	    alert('bed not activated--' + thrownError );
@@ -161,9 +162,9 @@ function selectBed(a) {
 	$("#dash_start h2 span").html(num);
 	$("#tan_session_bed_id").val(num);
 	$time_box.attr("data-maxtime", max)
-	if(+$time_box.val() > max ) {
-		$time_box.val(max)
-	};
+	//if(+$time_box.val() > max ) {
+	$time_box.val(max)
+	//};
 	return false;
 };
 
@@ -208,15 +209,30 @@ function clearCustomerDropdown() {
   setActive(0);
   $("#customer_dropdown").html('');
   $("#customer_dropdown_wrapper").hide();
+  $search_box.focus();
+};
+
+function clearCustomerInfo() {
+  $("#search_customer_info_wrapper").hide();
+  $("#search_box_wrapper").fadeIn(300);
+  $search_box.val("")
+  clearCustomerDropdown();
 };
 
 function applyCustomerJSONSearch(json) {
   var customers_list = [];
   
   $.each(json, function(i, val) { 
-    cust = val.customer
-    name = (cust.first_name + " " + cust.last_name).substring(0, 40);
-    customers_list.push('<li id="cust' + i + '">' + name + '</li>')
+    var cust = val.customer;
+    var name = (cust.first_name + " " + cust.last_name).substring(0, 40);
+    var lvlAndId = 'data-cust-id="' + cust.id + '" data-cust-level="' + cust.level + '"';
+    var type = cust.word_for_type;
+    var details = ""
+    if (cust.details) {
+      details = ', ' + cust.details;
+    };
+    var status = 'data-cust-status="' + type + details + '"';
+    customers_list.push('<li id="cust' + i + '"' + lvlAndId + status + '>' + name + '</li>')
   });
   
   $($customer_dropdown).html(customers_list.join(''));
@@ -260,20 +276,34 @@ $(document).ready(function() {
   $index = $("#tan_session_minutes");
   $time_box = $("#tan_session_minutes");
   $search_box = $("#dash_search_box");
+  $search_form = $("#customer_json_search_form");
   $customer_dropdown = $("#customer_dropdown");
   $number_of_customers = 0;
   $active = 0;
   
-  $("#dash_search_box").bind("keyup", function(e) {
+  $($search_box).bind("keyup", function(e) {
     key = e.which
     if (!(key == 37 || key == 38 || key == 39 || key == 40)) {
       customerJSONSearch();
     };
   });
   
+  $($search_form).submit(function() {
+    var name = $("#customer_dropdown li.active").html();
+    var level = $("#customer_dropdown li.active").attr("data-cust-level");
+    var status = $("#customer_dropdown li.active").attr("data-cust-status");
+    $("#search_customer_name").html(name);
+    $("#search_customer_level").html('Level ' + level);
+    $("#search_customer_status").html(status);
+    $("#search_box_wrapper").hide();
+    $("#search_customer_info_wrapper").fadeIn(300);
+    return false;
+  });
+  
   $("#customer_dropdown li").live('click', function() {
     setActive($(this).index() );
-    $search_box.focus();
+    $($search_form).submit();
+    return false;
   });
   
   $("#customer_dropdown li").live('mouseover', function() {
@@ -293,6 +323,11 @@ $(document).ready(function() {
     //$search_box.focus();
   });
   
+  $("#search_customer_info_wrapper img").click(function() {
+    clearCustomerInfo();
+    return false;
+  });
+  
   //$("body").click(function() {
     //return false;
   //});
@@ -300,6 +335,14 @@ $(document).ready(function() {
   //$("body").mousedown(function() {
     //return false;
   //});
+  
+  $("a").click(function() {
+    return false;
+  });
+  
+  $("#tan_session_minutes").mousedown(function() {
+    return false;
+  });
   
   //$(document)[0].oncontextmenu = function() {return false;}
   
@@ -347,11 +390,11 @@ $(document).ready(function() {
 	  return false;
 	});
 	
-	//getTimeStatus($number_of_beds);
+	getTimeStatus($number_of_beds);
 	
-	//window.setInterval(function() {
-	  //getTimeStatus($number_of_beds);
-  //}, 1000);
+	window.setInterval(function() {
+	  getTimeStatus($number_of_beds);
+  }, 1000);
 	
 	//window.setInterval(function() {
 	  //getTimeStatus(14);

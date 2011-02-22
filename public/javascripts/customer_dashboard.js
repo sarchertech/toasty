@@ -38,9 +38,11 @@ function resetBed() {
 
 function checkStatusThenCreateSesion() {
   getTimeStatus($number_of_beds, createSession);
+  alert("finished");
 };
 
 function createSession() {
+  alert("start");
   var bed = $("#tan_session_bed").val();
   var url = $form.attr("action");
   var data = $form.serialize();

@@ -37,38 +37,34 @@ function resetBed() {
 };
 
 function checkStatusThenCreateSesion() {
-  getTimeStatus($number_of_beds, createSession);
-  alert("finished");
+  getTimeStatus($number_of_beds, function() {
+    createSession();
+  });
 };
 
 function createSession() {
-  alert("start");
   var bed = $("#tan_session_bed").val();
   var url = $form.attr("action");
   var data = $form.serialize();
   var status = $("#_" + bed + " a").attr("data-bed-status");
-  alert("create");
   if (status == 1 || status == 2 || status == 3) {
-    alert("success before");
     $.post(url, data);
-    alert("success after");
   }
   else {
     //window.clearTimeout(idleTimer);
     alert("bed did not activate--please try again");
     //window.location.reload();
   };
-  alert(status);
 };
 
-function getTimeStatus(beds) {
+function getTimeStatus(beds, f) {
 	var url = $status_url;
 	$.ajax({
 	  url: url + beds,
 	  dataType: 'json',
 	  success: function(json) {
-	    alert("timestatus");
 	    applyTimeStatus(json);
+	    if (typeof f == "function") f();
 	  },
 	  error: function(xhr, ajaxOptions, thrownError){
 	    alert('status and times error--' + thrownError);

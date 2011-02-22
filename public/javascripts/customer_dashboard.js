@@ -10,7 +10,7 @@ function activateBed() {
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
 	    //createSession();
-	    var createSessionTimer = window.setTimeout(createSession, 3000);
+	    var createSessionTimer = window.setTimeout(checkStatusThenCreateSesion, 3000);
   	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
   	    $("#post_active").fadeIn(1000);
@@ -36,8 +36,13 @@ function resetBed() {
   alert("Please clean the bed before you tan");
 };
 
+function checkStatusThenCreateSesion() {
+  getTimeStatus($number_of_beds, function(){
+    createSession();
+  });
+};
+
 function createSession() {
-  getTimeStatus($number_of_beds);
   var bed = $("#tan_session_bed").val();
   var url = $form.attr("action");
   var data = $form.serialize();

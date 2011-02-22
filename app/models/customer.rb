@@ -119,7 +119,7 @@ class Customer < ActiveRecord::Base
     self.last_name = last_name.strip.downcase if self.last_name
     self.customer_number = customer_number.strip if self.customer_number
     self.email = email.strip if self.email
-    self.phone_number = phone_number.gsub(/[.-]/, "") if self.phone_number
+    self.phone_number = phone_number.gsub(/\D/, "") if self.phone_number
     self.state = state.upcase if self.state
   end
 

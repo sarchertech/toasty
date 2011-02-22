@@ -150,8 +150,8 @@ class CustomerTest < ActiveSupport::TestCase
     assert !@rhonda.valid?
   end
 
-  test "phone_number should strip dashes and periods" do
-    @rhonda.phone_number = "770-949.1622"
+  test "phone_number should strip dashes, periods, and parenthesis" do
+    @rhonda.phone_number = "(770)-949.1622"
 
     @rhonda.valid?
 

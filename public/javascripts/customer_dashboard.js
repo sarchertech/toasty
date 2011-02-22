@@ -50,6 +50,8 @@ function createSession() {
   var status = $("#_" + bed + " a").attr("data-bed-status");
   if (status == 1 || status == 2 || status == 3) {
     $.post(url, data);
+    //window.clearTimeout(idleTimer);
+    window.location = $form.attr("data-login-url");
   }
   else {
     //window.clearTimeout(idleTimer);
@@ -209,10 +211,6 @@ $(document).ready(function() {
 	    $(this).removeClass("start_active");
 	    activateBed();
 	    return false;
-	    window.clearTimeout(idleTimer);
-	    setTimeout(function() {
-	      window.location = $form.attr("data-login-url");
-	    },3500);
     };
 	});
 });

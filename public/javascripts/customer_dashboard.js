@@ -10,7 +10,7 @@ function activateBed() {
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
 	    //createSession();
-	    var createSessionTimer = window.setTimeout(createSession, 2500);
+	    var createSessionTimer = window.setTimeout(createSession, 3000);
   	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
   	    $("#post_active").fadeIn(1000);
@@ -59,6 +59,7 @@ function getTimeStatus(beds) {
 	  url: url + beds,
 	  dataType: 'json',
 	  success: function(json) {
+	    alert("timestatus");
 	    applyTimeStatus(json);
 	  },
 	  error: function(xhr, ajaxOptions, thrownError){

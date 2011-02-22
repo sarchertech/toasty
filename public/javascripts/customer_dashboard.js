@@ -45,7 +45,7 @@ function createSession() {
     $.post(url, data);
   }
   else {
-    window.clearTimeout(idleTimer);
+    //window.clearTimeout(idleTimer);
     alert("bed did not activate--please try again");
     window.location.reload();
   };

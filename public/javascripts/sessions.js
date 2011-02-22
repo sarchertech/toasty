@@ -10,8 +10,6 @@ function activateBed(form) {
 	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + delay,
 	  success: function() {
-	    //alert('bed ' + bed + ' activated');
-	    //getTimeStatus(6);
 	    clearCustomerInfo();
 	  },
 	  error: function(xhr, ajaxOptions, thrownError){
@@ -24,9 +22,7 @@ function activateBed(form) {
 	else {
 	  $("#_" + bed).removeClass().addClass("_1");
 	}
-	//$("#_" + bed + " .level_and_status").html("Delay");
 	var l = $("#_" + bed);
-  //var a = $("#_" + bed + " a");
   var s1 = $("#_" + bed + " a .bed_loading")
   var s2 = $("#_" + bed + " a .countdown")
   var s3 = $("#_" + bed + " a .level_and_status")
@@ -39,8 +35,14 @@ function activateBed(form) {
     s1.hide();
     s2.show();
     s3.show();
-  }, 2500);
-  //$("#_" + bed + " a").delay(1000).removeClass();
+    var b = $bed_status_array[bed];
+    if ( b == 1 || b == 2 || b == 3 ) {
+      //alert("Bed activated");
+    }
+    else {
+      alert("Bed " + bed + " not activated");
+    };
+  }, 2800);
 	$("#bed_activated p").html("Bed " + bed + " Activated");
 	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');
 };
@@ -100,7 +102,7 @@ function getTimeStatus(beds) {
 	    applyTimeStatus(json);
 	  },
 	  error: function(xhr, ajaxOptions, thrownError){
-	    alert('status and times error--' + thrownError);
+	    //alert('status and times error--' + thrownError);
 	  }
 	});
 };
@@ -110,6 +112,8 @@ function applyTimeStatus(json) {
     var l = $("#_" + val.number)
     var countdown_span = $("#_" + val.number + " .countdown");
     var status_span = $("#_" + val.number + " .level_and_status");
+    
+    $bed_status_array[val.number] = val.status;
     
     if (l.attr("data-bed-loading") == "0") {
       l.removeClass().addClass("_" + val.status);
@@ -280,6 +284,7 @@ $(document).ready(function() {
   $customer_dropdown = $("#customer_dropdown");
   $number_of_customers = 0;
   $active = 0;
+  $bed_status_array = [];
   
   $($search_box).bind("keyup", function(e) {
     key = e.which

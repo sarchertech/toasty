@@ -9,7 +9,8 @@ function activateBed() {
 	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
-	    createSession();
+	    //createSession();
+	    var createSessionTimer = window.setTimeout(createSession, 2500);
   	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
   	    $("#post_active").fadeIn(1000);
@@ -36,9 +37,18 @@ function resetBed() {
 };
 
 function createSession() {
+  var bed = $("#tan_session_bed").val();
   var url = $form.attr("action");
   var data = $form.serialize();
-  $.post(url, data);
+  var status = $("#_" + bed + " a").attr("data-bed-status");
+  if (status == 1 || status == 2 || staus == 3) {
+    $.post(url, data);
+  }
+  else {
+    window.clearTimeout(idleTimer);
+    alert("bed did not activate--please try again");
+    window.location.reload();
+  };
 };
 
 function getTimeStatus(beds) {

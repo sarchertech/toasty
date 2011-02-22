@@ -49,6 +49,7 @@ function createSession() {
   var status = $("#_" + bed + " a").attr("data-bed-status");
   if (status == 1 || status == 2 || status == 3) {
     $.post(url, data);
+    alert("success");
   }
   else {
     //window.clearTimeout(idleTimer);
@@ -152,15 +153,15 @@ $(document).ready(function() {
 	
 	getTimeStatus($number_of_beds);
 	
-	var idleTimer = window.setTimeout(doTimeout, 30000);
+	//var idleTimer = window.setTimeout(doTimeout, 30000);
   
   $("body").click(function() {
     return false;
   });
   
   $("body").mousedown(function() {
-    window.clearTimeout(idleTimer);
-    idleTimer = window.setTimeout(doTimeout, 30000);
+    //window.clearTimeout(idleTimer);
+    //idleTimer = window.setTimeout(doTimeout, 30000);
     return false;
   });
   
@@ -209,7 +210,7 @@ $(document).ready(function() {
 	    $(this).removeClass("start_active");
 	    activateBed();
 	    //return false;
-	    window.clearTimeout(idleTimer);
+	    //window.clearTimeout(idleTimer);
 	    setTimeout(function() {
 	      window.location = $form.attr("data-login-url");
 	    },3500);

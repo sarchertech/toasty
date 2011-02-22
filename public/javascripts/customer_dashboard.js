@@ -47,9 +47,11 @@ function createSession() {
   var url = $form.attr("action");
   var data = $form.serialize();
   var status = $("#_" + bed + " a").attr("data-bed-status");
+  alert("create");
   if (status == 1 || status == 2 || status == 3) {
+    alert("success before");
     $.post(url, data);
-    alert("success");
+    alert("success after");
   }
   else {
     //window.clearTimeout(idleTimer);

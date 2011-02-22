@@ -10,6 +10,7 @@ function activateBed() {
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
 	    //createSession();
+	    window.clearTimeout($idleTimer);
 	    var createSessionTimer = window.setTimeout(checkStatusThenCreateSesion, 3000);
   	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
@@ -38,6 +39,7 @@ function resetBed() {
 };
 
 function checkStatusThenCreateSesion() {
+  //window.clearTimeout(createSessionTimer);
   getTimeStatus($number_of_beds, function() {
     createSession();
   });
@@ -49,9 +51,14 @@ function createSession() {
   var data = $form.serialize();
   var status = $("#_" + bed + " a").attr("data-bed-status");
   if (status == 1 || status == 2 || status == 3) {
-    $.post(url, data);
-    //window.clearTimeout(idleTimer);
-    window.location = $form.attr("data-login-url");
+    $.ajax({
+      type: 'POST',
+      url: url,
+      data: data,
+      complete: function() {
+        window.location = $form.attr("data-login-url");
+      }
+    });
   }
   else {
     //window.clearTimeout(idleTimer);
@@ -71,6 +78,7 @@ function getTimeStatus(beds, f) {
 	  },
 	  error: function(xhr, ajaxOptions, thrownError){
 	    alert('status and times error--' + thrownError);
+	    window.location = $form.attr("data-login-url");
 	  }
 	});
 };
@@ -154,15 +162,15 @@ $(document).ready(function() {
 	
 	getTimeStatus($number_of_beds);
 	
-	var idleTimer = window.setTimeout(doTimeout, 30000);
+	$idleTimer = window.setTimeout(doTimeout, 30000);
   
   $("body").click(function() {
     return false;
   });
   
   $("body").mousedown(function() {
-    window.clearTimeout(idleTimer);
-    idleTimer = window.setTimeout(doTimeout, 30000);
+    window.clearTimeout($idleTimer);
+    $idleTimer = window.setTimeout(doTimeout, 30000);
     return false;
   });
   

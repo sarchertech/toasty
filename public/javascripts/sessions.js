@@ -30,18 +30,20 @@ function activateBed(form) {
   s2.hide();
   s3.hide();
   s1.show();
-  window.setTimeout(function(){
+  window.setTimeout(function() {
     l.attr("data-bed-loading", "0");
     s1.hide();
     s2.show();
     s3.show();
-    var b = $bed_status_array[bed];
-    if ( b == 1 || b == 2 || b == 3 ) {
-      //alert("Bed activated");
-    }
-    else {
-      alert("Bed " + bed + " not activated");
-    };
+    window.setTimeout(function() {
+      var b = $bed_status_array[bed];
+      if ( b == 1 || b == 2 || b == 3 ) {
+        //alert("Bed activated");
+      }
+      else {
+        alert("Bed " + bed + " not activated");
+      };
+    }, 1000);
   }, 2800);
 	$("#bed_activated p").html("Bed " + bed + " Activated");
 	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');

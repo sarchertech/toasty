@@ -37,9 +37,7 @@ function resetBed() {
 };
 
 function checkStatusThenCreateSesion() {
-  getTimeStatus($number_of_beds, function(){
-    createSession;
-  });
+  getTimeStatus($number_of_beds, createSession);
 };
 
 function createSession() {

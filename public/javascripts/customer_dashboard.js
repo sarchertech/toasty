@@ -18,7 +18,8 @@ function activateBed() {
 	  },
 	  error: function(){
 	    $sent = false
-	    alert('bed not activated please try again');
+	    alert("bed did not activate--please try again");
+      window.location.reload();
 	  }
 	});
   $("#dash_buttons a").unbind("mousedown");
@@ -53,7 +54,7 @@ function createSession() {
   else {
     //window.clearTimeout(idleTimer);
     alert("bed did not activate--please try again");
-    //window.location.reload();
+    window.location.reload();
   };
 };
 
@@ -151,15 +152,15 @@ $(document).ready(function() {
 	
 	getTimeStatus($number_of_beds);
 	
-	//var idleTimer = window.setTimeout(doTimeout, 30000);
+	var idleTimer = window.setTimeout(doTimeout, 30000);
   
   $("body").click(function() {
     return false;
   });
   
   $("body").mousedown(function() {
-    //window.clearTimeout(idleTimer);
-    //idleTimer = window.setTimeout(doTimeout, 30000);
+    window.clearTimeout(idleTimer);
+    idleTimer = window.setTimeout(doTimeout, 30000);
     return false;
   });
   
@@ -207,11 +208,11 @@ $(document).ready(function() {
 	    depressed = false
 	    $(this).removeClass("start_active");
 	    activateBed();
-	    //return false;
-	    //window.clearTimeout(idleTimer);
-	    //setTimeout(function() {
-	      //window.location = $form.attr("data-login-url");
-	    //},3500);
+	    return false;
+	    window.clearTimeout(idleTimer);
+	    setTimeout(function() {
+	      window.location = $form.attr("data-login-url");
+	    },3500);
     };
 	});
 });

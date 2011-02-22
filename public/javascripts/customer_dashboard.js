@@ -41,7 +41,7 @@ function createSession() {
   var url = $form.attr("action");
   var data = $form.serialize();
   var status = $("#_" + bed + " a").attr("data-bed-status");
-  if (status == 1 || status == 2 || staus == 3) {
+  if (status == 1 || status == 2 || status == 3) {
     $.post(url, data);
   }
   else {
@@ -49,6 +49,7 @@ function createSession() {
     alert("bed did not activate--please try again");
     window.location.reload();
   };
+  alert(status);
 };
 
 function getTimeStatus(beds) {

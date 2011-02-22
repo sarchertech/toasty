@@ -54,7 +54,7 @@ function createSession() {
   else {
     //window.clearTimeout(idleTimer);
     alert("bed did not activate--please try again");
-    window.location.reload();
+    //window.location.reload();
   };
   alert(status);
 };
@@ -211,9 +211,9 @@ $(document).ready(function() {
 	    activateBed();
 	    //return false;
 	    //window.clearTimeout(idleTimer);
-	    setTimeout(function() {
-	      window.location = $form.attr("data-login-url");
-	    },3500);
+	    //setTimeout(function() {
+	      //window.location = $form.attr("data-login-url");
+	    //},3500);
     };
 	});
 });

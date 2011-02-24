@@ -1,3 +1,7 @@
+$.ajaxSetup({
+  timeout: 1000,
+});
+
 function activateBed() {
   var url = $activate_url;
 	var bed = $("#tan_session_bed").val();
@@ -16,25 +20,47 @@ function activateBed() {
   	  $("#dash_controls_wrapper").hide(0, function() {
   	    $("#post_active").fadeIn(1000);
   	  });
+  	  $("#dash_buttons a").unbind("mousedown");
+
+    	$("#_" + bed).removeClass().addClass("red");
+      $("#_" + bed).attr("data-bed-loading", "1");
+    	$("#bed_activated p").html("Bed " + bed + " Activated");
+    	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');
 	  },
-	  error: function(){
+	  error: function(xhr, textStatus){
+	    var now = new Date();
+	    try {
+        var status = xhr.status;
+      }
+      catch (err) {
+        var status = "";
+      };
+    	localStorage.setItem(now, 'activate url ' + textStatus + ' ' + status + ' ' + bed);
+
 	    $sent = false
 	    alert("bed did not activate--please try again");
       window.location.reload();
 	  }
 	});
-  $("#dash_buttons a").unbind("mousedown");
-
-	$("#_" + bed).removeClass().addClass("red");
-  $("#_" + bed).attr("data-bed-loading", "1");
-	$("#bed_activated p").html("Bed " + bed + " Activated");
-	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');
 };
 
 function resetBed() {
   bed = $("#tan_session_bed").val();
   url = $reset_url + bed;
-  $.get(url);
+  //$.get(url);
+  $.ajax({
+    url: url,
+    error: function(xhr, textStatus){
+      var now = new Date();
+	    try {
+        var status = xhr.status;
+      }
+      catch (err) {
+        var status = "";
+      };
+    	localStorage.setItem(now, 'reset url ' + textStatus + ' ' + status + ' ' + bed);
+    }
+  });
   alert("Please clean the bed before you tan");
 };
 
@@ -55,6 +81,17 @@ function createSession() {
       type: 'POST',
       url: url,
       data: data,
+      timeout: 3000,
+      error: function(xhr, textStatus){
+  	    var now = new Date();
+  	    try {
+          var status = xhr.status;
+        }
+        catch (err) {
+          var status = "";
+        };
+      	localStorage.setItem(now, 'createSession url ' + textStatus + ' ' + status + ' ' + bed);
+  	  },
       complete: function() {
         window.location = $form.attr("data-login-url");
       }
@@ -62,6 +99,8 @@ function createSession() {
   }
   else {
     //window.clearTimeout(idleTimer);
+    var now = new Date();
+    localStorage.setItem(now, 'checkStatusThenCreateSession failed '+ bed);
     alert("bed did not activate--please try again");
     window.location.reload();
   };
@@ -76,8 +115,17 @@ function getTimeStatus(beds, f) {
 	    applyTimeStatus(json);
 	    if (typeof f == "function") f();
 	  },
-	  error: function(xhr, ajaxOptions, thrownError){
-	    alert('status and times error--' + thrownError);
+	  error: function(xhr, textStatus){
+	    var now = new Date();
+	    try {
+        var status = xhr.status;
+      }
+      catch (err) {
+        var status = "";
+      };
+    	localStorage.setItem(now, 'timeStatus url ' + textStatus + ' ' + status);
+    	
+	    alert('status and times error-- ' + textStatus);
 	    window.location = $form.attr("data-login-url");
 	  }
 	});

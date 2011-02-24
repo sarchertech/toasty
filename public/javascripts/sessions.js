@@ -1,5 +1,6 @@
-function isTmaxLocal() {
-};
+$.ajaxSetup({
+  timeout: 1000,
+});
 
 function activateBed(form) {
   var form = form;
@@ -12,8 +13,15 @@ function activateBed(form) {
 	  success: function() {
 	    clearCustomerInfo();
 	  },
-	  error: function(xhr, ajaxOptions, thrownError){
-	    alert('bed not activated--' + thrownError );
+	  error: function(xhr, textStatus){
+      try {
+        var status = xhr.status;
+      }
+      catch (err) {
+        var status = "";
+      };
+      
+	    alert('bed not activated--' + textStatus + " " + status);
 	  }
 	});
 	if (delay == "0") {

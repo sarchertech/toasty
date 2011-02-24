@@ -1,3 +1,5 @@
+localStorage.getItem("bar"); //this is a bloody test
+
 var search_timeout = undefined;
 
 function customerSearch() {

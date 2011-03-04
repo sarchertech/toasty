@@ -1,7 +1,7 @@
 class CustomerSessionController < ApplicationController
   #new page can sit w/o reloading for a long time, also no login is required to
   # to access this so CSRF is moot
-  skip_before_filter :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token, :set_current_user
 
   #GET /customer_login
   def new

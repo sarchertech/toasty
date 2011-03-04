@@ -183,4 +183,24 @@ class CustomersControllerTest < ActionController::TestCase
       delete :destroy, :salon_id => @salon.to_param, :id => @customer3.to_param
     end
   end
+
+  test "customer should require a logged in user" do
+    session[:user_id] = nil
+
+    get :index, :salon_id => @salon.to_param
+    assert_response :redirect
+  end
+
+  test "customer should require a user authorized to work here" do
+    user = Factory.create(:user, :salon_id => @salon.id + 1)
+    session[:user_id] = user.id
+
+    get :index, :salon_id => @salon.to_param
+    assert_response :redirect
+
+    user.salon_id = @salon.id
+    user.save
+    get :index, :salon_id => @salon.to_param
+    assert_response :success
+  end
 end

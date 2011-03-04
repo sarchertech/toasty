@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def can_work_here?(s_id)
+    self.salon_id == s_id || self.access_all_locations? 
+  end
+
   private
   
   def wrong_password

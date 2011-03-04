@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class AccountsControllerTest < ActionController::TestCase
-  setup :initialize_account_and_subdomain
+  setup :initialize_account_and_subdomain, :initialize_user
 
   test "should get index" do
     get :index

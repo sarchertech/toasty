@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class BedsControllerTest < ActionController::TestCase
-  setup :initialize_account_and_subdomain, :initialize_salon
+  setup :initialize_account_and_subdomain, :initialize_salon, :initialize_user
 
   setup do
     @bed = Factory.create(:bed, :salon_id => @salon.id)

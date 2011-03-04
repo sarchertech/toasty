@@ -66,4 +66,11 @@ class CustomerSessionControllerTest < ActionController::TestCase
     post :create, :salon_id => @salon.to_param, :customer_number => "1234"
     assert_equal(@customer.id, session[:customer_id])
   end
+
+  test "should not require loggin in user" do
+    session[:user_id] = nil
+    
+    get :new, :salon_id => @salon.to_param
+    assert_response :success
+  end
 end

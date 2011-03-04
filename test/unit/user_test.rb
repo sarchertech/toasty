@@ -374,4 +374,15 @@ class UserTest < ActiveSupport::TestCase
     @michael.security_level = 3
     assert_equal("owner", @michael.word_for_security_level)
   end
+
+  test "can_work_here? should return true if can work at supplied salon_id" do
+    @michael.salon_id = 3
+    assert @michael.can_work_here?(3)
+
+    @michael.salon_id = 2
+    assert !@michael.can_work_here?(3)
+
+    @michael.access_all_locations = true
+    assert @michael.can_work_here?(3)
+  end
 end

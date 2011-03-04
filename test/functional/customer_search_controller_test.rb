@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CustomerSearchControllerTest < ActionController::TestCase
-  setup :initialize_account_and_subdomain, :initialize_salon
+  setup :initialize_account_and_subdomain, :initialize_salon, :initialize_user
 
   setup do
     @customer = Factory.create(:customer, :salon_id => @salon.id)

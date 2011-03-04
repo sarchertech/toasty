@@ -92,4 +92,11 @@ class SessionControllerTest < ActionController::TestCase
 
     assert !session[:user_id]
   end
+
+  test "session should not require a loggin in user" do
+    session[:user_id] = nil
+    
+    get :new
+    assert_response :success
+  end
 end

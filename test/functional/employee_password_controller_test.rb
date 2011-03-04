@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class EmployeePasswordControllerTest < ActionController::TestCase
-  setup :initialize_account_and_subdomain, :initialize_salon
+  setup :initialize_account_and_subdomain, :initialize_salon, :initialize_user
 
   test "should generate and recognize /employee_password via get" do
     route ={:path=>"#{@request.url}/change_password",

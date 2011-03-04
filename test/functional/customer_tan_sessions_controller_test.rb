@@ -35,4 +35,11 @@ class CustomerTanSessionsControllerTest < ActionController::TestCase
            :tan_session => {:minutes => "5", :bed => "2"}    
     end
   end
+
+  test "should not require logged in user" do
+    session[:user_id] = nil
+    
+    get :new, :salon_id => @salon.to_param
+    assert_response :success
+  end
 end

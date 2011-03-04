@@ -1,4 +1,6 @@
 class SessionController < ApplicationController
+  skip_before_filter :set_current_user
+
   # GET /login
   def new
   end
@@ -49,7 +51,9 @@ class SessionController < ApplicationController
       redirect_to(session[:return_to])
       session[:return_to] = nil
     else
-      redirect_to(new_salon_tan_session_url(@current_account.salons.first))
+      current_user = @current_account.users.find(session[:user_id])
+      redirect_salon = current_user.salon || @current_account.salons.first
+      redirect_to new_salon_tan_session_url(redirect_salon)
     end
   end
 end

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :set_current_account_and_current_salon
+  before_filter :set_current_account_and_current_salon, :set_current_user
 
   private
   
@@ -15,13 +15,22 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_user
+    #set current user scoped to account unless admin
     if session[:user_id]
-      @current_user = @current_salon.users.find(session[:user_id])
+     u = @current_account.users.find(session[:user_id]) if @current_account
+     @current_user = u       
+     unless @current_user
+        potential_admin = User.find(session[:user_id])
+        @current_user = potential_admin if potential_admin.security_level > 3
+      end     
     end
 
-    unless @current_user
+    if !@current_user      
       session[:return_to] = request.fullpath
-      redirect_to login_url    
+      redirect_to login_url
+    elsif !authorized_to_work
+      flash[:alert] = "You're not authorized to access that"
+      redirect_to login_url
     end
   end
 
@@ -43,6 +52,14 @@ class ApplicationController < ActionController::Base
       eval("salon_#{plural_string}_url(@current_salon)")
     else
       eval("#{plural_string}_url")
+    end
+  end
+
+  def authorized_to_work
+    if @current_salon
+      @current_user.can_work_here?(@current_salon.id)
+    else
+      @current_user.access_all_locations?
     end
   end
 end

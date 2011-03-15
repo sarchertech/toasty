@@ -17,12 +17,12 @@ class ApplicationController < ActionController::Base
   def set_current_user
     #set current user scoped to account unless admin
     if session[:user_id]
-     u = @current_account.users.find(session[:user_id]) if @current_account
-     @current_user = u       
-     unless @current_user
+      begin  
+        @current_user  = @current_account.users.find(session[:user_id])
+      rescue
         potential_admin = User.find(session[:user_id])
-        @current_user = potential_admin if potential_admin.security_level > 3
-      end     
+        @current_user = potential_admin if potential_admin.security_level > 3    
+      end
     end
 
     if !@current_user      
@@ -61,9 +61,9 @@ class ApplicationController < ActionController::Base
 
   def authorized_to_work
     if @current_salon
-      @current_user.can_work_here?(@current_salon.id)
+      @current_user.can_work_here?(@current_salon.id) || @current_user.admin?
     else
-      @current_user.access_all_locations? || @current_user.security_level > 3
+      @current_user.access_all_locations? || @current_user.admin?
     end
   end
 end

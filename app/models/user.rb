@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
     self.salon_id == s_id || self.access_all_locations? 
   end
 
+  def admin?
+    self.security_level > 3
+  end
+
   private
   
   def wrong_password

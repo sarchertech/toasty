@@ -203,4 +203,12 @@ class CustomersControllerTest < ActionController::TestCase
     get :index, :salon_id => @salon.to_param
     assert_response :success
   end
+
+  test "user should be logged in if admin even if not scoped to account" do
+    user=Factory.create(:user, :account_id =>@account.id+1, :security_level => 4)
+    session[:user_id] = user.id
+
+    get :index, :salon_id => @salon.to_param
+    assert_response :success
+  end
 end

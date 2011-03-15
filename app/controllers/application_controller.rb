@@ -34,6 +34,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_level(level)
+    @current_user.security_level
+  end
+
   def scope
     @current_salon || @current_account
   end
@@ -59,7 +63,7 @@ class ApplicationController < ActionController::Base
     if @current_salon
       @current_user.can_work_here?(@current_salon.id)
     else
-      @current_user.access_all_locations?
+      @current_user.access_all_locations? || @current_user.security_level > 3
     end
   end
 end

@@ -25,14 +25,14 @@ Toasty::Application.routes.draw do
   match '/salons/:salon_id/customer_json_search' => 'customer_json_search#create', 
     :as => 'customer_json_search', :via => :post
 
-  match '/login' => 'session#new', :as => 'new_login', :via => :get, 
-                                   :constraints => {:subdomain => /.+/}
+  match '/login' => 'session#new', :as => 'new_login', :via => :get#, 
+                                   #:constraints => {:subdomain => /.+/}
 
-  match '/login' => 'session#create', :as => 'login', :via => :post, 
-                                      :constraints => {:subdomain => /.+/}
+  match '/login' => 'session#create', :as => 'login', :via => :post#, 
+                                      #:constraints => {:subdomain => /.+/}
 
-  match '/logout' => 'session#destroy', :as => 'logout', :via => :delete, 
-                                     :constraints => {:subdomain => /.+/}
+  match '/logout' => 'session#destroy', :as => 'logout', :via => :delete#, 
+                                     #:constraints => {:subdomain => /.+/}
 
   match '/change_password' => 'employee_password#edit',
     :as => 'edit_password', :via => :get

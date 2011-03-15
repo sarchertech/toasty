@@ -55,6 +55,17 @@ class SessionControllerTest < ActionController::TestCase
     assert !session[:user_id]
   end
 
+  test "should create new session if user is an admin even if not scoped" do
+    @user = Factory.create(:user, :first_name => "George", :last_name => "Lopez",
+                           :account_id => @account.id + 1,
+                           :password => "secret", 
+                           :password_confirmation => "secret",
+                           :security_level => 4)
+    
+    post :create, :login => "glopez1", :password => "secret"
+    assert_equal(@user.id, session[:user_id])
+  end
+
   test "should not allow wrong password or too many wrong attempts" do
     @user = Factory.create(:user, :first_name => "George", :last_name => "Lopez",
                            :account_id => @account.id,

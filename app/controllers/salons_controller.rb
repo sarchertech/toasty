@@ -1,4 +1,6 @@
 class SalonsController < ApplicationController
+  before_filter :require_admin
+
   # GET /salons
   def index
     @salons = @current_account.salons

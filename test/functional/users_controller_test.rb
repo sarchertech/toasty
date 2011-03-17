@@ -178,4 +178,131 @@ class UsersControllerTest < ActionController::TestCase
       delete :destroy, :salon_id => @salon.to_param, :id => @user3.to_param
     end
   end
+
+  test "new and create user should require manager" do
+    @user = Factory.create(:user, :security_level => 1, :salon_id => @salon.id)
+    @user2 = Factory.create(:user, :security_level => 2, :salon_id => @salon.id)
+
+    session[:user_id] = @user.id
+    get :new, :salon_id => @salon.to_param
+    assert_response :redirect
+    
+    assert_no_difference('User.count') do
+      post :create, :salon_id => @salon.to_param, 
+           :user => Factory.attributes_for(:user, :security_level => 0)
+    end
+
+    session[:user_id] = @user2.id
+        
+    get :new, :salon_id => @salon.to_param
+    assert_response :success
+
+    assert_difference('User.count') do
+      post :create, :salon_id => @salon.to_param, 
+           :user => Factory.attributes_for(:user, :security_level => 1)
+    end
+  end
+
+  test "users should only edit update or delete themselves or lower users" do
+    @user = Factory.create(:user, :security_level => 1, :salon_id => @salon.id)
+    @user2 = Factory.create(:user, :security_level => 2, :salon_id => @salon.id)
+    @user3 = Factory.create(:user, :security_level => 3, :salon_id => @salon.id)
+
+    session[:user_id] = @user.id
+    get :edit, :salon_id => @salon.to_param, :id => @user2.to_param
+    assert_response :redirect
+
+    put :update, :salon_id => @salon.to_param, :id => @user2.to_param,
+      :user => {:first_name => "xbee"}
+    assert_not_equal("xbee", @user2.reload.first_name)
+
+    assert_no_difference('User.count') do
+      delete :destroy, :salon_id => @salon.to_param, :id => @user2.to_param
+    end
+
+    session[:user_id] = @user3
+    assert_difference('User.count', -1) do
+      delete :destroy, :salon_id => @salon.to_param, :id => @user2.to_param
+    end
+
+    assert_difference('User.count', -1) do
+      delete :destroy, :salon_id => @salon.to_param, :id => @user3.to_param
+    end
+  end
+
+  test "users shouldn't be able to elevate anyone to their level or higher" do
+    @user = Factory.create(:user, :security_level => 1, :salon_id => @salon.id)
+    @user2 = Factory.create(:user, :security_level => 2, :salon_id => @salon.id)
+    @user3 = Factory.create(:user, :security_level => 3, :salon_id => @salon.id)
+
+    session[:user_id] = @user2.id
+
+    put :update, :salon_id => @salon.to_param, :id => @user.to_param,
+        :user => {:security_level => 3 }
+        
+    assert_template("edit")
+
+    session[:user_id] = @user3.id
+
+    put :update, :salon_id => @salon.to_param, :id => @user.to_param,
+        :user => {:security_level => 2 }
+
+    assert_equal(2, @user.reload.security_level)
+  end
+
+  test "users shouldn't be able to create a new user at their level||higher" do
+    @user = Factory.create(:user, :security_level => 1, :salon_id => @salon.id)
+    @user2 = Factory.create(:user, :security_level => 2, :salon_id => @salon.id)
+
+    session[:user_id] = @user.id
+
+    assert_no_difference('User.count') do
+      post :create, :salon_id => @salon.to_param, 
+                    :user => Factory.attributes_for(:user, :security_level => 1)
+    end
+
+    session[:user_id] = @user2.id
+
+    assert_difference('User.count') do
+      post :create, :salon_id => @salon.to_param, 
+                    :user => Factory.attributes_for(:user, :security_level => 1)
+    end
+  end
+
+  test "users shouldn't be able to add access to all locations if they cant" do
+    @user = Factory.create(:user, :security_level => 2, :salon_id => @salon.id,
+                           :access_all_locations => false)
+    @user2 = Factory.create(:user, :security_level => 2, :salon_id => @salon.id,
+                            :access_all_locations => true)
+    @user3 = Factory.create(:user, :security_level => 1, :salon_id => @salon.id,
+                            :access_all_locations => false)
+
+    session[:user_id] = @user.id
+
+    put :update, :salon_id => @salon.to_param, :id => @user3.to_param,
+        :user => {:access_all_locations => true }
+        
+    assert_template("edit")
+
+    session[:user_id] = @user2.id
+
+    put :update, :salon_id => @salon.to_param, :id => @user3.to_param,
+        :user => {:access_all_locations => true }
+
+    assert_equal(true, @user3.reload.access_all_locations?)
+
+    session[:user_id] = @user.id
+
+    assert_no_difference('User.count') do
+      post :create, :salon_id => @salon.to_param, 
+        :user => Factory.attributes_for(:user, :access_all_locations => true)
+    end
+
+    session[:user_id] = @user2.id
+
+    assert_difference('User.count') do
+      post :create, :salon_id => @salon.to_param, 
+        :user => Factory.attributes_for(:user, :access_all_locations => true)
+    end
+  end
 end

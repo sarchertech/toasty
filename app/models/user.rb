@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   belongs_to :account
   belongs_to :salon
 
-  attr_accessor :password
+  attr_accessor :password, :aspiring_editor_security_level, 
+                :aspiring_editor_cant_access_all
 
   before_validation :san
 
@@ -40,6 +41,12 @@ class User < ActiveRecord::Base
 
   validate :password_must_not_contain_name, 
            :if => :should_check_if_name_in_password?
+
+  validate :security_level_shouldnt_be_too_high, 
+           :if => :security_level_changed_or_new_record?
+
+  validate :access_all_locations_change_validation,
+           :if => :access_all_locations_changed_or_new_record?
 
   def self.highest_login_like_this(pre)
     where("login LIKE ?", pre + "%").order("login_suffix desc").first
@@ -99,7 +106,35 @@ class User < ActiveRecord::Base
     self.security_level > 3
   end
 
+  def owner?
+    self.security_level > 2
+  end
+
+  def manager?
+    self.security_level > 1
+  end
+
   private
+
+  def security_level_shouldnt_be_too_high
+    if self.security_level >= self.aspiring_editor_security_level
+      errors.add(:security_level, "can't be set that high by you")
+    end
+  end
+
+  def security_level_changed_or_new_record?
+    (security_level_changed? || new_record?) && aspiring_editor_security_level 
+  end
+
+  def access_all_locations_change_validation
+    if self.aspiring_editor_cant_access_all 
+      errors.add(:access_all_locations,"can only be added by a user with access")
+    end
+  end
+
+  def access_all_locations_changed_or_new_record?
+    (access_all_locations_changed? || new_record?) && self.access_all_locations?
+  end
   
   def wrong_password
     self.password_attempts += 1

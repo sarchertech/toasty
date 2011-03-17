@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
   skip_before_filter :set_current_account_and_current_salon
+  before_filter :require_admin
 
   # GET /accounts
   def index

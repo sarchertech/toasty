@@ -95,4 +95,13 @@ class SalonsControllerTest < ActionController::TestCase
       delete :destroy, :id => @salon2.to_param
     end
   end
+
+  test "should require an admin for all actions" do
+    @user.security_level = 3
+    @user.save
+    session[:user_id] = @user.id
+
+    get :index
+    assert_response :redirect
+  end
 end

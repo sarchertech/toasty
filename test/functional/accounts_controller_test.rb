@@ -65,4 +65,12 @@ class AccountsControllerTest < ActionController::TestCase
 
     assert_redirected_to accounts_path
   end
+
+  test "should require an admin for all actions" do
+    user = Factory.create(:user, :security_level => 3) 
+    session[:user_id] = user.id
+
+    get :index
+    assert_response :redirect
+  end
 end

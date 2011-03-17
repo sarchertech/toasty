@@ -29,13 +29,29 @@ class ApplicationController < ActionController::Base
       session[:return_to] = request.fullpath
       redirect_to login_url
     elsif !authorized_to_work
-      flash[:alert] = "You're not authorized to access that"
-      redirect_to login_url
+      ur_not_authorized
     end
   end
 
-  def require_level(level)
-    @current_user.security_level
+  def require_admin
+    ur_not_authorized unless @current_user.admin?
+  end
+
+  def require_owner
+    ur_not_authorized unless @current_user.owner?
+  end
+
+  def require_manager
+    ur_not_authorized unless @current_user.manager?
+  end
+
+  def ur_not_authorized
+    flash[:alert] = "You're not authorized to access that"
+    redirect_to previous_action
+  end
+
+  def previous_action
+    request.env["HTTP_REFERER"] || login_url
   end
 
   def scope

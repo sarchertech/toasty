@@ -19,6 +19,7 @@ class CustomerTanSessionsController < ApplicationController
     @tan_session.customer_id = @customer.id
     @tan_session.salon_id = @current_salon.id
     
+    #TODO fix this render
     if @tan_session.save
       render :text => "new"
     else

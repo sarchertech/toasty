@@ -23,4 +23,12 @@ class TanSessionsControllerTest < ActionController::TestCase
     get :new, :salon_id => @salon.to_param
     assert assigns(:tan_session).new_record?
   end
+
+  test "should create tan session" do
+    assert_difference('TanSession.count') do
+      post :create, :salon_id => @salon.to_param,
+           :tan_session => {:minutes => "5", :bed_id => "1", 
+                            :customer_id => @customer.to_param}
+    end
+  end
 end

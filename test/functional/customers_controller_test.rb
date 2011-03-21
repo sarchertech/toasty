@@ -68,6 +68,12 @@ class CustomersControllerTest < ActionController::TestCase
     assert_response :success 
     assert assigns(:customer).new_record?
   end
+
+  test "should default state to current_salons state" do
+    get :new, :salon_id => @salon.to_param
+
+    assert_equal(@salon.state, assigns(:customer).state)
+  end
   
   #test "should get edit and assign a customer scoped to current account" do
     #get :edit, :id => @customer.to_param

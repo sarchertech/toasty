@@ -14,7 +14,8 @@ class CustomersController < ApplicationController
   #GET /customers/new
   #GET /salons/1/customers/new
   def new
-    @customer = Customer.new    
+    @customer = Customer.new
+    @customer.state = @current_salon.state    
   end
   
   #GET /customers/1/edut

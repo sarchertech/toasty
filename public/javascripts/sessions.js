@@ -11,6 +11,7 @@ function activateBed(form) {
 	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + delay,
 	  success: function() {
+	    activate_bed_606_success(delay, bed);
 	    clearCustomerInfo();
 	  },
 	  error: function(xhr, textStatus){
@@ -24,7 +25,11 @@ function activateBed(form) {
 	    alert('bed not activated--' + textStatus + " " + status);
 	  }
 	});
-	if (delay == "0") {
+	//activate_bed_606_success(delay, bed);
+};
+
+function activate_bed_606_success(delay, bed) {
+  if (delay == "0") {
 	  $("#_" + bed).removeClass().addClass("_3");
 	}
 	else {
@@ -47,6 +52,7 @@ function activateBed(form) {
       var b = $bed_status_array[bed];
       if ( b == 1 || b == 2 || b == 3 ) {
         //alert("Bed activated");
+        createSession(delay, bed);
       }
       else {
         alert("Bed " + bed + " not activated");
@@ -55,6 +61,31 @@ function activateBed(form) {
   }, 2800);
 	$("#bed_activated p").html("Bed " + bed + " Activated");
 	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');
+};
+
+function createSession(delay, bed) {
+  var url = $form.attr("action");
+  var data = $form.serialize();
+  
+  $.ajax({
+    type: 'POST',
+    url: url,
+    data: data,
+    timeout: 3000,
+    error: function(xhr, textStatus){
+	    var now = new Date();
+	    try {
+        var status = xhr.status;
+      }
+      catch (err) {
+        var status = "";
+      };
+    	localStorage.setItem(now, 'createSession url ' + textStatus + ' ' + status + ' ' + bed);
+	  }//,
+    //complete: function() {
+      //window.location = $form.attr("data-login-url");
+    //}
+  });
 };
 
 function resetBed() {
@@ -287,6 +318,7 @@ $(document).ready(function() {
   $status_url = "http://" + $ip + ":4568/";
   $reset_url = "http://" + $ip + ":4567/2/"
   
+  $form = $("#new_tan_session")
   $index = $("#tan_session_minutes");
   $time_box = $("#tan_session_minutes");
   $search_box = $("#dash_search_box");

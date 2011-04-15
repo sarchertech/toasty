@@ -19,6 +19,7 @@
       <div id="dash_controls_wrapper">
         <%= form_for([@current_salon, @tan_session]) do |f|%>
           <%= f.hidden_field(:bed_id) %>
+          <%= f.hidden_field(:customer_id) %>
           <div id="dash_minutes">
             <a id="dash_up_arrow" href="#"></a>
             <p>

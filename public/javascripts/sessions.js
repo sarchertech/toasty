@@ -8,10 +8,15 @@ function activateBed(form) {
 	var bed = $("#tan_session_bed_id").val();
 	var minutes = $("#tan_session_minutes").val();
 	var delay = $("#tan_session_delay").val();
+	
+	//grab customer_id from temp hidden field and reset to blank
+	var customer_id = $("#new_tan_session").attr("data-cust-id")
+	$("#new_tan_session").attr("data-cust-id", "")
+	
 	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + delay,
 	  success: function() {
-	    activate_bed_606_success(delay, bed);
+	    activate_bed_606_success(delay, bed, customer_id);
 	    clearCustomerInfo();
 	  },
 	  error: function(xhr, textStatus){
@@ -28,7 +33,7 @@ function activateBed(form) {
 	//activate_bed_606_success(delay, bed);
 };
 
-function activate_bed_606_success(delay, bed) {
+function activate_bed_606_success(delay, bed, customer_id) {
   if (delay == "0") {
 	  $("#_" + bed).removeClass().addClass("_3");
 	}
@@ -52,7 +57,7 @@ function activate_bed_606_success(delay, bed) {
       var b = $bed_status_array[bed];
       if ( b == 1 || b == 2 || b == 3 ) {
         //alert("Bed activated");
-        createSession(delay, bed);
+        createSession(delay, bed, customer_id);
       }
       else {
         alert("Bed " + bed + " not activated");
@@ -63,9 +68,13 @@ function activate_bed_606_success(delay, bed) {
 	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');
 };
 
-function createSession(delay, bed) {
+function createSession(delay, bed, customer_id) {
   var url = $form.attr("action");
+  
+  //set customer_id field serialize data and then set customer_id to blank
+  $("#tan_session_customer_id").val(customer_id);
   var data = $form.serialize();
+  $("#tan_session_customer_id").val('');
   
   $.ajax({
     type: 'POST',
@@ -339,10 +348,14 @@ $(document).ready(function() {
     var name = $("#customer_dropdown li.active").html();
     var level = $("#customer_dropdown li.active").attr("data-cust-level");
     var status = $("#customer_dropdown li.active").attr("data-cust-status");
+    var customer_id = $("#customer_dropdown li.active").attr("data-cust-id");
+    
     $("#search_customer_name").html(name);
     $("#search_customer_level").html('Level ' + level);
     $("#search_customer_status").html(status);
     $("#search_box_wrapper").hide();
+    
+    $("#new_tan_session").attr("data-cust-id", customer_id)
     $("#search_customer_info_wrapper").fadeIn(300);
     return false;
   });

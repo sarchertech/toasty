@@ -53,6 +53,13 @@ class CustomerSessionControllerTest < ActionController::TestCase
     
     post :create, :salon_id => @salon.to_param, :customer_number => "1234"
     assert_equal(nil, session[:customer_id])
+
+    @customer2 = Factory.create(:customer, :customer_number => "1235",
+                                :salon_id => @salon.id, :customer_type => 4, 
+                                :account_id => @account.id)
+
+    post :create, :salon_id => @salon.to_param, :customer_number => "1235"
+    assert_equal(nil, session[:customer_id])
   end
 
   test "should make customer session if not locked out" do

@@ -15,20 +15,8 @@ class CustomerSessionController < ApplicationController
       find_by_customer_number(params[:customer_number])
 
     @tan_session = @customer.tan_sessions.last if @customer
-
-    if @customer == nil
-      flash.now[:alert] = "can't find a customer with that keyfob number" 
-      render :action => "new"
-    elsif today?
-      flash.now[:alert] = "you've already tanned today"
-      render :action => "new"
-    elsif too_soon?
-      flash.now[:alert] = "it's been less than 6 hours since you last tanned"
-      render :action => "new"
-    else
-      session[:customer_id] = @customer.id
-      redirect_to(new_salon_customer_tan_session_url(@current_salon))
-    end
+    
+    flash_and_render_or_redirect
   end
 
   #DELETE /customer_logout
@@ -37,6 +25,27 @@ class CustomerSessionController < ApplicationController
   end
 
   private
+
+  def flash_and_render_or_redirect
+    if @customer == nil
+      flash.now[:alert] = "can't find a customer with that keyfob number" 
+    elsif !@customer.can_tan?
+      flash[:alert] = @customer.errors[:tan].first
+    elsif today?
+      flash.now[:alert] = "you've already tanned today"
+    elsif too_soon?
+      flash.now[:alert] = "it's been less than 6 hours since you last tanned"
+    else
+      redirect = true
+    end
+    
+    if redirect
+      session[:customer_id] = @customer.id
+      redirect_to(new_salon_customer_tan_session_url(@current_salon))
+    else
+      render :action => "new"
+    end
+  end
 
   def today?
     @tan_session && (@tan_session.created_at.to_date == Time.zone.now.to_date)

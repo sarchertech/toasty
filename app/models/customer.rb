@@ -16,7 +16,8 @@ class Customer < ActiveRecord::Base
   
   validates_numericality_of :phone_number, :zip_code, :allow_blank => true
 
-  validates_numericality_of :sessions_left, :greater_than => 0, :if => :package?
+  validates_numericality_of :sessions_left, :greater_than_or_equal_to => 0, 
+                            :if => :package?
 
   validates_length_of :last_name, :first_name, :maximum => 40
   validates_length_of :phone_number, :is => 10, :allow_blank => true,

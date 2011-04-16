@@ -114,7 +114,11 @@ class Customer < ActiveRecord::Base
   end
 
   def tan
-    self.sessions_left -= 1 if customer_type == 3
+    self.sessions_left -= 1 if customer_type == 3 && sessions_left > 0
+  end
+
+  def untan
+    self.sessions_left += 1 if customer_type == 3 && sessions_left >= 0
   end
 
   def can_tan?

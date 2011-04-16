@@ -116,7 +116,37 @@ class Customer < ActiveRecord::Base
     self.sessions_left -= 1 if customer_type == 3
   end
 
+  def can_tan?
+    case customer_type
+    when 1
+      return true
+    when 2
+      return true unless expired?
+    when 3
+      return true if tans_left?
+    when 4
+      self.errors[:tan] = "No prepaid sessions"
+      return false
+    end
+  end
+
   private
+
+  def tans_left?
+    if self.sessions_left > 0
+      return true
+    else
+      self.errors[:tan] = "No sessions left"
+      return false
+    end
+  end
+
+  def expired?
+    if self.paid_through < Time.zone.now.to_date
+      self.errors[:tan] = "Membership has expired"
+      return true
+    end 
+  end
 
   def san
     self.first_name = first_name.strip.downcase if self.first_name
@@ -157,7 +187,7 @@ class Customer < ActiveRecord::Base
   end
 
   def in_past?
-    self.paid_through <= Time.now.to_date if self.paid_through
+    self.paid_through <= Time.zone.now.to_date if self.paid_through
   end
 
   def month_to_month?

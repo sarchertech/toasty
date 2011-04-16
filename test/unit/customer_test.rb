@@ -361,4 +361,36 @@ class CustomerTest < ActiveSupport::TestCase
       @rhonda.tan
     end
   end
+
+  test "can_tan? should return false and add error if cant tan" do
+    @rhonda.customer_type = 1
+    assert @rhonda.can_tan?
+
+    @rhonda.customer_type = 2
+    
+    @rhonda.paid_through = Time.zone.now
+    assert @rhonda.can_tan?
+
+    @rhonda.paid_through = Time.zone.now + 3.days
+    assert @rhonda.can_tan?
+
+    @rhonda.paid_through = 1.day.ago
+    assert !@rhonda.can_tan?
+    assert_equal("Membership has expired", @rhonda.errors[:tan].first)
+
+    @rhonda.customer_type = 3
+    @rhonda.errors.clear
+    
+    @rhonda.sessions_left = 1
+    assert @rhonda.can_tan?
+
+    @rhonda.sessions_left = 0
+    assert !@rhonda.can_tan?
+    assert_equal("No sessions left", @rhonda.errors[:tan].first)
+
+    @rhonda.customer_type = 4
+    @rhonda.errors.clear
+    assert !@rhonda.can_tan?
+    assert_equal("No prepaid sessions", @rhonda.errors[:tan].first)
+  end
 end

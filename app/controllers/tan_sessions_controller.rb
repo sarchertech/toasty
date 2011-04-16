@@ -15,8 +15,10 @@ class TanSessionsController < ApplicationController
     @tan_session.customer_id = params[:tan_session][:customer_id]
     @tan_session.salon_id = @current_salon.id    
 
+    @tan_session.customer.tan
+
     #TODO fix this to provide proper status codes
-    if @tan_session.save
+    if @tan_session.customer.save && @tan_session.save
       render :text => "new"
     else
       render :text => "new"

@@ -351,4 +351,14 @@ class CustomerTest < ActiveSupport::TestCase
 
     assert_equal(1, customers.length)
   end
+
+  test "tan should deduct a tan from package customers" do
+    @rhonda.customer_type = 3
+    @rhonda.sessions_left = 5
+    @rhonda.save
+
+    assert_difference('@rhonda.sessions_left', -1) do
+      @rhonda.tan
+    end
+  end
 end

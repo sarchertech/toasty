@@ -112,6 +112,10 @@ class Customer < ActiveRecord::Base
     end
   end
 
+  def tan
+    self.sessions_left -= 1 if customer_type == 3
+  end
+
   private
 
   def san

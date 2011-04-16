@@ -31,4 +31,15 @@ class TanSessionsControllerTest < ActionController::TestCase
                             :customer_id => @customer.to_param}
     end
   end
+
+  test "should deduct tan from customer_type 3 when tan session created" do
+    @customer.customer_type = 3
+    @customer.sessions_left = 2
+    @customer.save
+      
+    post :create, :salon_id => @salon.to_param,
+         :tan_session => {:minutes => "5", :bed_id => "1", 
+                          :customer_id => @customer.to_param}
+    assert_equal(1, @customer.reload.sessions_left)
+  end
 end

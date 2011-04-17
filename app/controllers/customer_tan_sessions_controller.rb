@@ -5,14 +5,14 @@ class CustomerTanSessionsController < ApplicationController
   def new
     @beds = @current_salon.beds.order("bed_number ASC")
     @tan_session = TanSession.new
-    @customer = Customer.find(session[:customer_id])
+    @customer = @current_salon.customers.find(session[:customer_id])
   end
 
   # POST /salons/:salon_id/tan_sessions
   def create
     @tan_session = TanSession.new
     @bed =@current_salon.beds.find_by_bed_number(params[:tan_session][:bed])
-    @customer = Customer.find(session[:customer_id])
+    @customer = @current_salon.customers.find(session[:customer_id])
 
     @tan_session.minutes = params[:tan_session][:minutes]
     @tan_session.bed_id = @bed.id

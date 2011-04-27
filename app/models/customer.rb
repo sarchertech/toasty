@@ -147,7 +147,7 @@ class Customer < ActiveRecord::Base
   end
 
   def expired?
-    if self.paid_through < Time.zone.now.to_date
+    if self.paid_through.to_date < Time.zone.now.to_date
       self.errors[:tan] = "Membership has expired"
       return true
     end 

@@ -1,5 +1,6 @@
 require "heroku"
 require "heroku/command"
+require "aws-s3"
 
 task :cron => :environment do
   Rake::Task['backups:backup'].invoke

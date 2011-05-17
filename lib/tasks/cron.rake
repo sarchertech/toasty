@@ -1,5 +1,6 @@
 require "heroku"
 require "heroku/command"
+require 'heroku/command/pgbackups'
 require "aws/s3"
 
 task :cron => :environment do
@@ -21,7 +22,7 @@ namespace :backups do
     heroku = Heroku::Client.new HEROKU_USERNAME, HEROKU_PASSWORD
 
     puts "Capturing new pg_dump"
-    Heroku::Command.run_internal 'pgbackups:capture', ['--expire', '--app', APP_NAME], heroku
+    Heroku::Command.run 'pgbackups:capture', ['--expire', '--app', APP_NAME]
     
     puts "Opening S3 connection"
     config = YAML.load(File.open("#{RAILS_ROOT}/config/s3.yml"))[RAILS_ENV]

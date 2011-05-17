@@ -1,5 +1,6 @@
 require "heroku"
 require "heroku/command"
+require 'heroku/command/auth'
 require 'heroku/command/pgbackups'
 require "aws/s3"
 
@@ -16,6 +17,12 @@ namespace :backups do
     APP_NAME = 'toasty24-test'#ENV['APP_NAME_ENV']#'toasty24-test'
     BACKUP_BUCKET = 'toasty24-test-daily-backups'#APP_NAME + '-daily-backups'#'toasty24-test-daily-backups'
     PATH_INSIDE_BUCKET = ''
+    
+    class Heroku::Auth
+      def self.client
+        Heroku::Client.new 'learc83@gmail.com', 'archer83'
+      end
+    end
    
     puts "Backup started @ #{Time.now}"
 

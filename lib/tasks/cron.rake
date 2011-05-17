@@ -12,8 +12,8 @@ namespace :backups do
   
     HEROKU_USERNAME = 'learc83@gmail.com'
     HEROKU_PASSWORD = 'archer83'
-    APP_NAME = ENV['APP_NAME_ENV']#'toasty24-test'
-    BACKUP_BUCKET = APP_NAME + '-daily-backups'#'toasty24-test-daily-backups'
+    APP_NAME = 'toasty24-test'#ENV['APP_NAME_ENV']#'toasty24-test'
+    BACKUP_BUCKET = 'toasty24-test-daily-backups'#APP_NAME + '-daily-backups'#'toasty24-test-daily-backups'
     PATH_INSIDE_BUCKET = ''
    
     puts "Backup started @ #{Time.now}"

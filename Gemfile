@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-gem 'heroku'
+gem 'heroku', '2.1.4'
 gem 'aws-s3'
 
 # Bundle edge Rails instead:

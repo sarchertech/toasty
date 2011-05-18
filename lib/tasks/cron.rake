@@ -44,10 +44,14 @@ namespace :backups do
       AWS::S3::Bucket.create(BACKUP_BUCKET)
       bucket = AWS::S3::Bucket.find(BACKUP_BUCKET)
     end
-
+    
+    puts "getting pg_dump url"
+    url = Heroku::Command.run 'pgbackups:url', ['--app', APP_NAME]
+    
     puts "Opening new pg_dump"
-    pg_backup = Heroku::Command::Pgbackups.new(['--app', APP_NAME], heroku)
-    local_pg_dump = open(pg_backup.pgbackup_client.get_latest_backup['public_url'])
+    #pg_backup = Heroku::Command::Pgbackups.new(['--app', APP_NAME], heroku)
+    #local_pg_dump = open(pg_backup.pgbackup_client.get_latest_backup['public_url'])
+    local_pg_dump = open(url)
     puts "Finished opening new pg_dump"
 
     puts "Uploading to S3 bucket"

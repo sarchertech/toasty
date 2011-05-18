@@ -23,6 +23,16 @@ namespace :backups do
         Heroku::Client.new 'learc83@gmail.com', 'archer83'
       end
     end
+    
+    #this is needed because run pgbackups:url returns nil, but prints url to stdout
+    def capture_stdout
+      out = StringIO.new
+      $stdout = out
+      yield
+      return out.string
+    ensure
+      $stdout = STDOUT
+    end
    
     puts "Backup started @ #{Time.now}"
 
@@ -46,7 +56,7 @@ namespace :backups do
     end
     
     puts "getting pg_dump url"
-    url = Heroku::Command.run 'pgbackups:url', ['--app', APP_NAME]
+    url = capture_stdout { Heroku::Command.run 'pgbackups:url', ['--app', APP_NAME] }
     
     puts "Opening new pg_dump"
     #pg_backup = Heroku::Command::Pgbackups.new(['--app', APP_NAME], heroku)

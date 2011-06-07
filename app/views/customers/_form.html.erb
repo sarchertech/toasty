@@ -46,7 +46,9 @@
         <%= f.select(:level, (1..5).to_a, {}, {:id => nil})%>
         
         <span>Paid Through</span>
-        <%= f.date_select(:paid_through, :order => [:month, :day, :year], :start_year => (Time.zone.now.year))%>
+        <% time = Time.zone.now %>
+        <%= f.date_select(:paid_through, :order => [:month, :day, :year], :start_year => (time.year),
+                          :default => time + 1.month)%>
       </div>
   
       <div id="package_slider">

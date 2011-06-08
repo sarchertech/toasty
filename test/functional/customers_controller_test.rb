@@ -54,9 +54,17 @@ class CustomersControllerTest < ActionController::TestCase
   #end
 
   test "should get show and assign a customer scoped to current salon" do
+    6.times do #testing to show only last 5 tan sessions
+      Factory.create(:tan_session, :customer_id => @customer.id, 
+                     :salon_id => @salon.id)
+    end
+    
     get :show, :salon_id => @salon.to_param, :id => @customer.to_param
     assert_response :success 
     assert_equal(@customer, assigns(:customer))
+
+    assert_equal(@customer.tan_sessions.order('created_at DESC').limit(5), 
+                 assigns(:tan_sessions))
 
     assert_raises(ActiveRecord::RecordNotFound) do
       get :show, :salon_id => @salon.to_param, :id => @customer3.to_param 

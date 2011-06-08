@@ -47,6 +47,11 @@
     <%= button_to "Delete Customer", salon_customer_path(@current_salon, @customer),
                                      :method => :delete, :class => "delete_button",
                                      :confirm => "are you sure you want to DELETE this customer?" %>
+    <ul id="previous_tans">
+      <% @tan_sessions.each do |tan_session| %>
+        <%= tan_session.created_at %>
+      <% end %>
+    </ul>
   </div>
   <div class="clear"></div>
 </div>

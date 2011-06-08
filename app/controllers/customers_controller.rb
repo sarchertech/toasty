@@ -9,6 +9,7 @@ class CustomersController < ApplicationController
   #GET /salons/1/customers/1
   def show
     @customer = scope.customers.find(params[:id])
+    @tan_sessions = @customer.tan_sessions.order('created_at DESC').limit(5)
   end
   
   #GET /customers/new

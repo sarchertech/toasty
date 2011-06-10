@@ -17,7 +17,7 @@
     <div id="left_wrapper">
       <h3><%= @customer.first_name + " " + @customer.last_name %></h3>
    
-      <h4><%= type_and_details_for(@customer) %></h4>
+      <h4><%= type_and_details_for(@customer, :multi_line => true) %></h4>
    
       <br />
    
@@ -47,15 +47,19 @@
     <%= button_to "Delete Customer", salon_customer_path(@current_salon, @customer),
                                      :method => :delete, :class => "delete_button",
                                      :confirm => "are you sure you want to DELETE this customer?" %>
-    <ul id="previous_tans">
-      <% @tan_sessions.each do |tan_session| %>
-        <li>
-          <%= tan_session.created_at.strftime("%m-%d-%y") %> | Bed
-          <%= tan_session.bed.bed_number %> |
-          <%= tan_session.minutes%> Minutes
-        </li>
-      <% end %>
-    </ul>
+    <div id="previous_tans">
+      <p>Previous Tan Sessions:</p>
+      
+      <ul>
+        <% @tan_sessions.each do |tan_session| %>
+          <li>
+            <%= tan_session.created_at.strftime("%m-%d-%y") %> | Bed
+            <%= tan_session.bed.bed_number %> |
+            <%= tan_session.minutes%> Minutes
+          </li>
+          <% end %>
+        </ul>
+    </div>
   </div>
   <div class="clear"></div>
 </div>

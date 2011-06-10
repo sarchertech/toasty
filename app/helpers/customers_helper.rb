@@ -1,7 +1,11 @@
 module CustomersHelper
-  def type_and_details_for(customer)
-    str = ", #{customer.details}" if customer.details
-    "#{customer.word_for_type}#{str}"
+  def type_and_details_for(customer, ml={:multi_line => false})
+    if customer.details && ml[:multi_line]
+      str = ",<br /> #{customer.details}"
+    elsif customer.details
+      str = ", #{customer.details}"
+    end
+    "#{customer.word_for_type}#{str}".html_safe
   end
 
   def customer_form_submit_button

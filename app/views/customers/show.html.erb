@@ -49,7 +49,11 @@
                                      :confirm => "are you sure you want to DELETE this customer?" %>
     <ul id="previous_tans">
       <% @tan_sessions.each do |tan_session| %>
-        <%= tan_session.created_at %>
+        <li>
+          <%= tan_session.created_at.strftime("%m-%d-%y") %> | Bed
+          <%= tan_session.bed.bed_number %> |
+          <%= tan_session.minutes%> Minutes
+        </li>
       <% end %>
     </ul>
   </div>

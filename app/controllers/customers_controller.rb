@@ -10,6 +10,7 @@ class CustomersController < ApplicationController
   def show
     @customer = scope.customers.find(params[:id])
     @tan_sessions = @customer.tan_sessions.order('created_at DESC').limit(5)
+      .includes(:bed)#eager loading
   end
   
   #GET /customers/new

@@ -38,7 +38,7 @@ function activateBed() {
     	localStorage.setItem(now, 'activate url ' + textStatus + ' ' + status + ' ' + bed);
 
 	    $sent = false
-	    alert("bed did not activate--please try again");
+	    //alert("bed did not activate--please try again");
       window.location.reload();
 	  }
 	});
@@ -61,7 +61,7 @@ function resetBed() {
     	localStorage.setItem(now, 'reset url ' + textStatus + ' ' + status + ' ' + bed);
     }
   });
-  alert("Please clean the bed before you tan");
+  //alert("Please clean the bed before you tan");
 };
 
 function checkStatusThenCreateSesion() {
@@ -101,7 +101,7 @@ function createSession() {
     //window.clearTimeout(idleTimer);
     var now = new Date();
     localStorage.setItem(now, 'checkStatusThenCreateSession failed '+ bed);
-    alert("bed did not activate--please try again");
+    //alert("bed did not activate--please try again");
     window.location.reload();
   };
 };
@@ -125,7 +125,7 @@ function getTimeStatus(beds, f) {
       };
     	localStorage.setItem(now, 'timeStatus url ' + textStatus + ' ' + status);
     	
-	    alert('status and times error-- ' + textStatus);
+	    //alert('status and times error-- ' + textStatus);
 	    window.location = $form.attr("data-login-url");
 	  }
 	});

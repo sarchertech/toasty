@@ -6,11 +6,13 @@ function activateBed() {
   var url = $activate_url;
 	var bed = $("#tan_session_bed").val();
 	var minutes = $("#tan_session_minutes").val();
+	//make a global minutes variable to hang around for later in createSession
+	window.gMinutes = $("#tan_session_minutes").val();
 	var a = $("#_" + bed + " a")
 	if ( a.attr("data-bed-status") == "4" ) {
 	  resetBed();
 	};
-	$.ajax({
+  $.ajax({
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
 	    //createSession();
@@ -39,7 +41,20 @@ function activateBed() {
 
 	    $sent = false
 	    //alert("bed did not activate--please try again");
-      window.location.reload();
+      //window.location.reload();
+      //this next part is designed to try again to activate bed to overcome network issues
+      $.ajax({
+    	  url: url + bed + "/" + minutes + "/" + $delay,
+    	  success: function() {
+    	    var now = new Date();
+    	    localStorage.setItem(now, 'double worked from activateBed');
+    	  },
+    	  error: function(xhr, textStatus){
+    	    var now = new Date();
+    	    localStorage.setItem(now, 'double did not worked from activateBed');
+    	  }:
+    	});
+      window.location = $form.attr("data-login-url");
 	  }
 	});
 };
@@ -102,7 +117,20 @@ function createSession() {
     var now = new Date();
     localStorage.setItem(now, 'checkStatusThenCreateSession failed '+ bed);
     //alert("bed did not activate--please try again");
-    window.location.reload();
+    //window.location.reload();
+    //this next part is designed to try again to activate bed to overcome network issues
+    $.ajax({
+  	  url: $activate_url + bed + "/" + window.gMinutes + "/" + $delay,
+  	  success: function() {
+  	    var now = new Date();
+  	    localStorage.setItem(now, 'double worked from createSession');
+  	  },
+  	  error: function(xhr, textStatus){
+  	    var now = new Date();
+  	    localStorage.setItem(now, 'double did not worked from createSession');
+  	  }:
+  	});
+    window.location = $form.attr("data-login-url");
   };
 };
 
@@ -126,7 +154,7 @@ function getTimeStatus(beds, f) {
     	localStorage.setItem(now, 'timeStatus url ' + textStatus + ' ' + status);
     	
 	    //alert('status and times error-- ' + textStatus);
-	    window.location = $form.attr("data-login-url");
+	    //window.location = $form.attr("data-login-url");
 	  }
 	});
 };

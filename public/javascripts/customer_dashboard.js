@@ -52,7 +52,7 @@ function activateBed() {
     	  error: function(xhr, textStatus){
     	    var now = new Date();
     	    localStorage.setItem(now, 'double did not worked from activateBed');
-    	  }:
+    	  }
     	});
       window.location = $form.attr("data-login-url");
 	  }
@@ -128,7 +128,7 @@ function createSession() {
   	  error: function(xhr, textStatus){
   	    var now = new Date();
   	    localStorage.setItem(now, 'double did not worked from createSession');
-  	  }:
+  	  }
   	});
     window.location = $form.attr("data-login-url");
   };

@@ -74,6 +74,19 @@ function resetBed() {
         var status = "";
       };
     	localStorage.setItem(now, 'reset url ' + textStatus + ' ' + status + ' ' + bed);
+			$.ajax({
+		    url: url,
+		    error: function(xhr, textStatus){
+		      var now = new Date();
+			    try {
+		        var status = xhr.status;
+		      }
+		      catch (err) {
+		        var status = "";
+		      };
+		    	localStorage.setItem(now, 'reset url ' + textStatus + ' ' + status + ' ' + bed);
+		    }
+		  });
     }
   });
   //alert("Please clean the bed before you tan");

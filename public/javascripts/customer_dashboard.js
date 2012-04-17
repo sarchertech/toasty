@@ -70,7 +70,7 @@ function activateBed() {
 	if ( a.attr("data-bed-status") == "4" ) {
 	  resetBed();
 		window.clearTimeout($idleTimer);
-    var activateBedTimer = window.setTimeout(activateBedAfterReset(), 1000);
+    var activateBedTimer = window.setTimeout(activateBedAfterReset(), 5000);
 	}
 	else {
   	$.ajax({

@@ -73,7 +73,7 @@ function activateBed() {
     //var activateBedTimer = window.setTimeout(activateBedAfterReset(), 5000);
 		setTimeout(function(){
 			activateBedAfterReset();
-		}, 1500);
+		}, 1000);
 	}
 	else {
   	$.ajax({

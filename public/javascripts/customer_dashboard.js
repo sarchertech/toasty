@@ -2,17 +2,15 @@ $.ajaxSetup({
   timeout: 1000,
 });
 
-function activateBed() {
-  var url = $activate_url;
+function activateBedAfterReset() {
+	var url = $activate_url;
 	var bed = $("#tan_session_bed").val();
 	var minutes = $("#tan_session_minutes").val();
 	//make a global minutes variable to hang around for later in createSession
 	window.gMinutes = $("#tan_session_minutes").val();
 	var a = $("#_" + bed + " a")
-	if ( a.attr("data-bed-status") == "4" ) {
-	  resetBed();
-	};
-  $.ajax({
+	
+	$.ajax({
 	  url: url + bed + "/" + minutes + "/" + $delay,
 	  success: function() {
 	    //createSession();
@@ -57,6 +55,65 @@ function activateBed() {
       window.location = $form.attr("data-login-url");
 	  }
 	});
+}
+
+function activateBed() {
+  var url = $activate_url;
+	var bed = $("#tan_session_bed").val();
+	var minutes = $("#tan_session_minutes").val();
+	//make a global minutes variable to hang around for later in createSession
+	window.gMinutes = $("#tan_session_minutes").val();
+	var a = $("#_" + bed + " a")
+	if ( a.attr("data-bed-status") == "4" ) {
+	  resetBed();
+	}
+	else {
+  	$.ajax({
+		  url: url + bed + "/" + minutes + "/" + $delay,
+		  success: function() {
+		    //createSession();
+		    window.clearTimeout($idleTimer);
+		    var createSessionTimer = window.setTimeout(checkStatusThenCreateSesion, 3000);
+	  	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
+	  	  $("#dash_controls_wrapper").hide(0, function() {
+	  	    $("#post_active").fadeIn(1000);
+	  	  });
+	  	  $("#dash_buttons a").unbind("mousedown");
+
+	    	$("#_" + bed).removeClass().addClass("red");
+	      $("#_" + bed).attr("data-bed-loading", "1");
+	    	$("#bed_activated p").html("Bed " + bed + " Activated");
+	    	$("#bed_activated").fadeIn().delay(300).fadeOut('slow');
+		  },
+		  error: function(xhr, textStatus){
+		    var now = new Date();
+		    try {
+	        var status = xhr.status;
+	      }
+	      catch (err) {
+	        var status = "";
+	      };
+	    	localStorage.setItem(now, 'activate url ' + textStatus + ' ' + status + ' ' + bed);
+
+		    $sent = false
+		    //alert("bed did not activate--please try again");
+	      //window.location.reload();
+	      //this next part is designed to try again to activate bed to overcome network issues
+	      $.ajax({
+	    	  url: url + bed + "/" + minutes + "/" + $delay,
+	    	  success: function() {
+	    	    var now = new Date();
+	    	    localStorage.setItem(now, 'double worked from activateBed');
+	    	  },
+	    	  error: function(xhr, textStatus){
+	    	    var now = new Date();
+	    	    localStorage.setItem(now, 'double did not worked from activateBed');
+	    	  }
+	    	});
+	      window.location = $form.attr("data-login-url");
+		  }
+		});
+	};
 };
 
 function resetBed() {
@@ -65,6 +122,9 @@ function resetBed() {
   //$.get(url);
   $.ajax({
     url: url,
+		success: function() {
+			activateBedAfterReset();
+		},
     error: function(xhr, textStatus){
       var now = new Date();
 	    try {
@@ -76,6 +136,9 @@ function resetBed() {
     	localStorage.setItem(now, 'reset url ' + textStatus + ' ' + status + ' ' + bed);
 			$.ajax({
 		    url: url,
+				success: function() {
+					activateBedAfterReset();
+				},
 		    error: function(xhr, textStatus){
 		      var now = new Date();
 			    try {

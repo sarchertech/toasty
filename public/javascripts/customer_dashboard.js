@@ -3,7 +3,7 @@ $.ajaxSetup({
 });
 
 function activateBedAfterReset() {
-	alert("activateBedAfterReset");
+	//alert("activateBedAfterReset");
 	var url = $activate_url;
 	var bed = $("#tan_session_bed").val();
 	var minutes = $("#tan_session_minutes").val();
@@ -73,7 +73,7 @@ function activateBed() {
     //var activateBedTimer = window.setTimeout(activateBedAfterReset(), 5000);
 		setTimeout(function(){
 			activateBedAfterReset();
-		}, 5000);
+		}, 1500);
 	}
 	else {
   	$.ajax({

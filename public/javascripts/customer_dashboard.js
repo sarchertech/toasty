@@ -68,6 +68,8 @@ function activateBed() {
 	var a = $("#_" + bed + " a")
 	if ( a.attr("data-bed-status") == "4" ) {
 	  resetBed();
+		window.clearTimeout($idleTimer);
+    var activateBedTimer = window.setTimeout(activateBedAfterReset(), 1000);
 	}
 	else {
   	$.ajax({
@@ -125,7 +127,7 @@ function resetBed() {
   $.ajax({
     url: url,
 		success: function() {
-			activateBedAfterReset();
+			//activateBedAfterReset();
 		},
     error: function(xhr, textStatus){
       var now = new Date();
@@ -139,7 +141,7 @@ function resetBed() {
 			$.ajax({
 		    url: url,
 				success: function() {
-					activateBedAfterReset();
+					//activateBedAfterReset();
 				},
 		    error: function(xhr, textStatus){
 		      var now = new Date();

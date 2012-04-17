@@ -46,6 +46,8 @@ function activateBedAfterReset() {
     	  success: function() {
     	    var now = new Date();
     	    localStorage.setItem(now, 'double worked from activateBed');
+					window.clearTimeout($idleTimer);
+					var createSessionTimer = window.setTimeout(checkStatusThenCreateSesion, 3000);
     	  },
     	  error: function(xhr, textStatus){
     	    var now = new Date();

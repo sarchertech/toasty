@@ -3,6 +3,7 @@ $.ajaxSetup({
 });
 
 function activateBedAfterReset() {
+	alert("activateBedAfterReset");
 	var url = $activate_url;
 	var bed = $("#tan_session_bed").val();
 	var minutes = $("#tan_session_minutes").val();

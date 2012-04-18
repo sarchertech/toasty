@@ -16,7 +16,7 @@ class Bed < ActiveRecord::Base
   
   def session_over?
     tan_session = self.tan_sessions.last
-    time = tan_session.minutes + 12 if tan_session
+    time = tan_session.minutes + 9 if tan_session
     finished = tan_session.created_at + time.minutes if tan_session
     if tan_session && finished > Time.zone.now 
       return "false"

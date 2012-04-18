@@ -310,7 +310,7 @@ $(document).ready(function() {
   $activate_url = "http://" + $ip + ":4567/1/";
   $status_url = "http://" + $ip + ":4568/";
   $reset_url = "http://" + $ip + ":4567/2/";
-  $delay = 6;
+  $delay = 5;
   $form = $("#new_tan_session")
   $index = $("#tan_session_minutes");
   $time_box = $("#tan_session_minutes");

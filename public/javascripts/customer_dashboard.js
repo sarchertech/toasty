@@ -17,7 +17,7 @@ function activateBedAfterReset() {
 	    //createSession();
 	    window.clearTimeout($idleTimer);
 	    var createSessionTimer = window.setTimeout(checkStatusThenCreateSesion, 3000);
-  	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
+  	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 5 Minutes");
   	  $("#dash_controls_wrapper").hide(0, function() {
   	    $("#post_active").fadeIn(1000);
   	  });
@@ -82,7 +82,7 @@ function activateBed() {
 		    //createSession();
 		    window.clearTimeout($idleTimer);
 		    var createSessionTimer = window.setTimeout(checkStatusThenCreateSesion, 3000);
-	  	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 6 Minutes");
+	  	  $("#post_active").html("Bed " + bed + " Will Activate <br /> in 5 Minutes");
 	  	  $("#dash_controls_wrapper").hide(0, function() {
 	  	    $("#post_active").fadeIn(1000);
 	  	  });
